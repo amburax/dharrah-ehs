@@ -1140,7 +1140,7 @@ Error generating stack: `+e.message+`
     position: relative;
     display: inline-block;
   }
-  .wa-btn.wa-offline {
+  .wa-btn.wa-offline, .btn-outline-r.wa-offline {
     background: #9ca3af !important;
     color: #fff !important;
     cursor: not-allowed !important;
@@ -1149,8 +1149,9 @@ Error generating stack: `+e.message+`
     opacity: 0.75 !important;
     filter: grayscale(1) !important;
     transition: background 0.4s !important;
+    border-color: #9ca3af !important;
   }
-  .wa-btn.wa-offline:hover {
+  .wa-btn.wa-offline:hover, .btn-outline-r.wa-offline:hover {
     background: #9ca3af !important;
     transform: none !important;
   }
@@ -1202,49 +1203,51 @@ Error generating stack: `+e.message+`
   }
 
   function applyHoursState() {
-    var btn = document.querySelector('a.wa-btn');
-    if (!btn) return;
-
-    /* Wrap once */
-    if (!btn.parentElement.classList.contains('wa-btn-wrapper')) {
-      var wrapper = document.createElement('span');
-      wrapper.className = 'wa-btn-wrapper';
-      btn.parentNode.insertBefore(wrapper, btn);
-      wrapper.appendChild(btn);
-
-      /* Tooltip element */
-      var tip = document.createElement('span');
-      tip.className = 'wa-tooltip';
-      tip.textContent = 'Available Monday – Saturday, 9 AM to 6 PM (IST)';
-      wrapper.appendChild(tip);
-    }
-
+    var btns = document.querySelectorAll('a.wa-btn, a.btn-outline-r');
+    if (!btns || btns.length === 0) return;
     var open = isOpen();
-    if (open) {
-      btn.classList.remove('wa-offline');
-      btn.removeAttribute('data-blocked');
-      /* Restore original href */
-      if (btn.dataset.href) {
-        btn.href = btn.dataset.href;
-        btn.target = '_blank';
+
+    btns.forEach(function(btn) {
+      /* Wrap once */
+      if (!btn.parentElement.classList.contains('wa-btn-wrapper')) {
+        var wrapper = document.createElement('span');
+        wrapper.className = 'wa-btn-wrapper';
+        btn.parentNode.insertBefore(wrapper, btn);
+        wrapper.appendChild(btn);
+
+        /* Tooltip element */
+        var tip = document.createElement('span');
+        tip.className = 'wa-tooltip';
+        tip.textContent = 'Available Monday-Saturday, 9 AM to 6 PM (IST)';
+        wrapper.appendChild(tip);
       }
-      /* Hide tooltip */
-      var tip = btn.parentElement.querySelector('.wa-tooltip');
-      if (tip) tip.style.display = '';
-    } else {
-      /* Store href and disable */
-      if (!btn.dataset.href) btn.dataset.href = btn.href;
-      btn.href = 'javascript:void(0)';
-      btn.removeAttribute('target');
-      btn.setAttribute('data-blocked', '1');
-      btn.classList.add('wa-offline');
-      /* Show tooltip always on hover (CSS handles that) */
-    }
+
+      if (open) {
+        btn.classList.remove('wa-offline');
+        btn.removeAttribute('data-blocked');
+        /* Restore original href */
+        if (btn.dataset.href) {
+          btn.href = btn.dataset.href;
+          btn.target = '_blank';
+        }
+        /* Hide tooltip */
+        var tipEl = btn.parentElement.querySelector('.wa-tooltip');
+        if (tipEl) tipEl.style.display = '';
+      } else {
+        /* Store href and disable */
+        if (!btn.dataset.href) btn.dataset.href = btn.href;
+        btn.href = 'javascript:void(0)';
+        btn.removeAttribute('target');
+        btn.setAttribute('data-blocked', '1');
+        btn.classList.add('wa-offline');
+        /* Show tooltip always on hover (CSS handles that) */
+      }
+    });
   }
 
   /* Block click explicitly too */
   document.addEventListener('click', function (e) {
-    var btn = e.target.closest('a.wa-btn');
+    var btn = e.target.closest('a.wa-btn, a.btn-outline-r');
     if (btn && btn.getAttribute('data-blocked')) {
       e.preventDefault();
       e.stopPropagation();
@@ -1255,13 +1258,18 @@ Error generating stack: `+e.message+`
   document.addEventListener('DOMContentLoaded', function () {
     applyHoursState();
     setInterval(applyHoursState, 60000);
+    
+    /* Observe React navigations */
+    var obs = new MutationObserver(function() {
+      applyHoursState();
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
   });
   /* Also run after React renders (delayed) */
   window.addEventListener('load', function () {
     applyHoursState();
     setTimeout(applyHoursState, 800);
     setTimeout(applyHoursState, 2000);
-    setInterval(applyHoursState, 60000);
   });
 })();
 </script>
@@ -1287,7 +1295,7 @@ Error generating stack: `+e.message+`
 
     var tip = document.createElement('div');
     tip.id = 'float-wa-tooltip';
-    tip.textContent = 'Available Mon–Sat, 9 AM – 6 PM (IST)';
+    tip.textContent = 'Available Monday-Saturday, 9 AM – 6 PM (IST)';
     wrap.appendChild(tip);
 
     var btn = document.createElement('a');
