@@ -1572,147 +1572,7 @@ Error generating stack: `+e.message+`
   .dharrah-cc-opt .opt-code { font-weight: 700; }
   .dharrah-cc-opt .opt-iso  { font-weight: 400; font-size: .75rem; opacity: .75; }
 </style>
-<script>
-/* ── Phone field v2: custom dropdown + WhatsApp intercept ── */
-(function () {
 
-  var CODES = [
-    {code:'+91',  iso:'IN', flag:'🇮🇳'},
-    {code:'+1',   iso:'US', flag:'🇺🇸'},
-    {code:'+44',  iso:'UK', flag:'🇬🇧'},
-    {code:'+971', iso:'AE', flag:'🇦🇪'},
-    {code:'+966', iso:'SA', flag:'🇸🇦'},
-    {code:'+974', iso:'QA', flag:'🇶🇦'},
-    {code:'+965', iso:'KW', flag:'🇰🇼'},
-    {code:'+973', iso:'BH', flag:'🇧🇭'},
-    {code:'+968', iso:'OM', flag:'🇴🇲'},
-    {code:'+61',  iso:'AU', flag:'🇦🇺'},
-    {code:'+49',  iso:'DE', flag:'🇩🇪'},
-    {code:'+33',  iso:'FR', flag:'🇫🇷'},
-    {code:'+81',  iso:'JP', flag:'🇯🇵'},
-    {code:'+65',  iso:'SG', flag:'🇸🇬'},
-    {code:'+60',  iso:'MY', flag:'🇲🇾'},
-    {code:'+92',  iso:'PK', flag:'🇵🇰'},
-    {code:'+880', iso:'BD', flag:'🇧🇩'},
-    {code:'+94',  iso:'LK', flag:'🇱🇰'},
-    {code:'+27',  iso:'ZA', flag:'🇿🇦'},
-    {code:'+55',  iso:'BR', flag:'🇧🇷'},
-  ];
-
-  var selected = CODES[0]; /* Default: India +91 */
-
-  /* ── 1. WhatsApp intercept ── */
-  var _orig = window.open;
-  window.open = function (url, target, features) {
-    if (url && url.indexOf('wa.me') !== -1 && url.indexOf('text=') !== -1) {
-      var numI = document.getElementById('dharrah-phone-num');
-      if (numI && numI.value.trim()) {
-        var digits = numI.value.trim().replace(/[^0-9]/g, '');
-        var fullPhone = selected.code + ' ' + digits;
-        url = url.replace('text=', 'text=' + encodeURIComponent('*Phone:* ' + fullPhone + '
-'));
-      }
-    }
-    return _orig.apply(window, arguments);
-  };
-
-  /* ── 2. Build dropdown HTML ── */
-  function buildRow() {
-    var row = document.createElement('div');
-    row.id = 'dharrah-phone-row';
-    row.className = 'f-row';
-
-    var label = document.createElement('div');
-    label.className = 'fg';
-    label.style.flex = '1';
-
-    var lbl = document.createElement('span');
-    lbl.className = 'dp-label';
-    lbl.textContent = 'Phone Number';
-
-    var wrapper = document.createElement('div');
-    wrapper.id = 'dharrah-phone-wrapper';
-
-    /* Trigger button */
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.id = 'dharrah-cc-btn';
-    btn.innerHTML = selected.flag + ' ' + selected.code + ' (' + selected.iso + ') <span class="cc-arrow">&#9660;</span>';
-
-    /* Dropdown list */
-    var list = document.createElement('div');
-    list.id = 'dharrah-cc-list';
-
-    CODES.forEach(function(c) {
-      var opt = document.createElement('div');
-      opt.className = 'dharrah-cc-opt' + (c.iso === selected.iso ? ' active' : '');
-      opt.innerHTML =
-        '<span class="opt-flag">' + c.flag + '</span>' +
-        '<span class="opt-code">' + c.code + '</span>' +
-        '<span class="opt-iso">(' + c.iso + ')</span>';
-      opt.addEventListener('click', function(e) {
-        e.stopPropagation();
-        selected = c;
-        btn.innerHTML = c.flag + ' ' + c.code + ' (' + c.iso + ') <span class="cc-arrow">&#9660;</span>';
-        list.querySelectorAll('.dharrah-cc-opt').forEach(function(o){ o.classList.remove('active'); });
-        opt.classList.add('active');
-        list.classList.remove('open');
-        btn.classList.remove('open');
-        document.getElementById('dharrah-phone-num').focus();
-      });
-      list.appendChild(opt);
-    });
-
-    /* Toggle */
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var open = list.classList.toggle('open');
-      btn.classList.toggle('open', open);
-    });
-
-    /* Close on outside click */
-    document.addEventListener('click', function() {
-      list.classList.remove('open');
-      btn.classList.remove('open');
-    });
-
-    /* Number input */
-    var numInput = document.createElement('input');
-    numInput.id = 'dharrah-phone-num';
-    numInput.type = 'tel';
-    numInput.placeholder = 'XXXXX XXXXX';
-
-    wrapper.appendChild(btn);
-    wrapper.appendChild(list);
-    wrapper.appendChild(numInput);
-    label.appendChild(lbl);
-    label.appendChild(wrapper);
-    row.appendChild(label);
-    return row;
-  }
-
-  /* ── 3. Inject into the contact form ── */
-  function inject() {
-    var forms = document.querySelectorAll('form');
-    forms.forEach(function(form) {
-      if (!form.querySelector('input[type="email"]') || !form.querySelector('textarea')) return;
-      if (document.getElementById('dharrah-phone-row')) return;
-      var rows = form.querySelectorAll('.f-row');
-      var phoneRow = buildRow();
-      if (rows.length > 0) {
-        rows[0].parentNode.insertBefore(phoneRow, rows[1] || null);
-      } else {
-        form.insertBefore(phoneRow, form.firstChild);
-      }
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', inject);
-  } else { inject(); }
-  [300, 800, 1500, 2500].forEach(function(ms){ setTimeout(inject, ms); });
-})();
-</script>
 
 <script id="email-obfuscation">
 /* Email obfuscation — prevents spam bot harvesting */
@@ -1794,6 +1654,128 @@ Error generating stack: `+e.message+`
     }
   </style>
 
+   </script>
+   <script id="dharrah-phone-picker-v6-elite">
+    /* 
+       Institutional Elite Phone Picker - Dharrah EHS
+       V6: Elite Architecture (90px Fixed + Flex-Grow + Container Focus)
+    */
+    (function() {
+      const CODES = [
+        { iso: 'IN', code: '+91' },
+        { iso: 'US', code: '+1' },
+        { iso: 'AE', code: '+971' },
+        { iso: 'GB', code: '+44' }
+      ];
+
+      function setupPhonePicker() {
+        const phoneInput = document.querySelector('input[placeholder="+91 XXXXX XXXXX"]');
+        if (!phoneInput || phoneInput.dataset.pickerSet === 'true') return;
+        
+        phoneInput.dataset.pickerSet = 'true';
+        const parent = phoneInput.parentElement;
+        
+        const container = document.createElement('div');
+        container.className = 'phone-picker-group';
+        container.id = 'phone-picker-container';
+        container.innerHTML = `
+          <style>
+            .phone-picker-group { 
+              display: flex !important; 
+              align-items: center !important; 
+              gap: 0 !important;
+              border: 1.5px solid rgba(61, 85, 128, 0.14) !important; 
+              border-radius: 8px !important; 
+              background: #F4F8FC !important; 
+              margin-top: 8px !important; 
+              height: 45px !important; 
+              overflow: hidden !important; 
+              width: 100% !important;
+              transition: all 0.3s ease;
+            }
+            /* Institutional Focus Glow */
+            .phone-picker-group:focus-within { 
+              border-color: #c8201a !important; 
+              box-shadow: 0 0 8px rgba(200, 32, 26, 0.15) !important;
+              background: #fff !important;
+            }
+            .phone-picker-group.has-error { 
+              border-color: #ff4d4f !important; 
+              background: #fff2f0 !important; 
+            }
+            
+            /* FIXED 90px Selector */
+            .cc-select { 
+              flex-shrink: 0 !important;
+              width: 90px !important;
+              white-space: nowrap !important;
+              background: rgba(61, 85, 128, 0.03) !important; 
+              border: none !important; 
+              border-right: 1.5px solid rgba(61, 85, 128, 0.14) !important; 
+              padding: 0 10px !important; 
+              cursor: pointer !important; 
+              font-size: 13px !important; 
+              color: #1A2D5A !important; 
+              outline: none !important; 
+              height: 100% !important; 
+              -webkit-appearance: none; appearance: none;
+              font-weight: 500;
+            }
+            
+            /* FLEX-GROW Number Input */
+            #real-phone-input { 
+              flex-grow: 1 !important; 
+              width: 100% !important;
+              min-width: 0 !important;
+              border: none !important; 
+              padding: 0 15px !important; 
+              font-size: 14px !important; 
+              color: #1A2D5A !important; 
+              outline: none !important; 
+              background: transparent !important; 
+              height: 100% !important;
+            }
+            #real-phone-input::placeholder { color: #8a9fc7; opacity: 0.6; }
+          </style>
+          <select class="cc-select" id="cc-picker">
+            ${CODES.map(c => `<option value="${c.code}">${c.iso} ${c.code}</option>`).join('')}
+          </select>
+          <input type="tel" id="real-phone-input" placeholder="Enter 10 digit number" maxlength="10" autocomplete="off">
+        `;
+
+        phoneInput.style.display = 'none';
+        parent.appendChild(container);
+
+        const realInput = container.querySelector('#real-phone-input');
+        const ccPicker = container.querySelector('#cc-picker');
+
+        realInput.addEventListener('input', function(e) {
+          let val = e.target.value.replace(/\D/g, '');
+          e.target.value = val.substring(0, 10);
+          phoneInput.value = ccPicker.value + ' ' + e.target.value;
+          container.classList.remove('has-error');
+          phoneInput.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+
+        ccPicker.addEventListener('change', () => {
+          phoneInput.value = ccPicker.value + ' ' + realInput.value;
+        });
+
+        // Sync for Bridge Validation
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((m) => {
+             if (m.attributeName === 'style' && phoneInput.style.border.includes('red')) {
+                container.classList.add('has-error');
+             }
+          });
+        });
+        observer.observe(phoneInput, { attributes: true });
+      }
+
+      setupPhonePicker();
+      [500, 1500, 3000].forEach(t => setTimeout(setupPhonePicker, t));
+    })();
+  </script>
   <script>
     (function() {
       /* 1. Add click listener to logo for top scroll */
@@ -1846,24 +1828,77 @@ Error generating stack: `+e.message+`
   </script>
   <script id="dharrah-contact-automation">
     /* 
-       Contact Form Automation Bridge
-       Intercepts form submission and routes to Cloudflare Worker
+       Elite Contact Bridge - Dharrah EHS
+       V7: Custom Popups + 6-Char Msg Validation
     */
     (function() {
+      // --- CUSTOM POPUP UI ---
+      const injectPopupUI = () => {
+        if (document.getElementById('dh-popup-overlay')) return;
+        const style = document.createElement('style');
+        style.innerHTML = `
+          #dh-popup-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 45, 90, 0.4); backdrop-filter: blur(5px);
+            display: flex; align-items: center; justify-content: center; z-index: 99999;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+          }
+          #dh-popup-overlay.active { opacity: 1; pointer-events: auto; }
+          #dh-popup-box {
+            background: #fff; border-radius: 12px; padding: 35px; width: 90%; max-width: 400px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15); transform: translateY(20px); transition: transform 0.3s ease;
+            text-align: center; font-family: 'DM Sans', sans-serif; border-top: 4px solid #c8201a;
+          }
+          #dh-popup-overlay.active #dh-popup-box { transform: translateY(0); }
+          .p-icon { font-size: 50px; margin-bottom: 15px; display: block; }
+          .p-title { color: #1A2D5A; font-weight: 700; font-size: 22px; margin-bottom: 12px; }
+          .p-msg { color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 25px; white-space: pre-line; }
+          .p-btn { 
+            background: #1A2D5A; color: #fff; border: none; padding: 12px 35px; 
+            border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px;
+            transition: all 0.2s; width: 100%;
+          }
+          .p-btn:hover { background: #c8201a; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(200, 32, 26, 0.2); }
+        `;
+        document.head.appendChild(style);
+
+        const overlay = document.createElement('div');
+        overlay.id = 'dh-popup-overlay';
+        overlay.innerHTML = `
+          <div id="dh-popup-box">
+            <span class="p-icon" id="p-icon">⚠️</span>
+            <div class="p-title" id="p-title">Notification</div>
+            <div class="p-msg" id="p-msg"></div>
+            <button class="p-btn" onclick="closeDhPopup()">OK</button>
+          </div>
+        `;
+        document.body.appendChild(overlay);
+      };
+
+      window.showDhPopup = (title, msg, type = 'error') => {
+        injectPopupUI();
+        const overlay = document.getElementById('dh-popup-overlay');
+        document.getElementById('p-title').innerText = title;
+        document.getElementById('p-msg').innerText = msg;
+        document.getElementById('p-icon').innerText = type === 'success' ? '✅' : '⚠️';
+        overlay.classList.add('active');
+      };
+
+      window.closeDhPopup = () => {
+        const overlay = document.getElementById('dh-popup-overlay');
+        if (overlay) overlay.classList.remove('active');
+      };
+
       function setupBridge() {
-        // Find the main contact form
         const form = document.querySelector('form');
         if (!form || form.dataset.bridgeSet === 'true') return;
 
-        // Prevent multiple listeners
         form.dataset.bridgeSet = 'true';
 
         form.addEventListener('submit', async function(e) {
-          // Stop React's WhatsApp redirect
           e.stopImmediatePropagation();
           e.preventDefault();
 
-          // Gather data using placeholders identified during inspection
           const formData = {
             name: form.querySelector('input[placeholder="Full Name"]')?.value || '',
             company: form.querySelector('input[placeholder="Company Name"]')?.value || '',
@@ -1873,10 +1908,47 @@ Error generating stack: `+e.message+`
             message: form.querySelector('textarea')?.value || ''
           };
 
-          // UI Feedback
-          const btn = form.querySelector('button.btn-red') || form.querySelector('button[type="submit"]');
-          const originalText = btn.innerHTML;
-          btn.innerHTML = 'Sending...';
+          // --- VALIDATION LAYER ---
+          const errors = [];
+          const fields = {
+            name: form.querySelector('input[placeholder="Full Name"]'),
+            email: form.querySelector('input[placeholder="you@company.com"]'),
+            phone: document.getElementById('phone-picker-container'),
+            message: form.querySelector('textarea')
+          };
+
+          // Reset styles
+          Object.values(fields).forEach(el => { if(el) el.style.borderColor = ''; });
+
+          if (formData.name.trim().length < 3) {
+            errors.push('• Full Name is too short (min 3 chars)');
+            if(fields.name) fields.name.style.borderColor = '#ff4d4f';
+          }
+
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            errors.push('• Please enter a valid email address');
+            if(fields.email) fields.email.style.borderColor = '#ff4d4f';
+          }
+
+          if (formData.phone.replace(/\D/g, '').length < 10) {
+            errors.push('• Phone number must have 10 digits');
+            if(fields.phone) fields.phone.style.borderColor = '#ff4d4f';
+          }
+
+          // UPDATED: 6 character minimum for Message
+          if (formData.message.trim().length < 6) {
+            errors.push('• Message must be at least 6 characters');
+            if(fields.message) fields.message.style.borderColor = '#ff4d4f';
+          }
+
+          if (errors.length > 0) {
+            showDhPopup('Validation Required', errors.join('\n'));
+            return;
+          }
+
+          const btn = form.querySelector('button[type="submit"]') || form.querySelector('.btn-red');
+          const originalText = btn.innerText;
+          btn.innerText = 'SENDING...';
           btn.disabled = true;
 
           try {
@@ -1887,22 +1959,22 @@ Error generating stack: `+e.message+`
             });
 
             if (response.ok) {
-              alert('Successfully Sent! Your inquiry has been received at info@dharrahehs.com.');
+              showDhPopup('Inquiry Sent', 'Your message has been received at info@dharrahehs.com successfully.', 'success');
               form.reset();
+              const realInput = document.getElementById('real-phone-input');
+              if (realInput) realInput.value = '';
             } else {
-              throw new Error('Worker Error');
+              throw new Error('Worker error');
             }
           } catch (err) {
-            console.error('Automation error:', err);
-            alert('Service temporary busy. Please try contacting us via WhatsApp for urgent matters.');
+            showDhPopup('System Error', 'We could not send your message right now. Please try again or email us directly.');
           } finally {
-            btn.innerHTML = originalText;
+            btn.innerText = originalText;
             btn.disabled = false;
           }
-        }, true); // Intercept in capture phase
+        });
       }
 
-      // Initialize and retry for late hydration
       setupBridge();
       [500, 1500, 3000].forEach(t => setTimeout(setupBridge, t));
     })();
