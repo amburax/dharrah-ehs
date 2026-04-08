@@ -39,7 +39,7 @@ export default {
         },
         body: JSON.stringify({
           from: "Website Form <contact@dharrahehs.com>", 
-          to: ["info@dharrahehs.com"],
+          to: ["care@dharrahehs.com"],
           subject: `New Lead: ${data.name || 'Website Visitor'}`,
           html: emailHTML,
         }),
