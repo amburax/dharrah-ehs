@@ -11462,6 +11462,68 @@ Error generating stack: `+ e.message + `
       [500, 1500, 3000].forEach(t => setTimeout(setupBridge, t));
     })();
   </script>
+  <script id="amburax-branding">
+    (function() {
+      function adjustFooterLayout() {
+        var footer = document.querySelector('footer');
+        if (!footer) return;
+
+        // 1. Create Brand Element if it doesn't exist
+        var brand = document.getElementById('amburax-brand');
+        if (!brand) {
+          brand = document.createElement('div');
+          brand.id = 'amburax-brand';
+          brand.style.cssText = 'opacity: 0.5; display: flex; justify-content: center; align-items: center; gap: 8px; margin: 0; padding: 0; white-space: nowrap;';
+          brand.innerHTML = 'Engineered by <a href="https://www.linkedin.com/company/amburax/about/" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; opacity: 0.85; transition: all 0.3s;" onmouseover="this.style.color=\'#c8201a\'; this.style.opacity=\'1\';" onmouseout="this.style.color=\'#fff\'; this.style.opacity=\'0.85\';"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg> AMBURAX</a>';
+        }
+
+        // 2. Create Row 2 Container if it doesn't exist
+        var row2 = document.getElementById('dh-footer-row2');
+        if (!row2) {
+          row2 = document.createElement('div');
+          row2.id = 'dh-footer-row2';
+          row2.style.cssText = 'display: flex; justify-content: center; align-items: center; width: 100%; padding: 20px 20px 10px 20px; position: relative; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 20px; gap: 40px; flex-wrap: wrap; left: -10px; font-family: "Inter", sans-serif; font-size: 11px;';
+          footer.appendChild(row2);
+        }
+
+        // 3. Locate the copyright element
+        var copyright = null;
+        var elements = footer.querySelectorAll('p, div, span');
+        for (var i = 0; i < elements.length; i++) {
+          var el = elements[i];
+          if (el.id !== 'dh-footer-row2' && el.id !== 'amburax-brand') {
+            if (el.textContent.includes('©') || el.textContent.toLowerCase().includes('rights reserved')) {
+              if (el.children.length <= 1) {
+                copyright = el;
+                break;
+              }
+            }
+          }
+        }
+
+        // 4. Move elements into Row 2 container
+        if (copyright && copyright.parentElement !== row2) {
+          row2.appendChild(copyright);
+          copyright.style.width = 'auto';
+          copyright.style.textAlign = 'left';
+          copyright.style.margin = '0';
+          copyright.style.padding = '0';
+          copyright.style.opacity = '0.5';
+        }
+        
+        if (brand.parentElement !== row2) {
+          row2.appendChild(brand);
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', adjustFooterLayout);
+      } else {
+        adjustFooterLayout();
+      }
+      [500, 1000, 2000, 3000, 5000].forEach(function(t) { setTimeout(adjustFooterLayout, t); });
+    })();
+  </script>
 </body>
 
 </html>
