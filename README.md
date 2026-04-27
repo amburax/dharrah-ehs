@@ -6,17 +6,21 @@ Website for Dharrah EHS Veterans Pvt Ltd.
 
 - Canonical and sitemap URLs are set to `https://www.dharrahehs.com/`.
 - Frontend runtime config lives in [index.html](D:/DHARRAH/index.html) under `window.DHARRAH_CONFIG`.
-- Contact form submissions are routed through `window.DHARRAH_CONFIG.contactEndpoint`.
+- Contact form submissions are now routed through the same Pages project at `window.DHARRAH_CONFIG.contactEndpoint`, which defaults to `/api/contact`.
 - Google Analytics only loads when `window.DHARRAH_CONFIG.analyticsMeasurementId` is set to a real GA4 Measurement ID.
 
-## Worker secrets
+## Pages Function secrets
 
-The Cloudflare Worker in [worker-v2.js](D:/DHARRAH/worker-v2.js) now expects secrets and config through environment variables:
+The Cloudflare Pages Function in [functions/api/contact.js](D:/DHARRAH/functions/api/contact.js) expects these environment variables in the Pages project:
 
 - `RESEND_API_KEY`
 - `FROM_EMAIL` optional
 - `CONTACT_RECIPIENT` optional
 - `ALLOWED_ORIGINS` optional comma-separated list
+
+## Legacy worker note
+
+- [worker-v2.js](D:/DHARRAH/worker-v2.js) remains in the repo as the earlier standalone worker implementation, but the live site should now use the same-domain Pages Function route instead of the external `workers.dev` endpoint.
 
 ## Phase 2 notes
 
