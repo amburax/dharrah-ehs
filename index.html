@@ -5,30 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dharrah EHS Consultancy | GPCB · CPCB · MoEF&CC Authorised Environmental Experts in Gujarat</title>
-  <meta name="description"
-    content="Dharrah EHS Consultancy - GPCB, CPCB, and MoEF&CC authorized environmental experts in Gujarat. Specializing in environmental auditing, compliance, and industrial safety services." />
-  <meta name="keywords"
-    content="Environmental Consultant Gujarat, GPCB Auditor, CPCB Consultant, MoEFCC Authorised, Environmental Audit, Industrial Safety Gujarat, Dharrah EHS, EHS Consultancy Gujarat" />
-  <meta name="author" content="Dharrah EHS Consultancy" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://dharrahehs.com/" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dharrahehs.com/" />
-  <meta property="og:title" content="Dharrah EHS Consultancy | Environmental Experts in Gujarat" />
-  <meta property="og:description"
-    content="GPCB, CPCB, and MoEF&CC authorized environmental experts specializing in auditing and compliance services in Gujarat." />
-  <meta property="og:image" content="https://dharrahehs.com/images/img_715330a3.webp" />
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://dharrahehs.com/" />
-  <meta property="twitter:title" content="Dharrah EHS Consultancy | Environmental Experts in Gujarat" />
-  <meta property="twitter:description"
-    content="GPCB, CPCB, and MoEF&CC authorized environmental experts specializing in auditing and compliance services in Gujarat." />
-  <meta property="twitter:image" content="https://dharrahehs.com/images/img_715330a3.webp" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -9747,31 +9723,40 @@
       while (tmp.firstChild) inner.appendChild(tmp.firstChild);
     }
 
-    window.addEventListener('load', function () {
+    var servicesSyncQueued = false;
+    var servicesObserver = null;
+
+    function syncServicesEnhancements() {
+      servicesSyncQueued = false;
       cleanDecorations();
-      setTimeout(cleanDecorations, 400);
-      setTimeout(cleanDecorations, 1200);
-      /* Inject extra services once React has rendered */
-      setTimeout(injectExtraServices, 300);
-      setTimeout(injectExtraServices, 800);
-      /* Watch for React navigation changes */
-      setInterval(function () {
-        var onSrv = !!document.getElementById('page-services');
-        var ms = document.getElementById('footer-deco-strip');
-        var ss = document.getElementById('footer-deco-strip-srv');
-        var spImg = null; // no longer needed
-        var needRun = false;
-        if (ms && ms.style.display !== (onSrv ? 'none' : 'block')) needRun = true;
-        if (onSrv && !ss) needRun = true;
-        // sp-hero-img no longer used — background handled by CSS ::before
-        if (!ms) needRun = true;
-        if (needRun) cleanDecorations();
-        /* Also ensure extra services are injected on nav back to services page */
-        if (!!document.querySelector('.srv-inner') && !document.getElementById('sc7')) {
-          injectExtraServices();
-        }
-      }, 600);
-    });
+      injectExtraServices();
+    }
+
+    function scheduleServicesEnhancements() {
+      if (servicesSyncQueued) return;
+      servicesSyncQueued = true;
+      (window.requestAnimationFrame || window.setTimeout)(syncServicesEnhancements, 16);
+    }
+
+    function watchServicesEnhancements() {
+      if (servicesObserver) return;
+      var target = document.getElementById('root') || document.body || document.documentElement;
+      if (!target || !target.nodeType) return;
+      servicesObserver = new MutationObserver(function () {
+        scheduleServicesEnhancements();
+      });
+      servicesObserver.observe(target, { childList: true, subtree: true });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', scheduleServicesEnhancements);
+    } else {
+      scheduleServicesEnhancements();
+    }
+    window.addEventListener('load', scheduleServicesEnhancements);
+    window.addEventListener('hashchange', scheduleServicesEnhancements);
+    window.addEventListener('popstate', scheduleServicesEnhancements);
+    watchServicesEnhancements();
   </script>
   <style id="dharrah-overrides">
     #dharrah-nav-logo {
@@ -10097,32 +10082,32 @@
   ═══════════════════════════════════════════════ -->
 
   <!-- Core SEO -->
-  <meta name="description"
+  <meta id="meta-description" name="description"
     content="Dharrah EHS — Gujarat's leading environmental compliance consultancy. GPCB NOC, EIA reports, EPR, ESG, pollution control and 21 EHS services. 215+ projects, 93% approval rate." />
-  <meta name="keywords"
+  <meta id="meta-keywords" name="keywords"
     content="EHS consultancy Gujarat, GPCB NOC, EIA report, environmental clearance, EPR registration, ESG reporting, pollution control, CPCB compliance, MoEF&CC, Dharrah EHS, environment consultant Ahmedabad" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Dharrah EHS Consultancy" />
   <meta name="geo.region" content="IN-GJ" />
   <meta name="geo.placename" content="Gujarat, India" />
-  <link rel="canonical" href="https://dharrahehs.com/" />
+  <link id="meta-canonical" rel="canonical" href="https://www.dharrahehs.com/" />
 
   <!-- Open Graph (WhatsApp / LinkedIn / Facebook link previews) -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dharrahehs.com/" />
-  <meta property="og:title" content="Dharrah EHS Consultancy | Environmental Health &amp; Safety Experts Gujarat" />
-  <meta property="og:description"
+  <meta id="meta-og-url" property="og:url" content="https://www.dharrahehs.com/" />
+  <meta id="meta-og-title" property="og:title" content="Dharrah EHS Consultancy | Environmental Health &amp; Safety Experts Gujarat" />
+  <meta id="meta-og-description" property="og:description"
     content="Gujarat's trusted EHS consultancy — GPCB NOC, EIA, EPR, ESG and advanced pollution control. 215+ projects, 93% approval rate, 13+ years experience." />
-  <meta property="og:image" content="https://dharrahehs.com/og-image.jpg" />
+  <meta id="meta-og-image" property="og:image" content="https://www.dharrahehs.com/og-image.jpg" />
   <meta property="og:site_name" content="Dharrah EHS Consultancy" />
   <meta property="og:locale" content="en_IN" />
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Dharrah EHS Consultancy | GPCB &middot; CPCB &middot; MoEF&amp;CC Authorised" />
-  <meta name="twitter:description"
+  <meta id="meta-twitter-card" name="twitter:card" content="summary_large_image" />
+  <meta id="meta-twitter-title" name="twitter:title" content="Dharrah EHS Consultancy | GPCB &middot; CPCB &middot; MoEF&amp;CC Authorised" />
+  <meta id="meta-twitter-description" name="twitter:description"
     content="Complete environmental compliance solutions — GPCB NOC, EIA, EPR, ESG and pollution control across Gujarat and India. Free first consultation." />
-  <meta name="twitter:image" content="https://dharrahehs.com/og-image.jpg" />
+  <meta id="meta-twitter-image" name="twitter:image" content="https://www.dharrahehs.com/og-image.jpg" />
 
   <!-- Favicon (text D in red — replace href with actual favicon file when available) -->
   <link rel="icon" type="image/svg+xml"
@@ -10137,12 +10122,21 @@
     "@graph": [
       {
         "@type": "ProfessionalService",
-        "@id": "https://dharrahehs.com/#business",
+        "@id": "https://www.dharrahehs.com/#business",
         "name": "Dharrah EHS Consultancy",
         "alternateName": "Dharrah EHS",
         "description": "Gujarat's leading EHS consultancy. GPCB NOC, EIA, EPR, ESG, pollution control and 21 comprehensive services across India.",
-        "url": "https://dharrahehs.com",
+        "url": "https://www.dharrahehs.com",
         "telephone": "+919067605129",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+919067605129",
+            "contactType": "customer support",
+            "areaServed": ["IN-GJ", "IN"],
+            "availableLanguage": ["en", "hi", "gu"]
+          }
+        ],
         "priceRange": "Contact for quote",
         "address": {
           "@type": "PostalAddress",
@@ -10159,6 +10153,16 @@
           {"@type": "State", "name": "Gujarat"},
           {"@type": "State", "name": "Maharashtra"},
           {"@type": "Country", "name": "India"}
+        ],
+        "knowsAbout": [
+          "GPCB NOC and CCA permissions",
+          "Environmental clearance and EIA reports",
+          "EPR registration and compliance",
+          "ESG sustainability reporting and BRSR",
+          "Carbon accounting and GHG estimation",
+          "ETP and STP systems",
+          "Air pollution control and dust suppression",
+          "Environmental monitoring and remediation"
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
@@ -10189,8 +10193,8 @@
       },
       {
         "@type": "WebSite",
-        "@id": "https://dharrahehs.com/#website",
-        "url": "https://dharrahehs.com",
+        "@id": "https://www.dharrahehs.com/#website",
+        "url": "https://www.dharrahehs.com",
         "name": "Dharrah EHS Consultancy",
         "inLanguage": "en-IN"
       }
@@ -10198,23 +10202,37 @@
   }
   </script>
 
-  <!-- ═══════════════════════════════════════════════
-       GOOGLE ANALYTICS 4
-       ACTION REQUIRED: Replace G-XXXXXXXXXX with your
-       actual Measurement ID from analytics.google.com
-       Admin > Data Streams > Web Stream
-  ═══════════════════════════════════════════════ -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <!-- Optional runtime config for analytics and contact delivery -->
   <script>
+    window.DHARRAH_CONFIG = Object.assign({
+      analyticsMeasurementId: '',
+      contactEndpoint: 'https://quiet-poetry-e97c.amburax.workers.dev',
+      siteUrl: 'https://www.dharrahehs.com/',
+      ogImageUrl: 'https://www.dharrahehs.com/og-image.jpg'
+    }, window.DHARRAH_CONFIG || {});
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX', { page_title: 'Dharrah EHS Consultancy' });
-    /* Track WhatsApp button clicks */
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest('a[href*="wa.me"]');
-      if (a) { gtag('event', 'whatsapp_click', { event_category: 'engagement', event_label: a.id || 'wa_button' }); }
-    });
+    window.trackDharrahEvent = window.trackDharrahEvent || function (name, params) {
+      var payload = Object.assign({ event: 'dharrah_event', event_name: name }, params || {});
+      window.dataLayer.push(payload);
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', name, params || {});
+      }
+    };
+  </script>
+  <script>
+    (function () {
+      var measurementId = window.DHARRAH_CONFIG && window.DHARRAH_CONFIG.analyticsMeasurementId;
+      if (!measurementId) return;
+
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+      document.head.appendChild(script);
+
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', measurementId, { page_title: 'Dharrah EHS Consultancy' });
+    })();
   </script>
 
 </head>
@@ -10478,14 +10496,14 @@ Error generating stack: `+ e.message + `
                           var waText = '*EHS Inquiry*%0A----%0A*Name:* ' + encodeURIComponent(name) + '%0A*Email:* ' + encodeURIComponent(email) + '%0A*Service:* ' + encodeURIComponent(service) + '%0A*Message:* ' + encodeURIComponent(msg);
                           window.open('https://wa.me/919067605129?text=' + waText, '_blank');
                           Nl(!0);
-                        }, children: [u.jsxs("div", { className: "f-row", children: [u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Your Name" }), u.jsx("input", { type: "text", placeholder: "Full Name", required: !0 })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Company" }), u.jsx("input", { type: "text", placeholder: "Company Name" })] })] }), u.jsxs("div", { className: "f-row", children: [u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Phone" }), u.jsx("input", { type: "tel", placeholder: "+91 XXXXX XXXXX", required: !0 })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Email" }), u.jsx("input", { type: "email", placeholder: "you@company.com" })] })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Service Required" }), u.jsxs("select", { defaultValue: "", children: [u.jsx("option", { value: "", disabled: !0, children: "Select service category" }), u.jsx("option", { children: "Regulatory Compliance & Permissions" }), u.jsx("option", { children: "ESG & Carbon Management" }), u.jsx("option", { children: "Wastewater & Water Treatment" }), u.jsx("option", { children: "Air & Dust Pollution Control" }), u.jsx("option", { children: "Environmental Monitoring & Laboratory" }), u.jsx("option", { children: "Specialized Equipment & Supplies" }), u.jsx("option", { children: "Multiple / Not Sure" })] })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Message" }), u.jsx("textarea", { placeholder: "Describe your requirement, industry and location..." })] }), u.jsx("button", { type: "submit", className: "btn-red", style: { width: "100%", padding: 14, fontSize: ".82rem", border: "none", marginTop: 6 }, children: "Submit Inquiry →" })]
+                        }, children: [u.jsxs("div", { className: "f-row", children: [u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Your Name" }), u.jsx("input", { type: "text", placeholder: "Full Name", required: !0 })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Company" }), u.jsx("input", { type: "text", placeholder: "Company Name" })] })] }), u.jsxs("div", { className: "f-row", children: [u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Phone" }), u.jsx("input", { type: "tel", placeholder: "+91 XXXXX XXXXX", required: !0 })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Email" }), u.jsx("input", { type: "email", placeholder: "you@company.com" })] })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Service Required" }), u.jsxs("select", { defaultValue: "General Section of Inquiry", children: [u.jsx("option", { value: "", disabled: !0, children: "Select service category" }), u.jsx("option", { children: "Regulatory Compliance & Permissions" }), u.jsx("option", { children: "ESG & Carbon Management" }), u.jsx("option", { children: "Wastewater & Water Treatment" }), u.jsx("option", { children: "General Section of Inquiry" }), u.jsx("option", { children: "Environmental Monitoring & Laboratory" }), u.jsx("option", { children: "Specialized Equipment & Supplies" }), u.jsx("option", { children: "Multiple / Not Sure" })] })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Message" }), u.jsx("textarea", { placeholder: "Describe your requirement, industry and location..." })] }), u.jsx("button", { type: "submit", className: "btn-red", style: { width: "100%", padding: 14, fontSize: ".82rem", border: "none", marginTop: 6 }, children: "Submit Inquiry →" })]
                       })]
                     })
                   })]
                 })
               })]
             }), u.jsxs("footer", { children: [u.jsxs("div", { className: "ft-inner", children: [u.jsx("div", { className: "ft-brand", children: u.jsxs("div", { className: "fn", children: ["Dharrah ", u.jsx("span", { children: "EHS" })] }) }), u.jsxs("ul", { className: "ft-links", children: [u.jsx("li", { children: u.jsx("a", { href: "#home", onClick: () => K("home"), children: "Home" }) }), u.jsx("li", { children: u.jsx("a", { href: "#services", onClick: () => K("services"), children: "Services" }) }), u.jsx("li", { children: u.jsx("a", { href: "#why", onClick: () => M("why"), children: "Why Us" }) }), u.jsx("li", { children: u.jsx("a", { href: "#industries", onClick: () => M("industries"), children: "Industries" }) }), u.jsx("li", { children: u.jsx("a", { href: "#cases", onClick: () => M("cases"), children: "Projects" }) }), u.jsx("li", { children: u.jsx("a", { href: "#contact", onClick: () => M("contact"), children: "Contact" }) })] }), u.jsx("div", { style: { color: "rgba(255,255,255,.38)", fontSize: ".62rem", letterSpacing: "1px" }, children: "GPCB · CPCB · MoEF&CC" })] }), u.jsx("div", { className: "ft-bot", children: u.jsx("p", { children: "© 2026 DHARRAH EHS · ALL RIGHTS RESERVED" }) })] })]
-          }), T === "services" && u.jsxs("div", { id: "page-services", children: [u.jsxs("div", { className: "sp-header", children: [u.jsx("div", { style: { position: "absolute", top: 0, left: 0, right: 0, height: 180, pointerEvents: "none", zIndex: 1, overflow: "hidden" }, children: u.jsxs("svg", { viewBox: "0 0 1440 180", preserveAspectRatio: "none", style: { width: "100%", height: "100%" }, fill: "none", children: [u.jsx("path", { d: "M0 0 L1440 0 L1440 110 Q1200 170,960 130 Q720 90,480 140 Q240 190,0 150 Z", fill: "rgba(180,215,238,.32)" }), u.jsx("path", { d: "M0 0 L1440 0 L1440 80 Q1100 140,820 100 Q540 60,260 110 Q130 140,0 90 Z", fill: "rgba(180,215,238,.18)" })] }) }), u.jsxs("svg", { style: { position: "absolute", top: -20, left: -20, width: 200, pointerEvents: "none", zIndex: 2 }, viewBox: "0 0 220 210", fill: "none", children: [u.jsxs("g", { transform: "translate(90,105)", children: [[0, 22.5, 45, 67.5, 90, 112.5, 135, 157.5, 180, 202.5, 225, 247.5, 270, 292.5, 315, 337.5].map((h, N) => u.jsx("ellipse", { cx: "0", cy: "-36", rx: "6.5", ry: "19", fill: N % 2 === 0 ? "url(#sp1)" : "url(#sp2)", opacity: N % 2 === 0 ? .82 : .78, transform: `rotate(${h})` }, N)), u.jsx("circle", { cx: "0", cy: "0", r: "10", fill: "#1a1a6e", opacity: "0.88" }), u.jsx("circle", { cx: "0", cy: "0", r: "5.5", fill: "#c8b400", opacity: "0.95" })] }), u.jsxs("defs", { children: [u.jsxs("linearGradient", { id: "sp1", x1: "0", y1: "0", x2: "0", y2: "1", gradientUnits: "objectBoundingBox", children: [u.jsx("stop", { offset: "0%", stopColor: "#6b5de8" }), u.jsx("stop", { offset: "100%", stopColor: "#3730a3" })] }), u.jsxs("linearGradient", { id: "sp2", x1: "0", y1: "0", x2: "0", y2: "1", gradientUnits: "objectBoundingBox", children: [u.jsx("stop", { offset: "0%", stopColor: "#7c3aed" }), u.jsx("stop", { offset: "100%", stopColor: "#4338ca" })] })] })] }), u.jsxs("svg", { style: { position: "absolute", top: -10, right: -10, width: 170, pointerEvents: "none", zIndex: 2 }, viewBox: "0 0 180 180", fill: "none", children: [u.jsx("g", { transform: "translate(140,36)", children: u.jsx("path", { d: "M0,-28 C18,-26 25,-14 20,0 C15,14 0,17 -11,9", stroke: "#9333ea", strokeWidth: "3.5", fill: "none", strokeLinecap: "round", opacity: "0.85" }) }), u.jsx("path", { d: "M130 55 C155 50,180 65,180 90 C180 115,165 135,180 158 L180 0 L108 0 Z", fill: "url(#srf2)", opacity: "0.88" }), u.jsx("defs", { children: u.jsxs("radialGradient", { id: "srf2", cx: "40%", cy: "30%", r: "70%", children: [u.jsx("stop", { offset: "0%", stopColor: "#ff6b5b" }), u.jsx("stop", { offset: "40%", stopColor: "#e03020" }), u.jsx("stop", { offset: "100%", stopColor: "#9b1010" })] }) })] }), u.jsxs("div", { className: "sp-inner", children: [u.jsxs("div", { className: "sp-badge", children: [u.jsx("div", { className: "bdot" }), u.jsx("span", { children: "21 Comprehensive Services" })] }), u.jsxs("h1", { className: "sp-title", children: ["Our ", u.jsx("em", { children: "Environmental" }), u.jsx("br", {}), "Services"] }), u.jsx("p", { className: "sp-sub", children: "From regulatory approvals to advanced pollution control — complete EHS solutions for industries across Gujarat and India." })] })] }), u.jsx("div", { className: "qnav", children: u.jsx("div", { className: "qnav-inner", children: ["01 · Regulatory", "02 · ESG & Carbon", "03 · Wastewater", "04 · Air & Dust", "05 · Monitoring", "06 · Equipment", "07 · Food Safety"].map((h, N) => u.jsx("span", { className: "qpill", onClick: () => document.getElementById(`sc${N + 1}`)?.scrollIntoView({ behavior: "smooth" }), children: h }, N)) }) }), u.jsx("div", { className: "srv-wrap", children: u.jsxs("div", { className: "srv-inner", children: [u.jsxs("div", { className: "cat-block", id: "sc1", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "01" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "Regulatory Compliance & Permissions" }), u.jsx("div", { className: "cat-sub", children: "NOC · EIA · EPR · Returns · Licenses" })] }), u.jsx("span", { className: "cat-cnt", children: "7 Services" })] }), u.jsx("div", { className: "cards-grid", children: [{ name: "NOC / CCA Permission from GPCB / CPCB", tag: "Consent to Establish & Operate · Air & Water Acts", icon: u.jsx("path", { d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" }) }, { name: "Environment Clearance including EIA Report Preparation", tag: "MoEF&CC · Category A & B · Public Hearing", icon: u.jsx("path", { d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }) }, { name: "EPR for Plastic / E-waste / Tyre / Oil / Battery Waste", tag: "Extended Producer Responsibility · CPCB Portal", icon: u.jsx("path", { d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" }) }, { name: "Annual & Monthly Return Filing", tag: "Statutory Compliance · GPCB & CPCB Portals", icon: u.jsx("path", { d: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }) }, { name: "EPR Registration for Import", tag: "Import Compliance · CPCB Authorization", icon: u.jsx("path", { d: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" }) }, { name: "License for Import of Metal Scraps", tag: "DGFT · CPCB Authorization · Hazardous Waste Rules", icon: u.jsx("path", { d: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" }) }, { name: "Registration of Clinics / Hospitals for Bio-medical Waste Management", tag: "BMW Rules 2016 · SPCB Authorization", icon: u.jsx("path", { d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" }) }].map((h, N) => u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: h.icon }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: h.name }), u.jsx("div", { className: "s-tag", children: h.tag })] })] }, N)) })] }), u.jsx("div", { className: "cat-divider", children: u.jsx("div", { className: "cd-d" }) }), u.jsxs("div", { className: "cat-block", id: "sc2", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "02" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "ESG & Carbon Management" }), u.jsx("div", { className: "cat-sub", children: "Sustainability · GHG · Net Zero" })] }), u.jsx("span", { className: "cat-cnt", children: "2 Services" })] }), u.jsx("div", { className: "cards-grid", children: [{ name: "ESG Sustainability Reporting", tag: "GRI · BRSR · SEBI · Stakeholder Disclosure", icon: u.jsx("path", { d: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" }) }, { name: "Carbon Accounting & GHGs Estimation", tag: "Scope 1, 2 & 3 · Net Zero Roadmap · Carbon Credits", icon: u.jsx("path", { d: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }) }].map((h, N) => u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: h.icon }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: h.name }), u.jsx("div", { className: "s-tag", children: h.tag })] })] }, N)) })] }), u.jsx("div", { className: "cat-divider", children: u.jsx("div", { className: "cd-d" }) }), u.jsxs("div", { className: "cat-block", id: "sc3", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "03" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "Wastewater & Water Treatment" }), u.jsx("div", { className: "cat-sub", children: "ETP · STP · Membrane · Chemicals" })] }), u.jsx("span", { className: "cat-cnt", children: "4 Services" })] }), u.jsx("div", { className: "cards-grid", children: [{ name: "ETP / STP — Special Automated Patented STP for Residential Complexes", tag: "Design · Supply · Installation · O&M", icon: u.jsx("path", { d: "M12 2.69l5.66 5.66a8 8 0 11-11.31 0z" }) }, { name: "Membrane Filtration System (RO / Ultrafiltration / Nanofiltration)", tag: "Industrial & Commercial Scale · ZLD Solutions", icon: u.jsx("path", { d: "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" }) }, { name: "Treatability Studies for Industrial Wastewater", tag: "Jar Test · Pilot Plant Studies · Reports", icon: u.jsx("path", { d: "M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" }) }, { name: "Chemical Supply for RO / Boiler Anti-Scaling / Defoamer", tag: "Specialty Water Treatment Chemicals", icon: u.jsx("path", { d: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" }) }].map((h, N) => u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: h.icon }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: h.name }), u.jsx("div", { className: "s-tag", children: h.tag })] })] }, N)) })] }), u.jsx("div", { className: "cat-divider", children: u.jsx("div", { className: "cd-d" }) }), u.jsxs("div", { className: "cat-block", id: "sc4", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "04" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "Air & Dust Pollution Control" }), u.jsx("div", { className: "cat-sub", children: "Equipment · Ventilation · Pioneer Sugar Dust" })] }), u.jsx("span", { className: "cat-cnt", children: "4 Services" })] }), u.jsx("div", { className: "cards-grid", children: [{ name: "Air Pollution Control Equipment Design & Manufacturing", tag: "Scrubbers · Cyclones · Bag Filters · ESP", icon: u.jsx("path", { d: "M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" }) }, { name: "Complete Vacuum & Ventilation System for Dust Control", tag: "Industrial Ducting · LEV Systems", icon: u.jsx("path", { d: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" }) }, { name: "Pioneer Sugar Dust Control System", tag: "Patented Technology · Sugar Industry Specialist", icon: u.jsx("path", { d: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" }) }, { name: "Complete Consultation for Pollution Control", tag: "End-to-End Advisory Services", icon: u.jsx("path", { d: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" }) }].map((h, N) => u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: h.icon }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: h.name }), u.jsx("div", { className: "s-tag", children: h.tag })] })] }, N)) })] }), u.jsxs("div", { style: { margin: "48px 0 64px", background: "#ffffff 100%)", borderRadius: 16, padding: "48px 40px", position: "relative", overflow: "hidden" }, children: [u.jsx("div", { style: { position: "absolute", top: 0, left: 0, right: 0, height: 100, pointerEvents: "none", overflow: "hidden", zIndex: 0 }, children: u.jsx("svg", { viewBox: "0 0 1200 100", preserveAspectRatio: "none", style: { width: "100%", height: "100%" }, fill: "none", children: u.jsx("path", { d: "M0 0 L1200 0 L1200 60 Q900 100,600 70 Q300 40,0 80 Z", fill: "rgba(135,206,235,0.15)" }) }) }), u.jsxs("div", { style: { position: "relative", zIndex: 1, maxWidth: 800, margin: "0 auto" }, children: [u.jsxs("div", { style: { textAlign: "center", marginBottom: 32 }, children: [u.jsx("span", { className: "section-script", children: "Quick Inquiry" }), u.jsxs("h2", { className: "section-title", children: ["Need Air & Dust ", u.jsx("em", { children: "Pollution" }), " Consultation?"] })] }), u.jsxs("div", { className: "form-wrap", children: [u.jsx("div", { className: "form-title", children: "Send an Inquiry" }), u.jsx("div", { className: "form-sub", children: "Our team responds within 24 hours with a personalized proposal." }), u.jsxs("form", { onSubmit: h => { h.preventDefault(), alert("Thank you! We will contact you within 24 hours.") }, children: [u.jsxs("div", { className: "f-row", children: [u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Your Name" }), u.jsx("input", { type: "text", placeholder: "Full Name", required: !0 })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Company" }), u.jsx("input", { type: "text", placeholder: "Company Name" })] })] }), u.jsxs("div", { className: "f-row", children: [u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Phone" }), u.jsx("input", { type: "tel", placeholder: "+91 XXXXX XXXXX", required: !0 })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Email" }), u.jsx("input", { type: "email", placeholder: "you@company.com" })] })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Service Required" }), u.jsxs("select", { defaultValue: "Air & Dust Pollution Control", children: [u.jsx("option", { children: "Regulatory Compliance & Permissions" }), u.jsx("option", { children: "ESG & Carbon Management" }), u.jsx("option", { children: "Wastewater & Water Treatment" }), u.jsx("option", { children: "Air & Dust Pollution Control" }), u.jsx("option", { children: "Environmental Monitoring & Laboratory" }), u.jsx("option", { children: "Specialized Equipment & Supplies" }), u.jsx("option", { children: "Multiple / Not Sure" })] })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Message" }), u.jsx("textarea", { placeholder: "Describe your requirement, industry and location..." })] }), u.jsx("button", { type: "submit", className: "btn-red", style: { width: "100%", padding: 14, fontSize: ".82rem", border: "none", marginTop: 6 }, children: "Submit Inquiry →" })] })] })] })] }), u.jsx("div", { className: "cat-divider", children: u.jsx("div", { className: "cd-d" }) }), u.jsxs("div", { className: "cat-block", id: "sc5", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "05" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "Environmental Monitoring & Laboratory" }), u.jsx("div", { className: "cat-sub", children: "Water · Air · Soil · Noise · Remediation" })] }), u.jsx("span", { className: "cat-cnt", children: "3 Services" })] }), u.jsx("div", { className: "cards-grid", children: [{ name: "Environmental Monitoring Service", tag: "Water · Soil · Ambient Air · Source Emission · Noise", icon: u.jsx("path", { d: "M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" }) }, { name: "Laboratory Services", tag: "Water · Wastewater · Soil · Hazardous Waste · Air", icon: u.jsx("path", { d: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" }) }, { name: "Remediation of Contaminated Sites", tag: "Phase I & II ESA · In-situ · Ex-situ · GPCB Closure", icon: u.jsx("path", { d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" }) }].map((h, N) => u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: h.icon }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: h.name }), u.jsx("div", { className: "s-tag", children: h.tag })] })] }, N)) })] }), u.jsx("div", { className: "cat-divider", children: u.jsx("div", { className: "cd-d" }) }), u.jsxs("div", { className: "cat-block", id: "sc6", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "06" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "Specialized Equipment & Supplies" }), u.jsx("div", { className: "cat-sub", children: "Industrial Screening Systems" })] }), u.jsx("span", { className: "cat-cnt", children: "1 Service" })] }), u.jsx("div", { className: "cards-grid", children: u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: u.jsx("path", { d: "M4 6h16M4 10h16M4 14h16M4 18h16" }) }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: "Vibro Screen Suppliers" }), u.jsx("div", { className: "s-tag", children: "Industrial Vibratory Screening Equipment" })] })] }) })] })] }) }), u.jsx("div", { className: "srv-cta", children: u.jsxs("div", { className: "srv-cta-inner", children: [u.jsx("span", { className: "section-script", children: "Ready to Comply?" }), u.jsxs("h2", { className: "section-title", style: { marginBottom: 10 }, children: ["Get a ", u.jsx("em", { children: "Free" }), " Consultation Today"] }), u.jsx("p", { style: { color: "var(--ink-mid)", fontSize: ".85rem", marginBottom: 28 }, children: "Our team responds within 24 hours with a personalized compliance roadmap." }), u.jsxs("div", { className: "cta-actions", children: [u.jsx("button", { className: "btn-red", onClick: () => M("contact"), style: { border: "none", padding: "14px 38px", fontSize: ".8rem" }, children: "Contact Us →" }), u.jsx("a", { href: "https://wa.me/919067605129?text=Hi%2C%20I%20need%20help%20with%20EHS%20compliance%20for%20my%20industry%20in%20Gujarat.%20Could%20you%20please%20guide%20me%3F", className: "btn-outline-r", target: "_blank", rel: "noreferrer", children: "WhatsApp Us" })] }), u.jsx("div", { style: { display: "flex", justifyContent: "center", marginTop: 36 }, children: u.jsxs("div", { style: { display: "inline-flex", alignItems: "center", gap: 14, padding: "16px 28px", background: "#fff", border: "1px solid var(--border)", borderRadius: 12, boxShadow: "0 8px 28px var(--shadow)" }, children: [u.jsx(ts, { size: 40 }), u.jsx("div", { style: { fontFamily: "'Dancing Script',cursive", fontSize: "1.5rem", color: "var(--ink)", lineHeight: 1 }, children: "" })] }) })] }) }), u.jsxs("footer", { children: [u.jsxs("div", { className: "ft-inner", children: [u.jsx("div", { className: "ft-brand", children: u.jsxs("div", { className: "fn", children: ["Dharrah ", u.jsx("span", { children: "EHS" })] }) }), u.jsxs("ul", { className: "ft-links", children: [u.jsx("li", { children: u.jsx("a", { href: "#home", onClick: () => K("home"), children: "Home" }) }), u.jsx("li", { children: u.jsx("a", { href: "#services", onClick: () => K("services"), children: "Services" }) }), u.jsx("li", { children: u.jsx("a", { href: "#why", onClick: () => M("why"), children: "Why Us" }) }), u.jsx("li", { children: u.jsx("a", { href: "#industries", onClick: () => M("industries"), children: "Industries" }) }), u.jsx("li", { children: u.jsx("a", { href: "#cases", onClick: () => M("cases"), children: "Projects" }) }), u.jsx("li", { children: u.jsx("a", { href: "#contact", onClick: () => M("contact"), children: "Contact" }) })] }), u.jsx("div", { style: { color: "rgba(255,255,255,.38)", fontSize: ".62rem", letterSpacing: "1px" }, children: "GPCB · CPCB · MoEF&CC" })] }), u.jsx("div", { className: "ft-bot", children: u.jsx("p", { children: "© 2026 DHARRAH EHS · ALL RIGHTS RESERVED" }) })] })] })]
+          }), T === "services" && u.jsxs("div", { id: "page-services", children: [u.jsxs("div", { className: "sp-header", children: [u.jsx("div", { style: { position: "absolute", top: 0, left: 0, right: 0, height: 180, pointerEvents: "none", zIndex: 1, overflow: "hidden" }, children: u.jsxs("svg", { viewBox: "0 0 1440 180", preserveAspectRatio: "none", style: { width: "100%", height: "100%" }, fill: "none", children: [u.jsx("path", { d: "M0 0 L1440 0 L1440 110 Q1200 170,960 130 Q720 90,480 140 Q240 190,0 150 Z", fill: "rgba(180,215,238,.32)" }), u.jsx("path", { d: "M0 0 L1440 0 L1440 80 Q1100 140,820 100 Q540 60,260 110 Q130 140,0 90 Z", fill: "rgba(180,215,238,.18)" })] }) }), u.jsxs("svg", { style: { position: "absolute", top: -20, left: -20, width: 200, pointerEvents: "none", zIndex: 2 }, viewBox: "0 0 220 210", fill: "none", children: [u.jsxs("g", { transform: "translate(90,105)", children: [[0, 22.5, 45, 67.5, 90, 112.5, 135, 157.5, 180, 202.5, 225, 247.5, 270, 292.5, 315, 337.5].map((h, N) => u.jsx("ellipse", { cx: "0", cy: "-36", rx: "6.5", ry: "19", fill: N % 2 === 0 ? "url(#sp1)" : "url(#sp2)", opacity: N % 2 === 0 ? .82 : .78, transform: `rotate(${h})` }, N)), u.jsx("circle", { cx: "0", cy: "0", r: "10", fill: "#1a1a6e", opacity: "0.88" }), u.jsx("circle", { cx: "0", cy: "0", r: "5.5", fill: "#c8b400", opacity: "0.95" })] }), u.jsxs("defs", { children: [u.jsxs("linearGradient", { id: "sp1", x1: "0", y1: "0", x2: "0", y2: "1", gradientUnits: "objectBoundingBox", children: [u.jsx("stop", { offset: "0%", stopColor: "#6b5de8" }), u.jsx("stop", { offset: "100%", stopColor: "#3730a3" })] }), u.jsxs("linearGradient", { id: "sp2", x1: "0", y1: "0", x2: "0", y2: "1", gradientUnits: "objectBoundingBox", children: [u.jsx("stop", { offset: "0%", stopColor: "#7c3aed" }), u.jsx("stop", { offset: "100%", stopColor: "#4338ca" })] })] })] }), u.jsxs("svg", { style: { position: "absolute", top: -10, right: -10, width: 170, pointerEvents: "none", zIndex: 2 }, viewBox: "0 0 180 180", fill: "none", children: [u.jsx("g", { transform: "translate(140,36)", children: u.jsx("path", { d: "M0,-28 C18,-26 25,-14 20,0 C15,14 0,17 -11,9", stroke: "#9333ea", strokeWidth: "3.5", fill: "none", strokeLinecap: "round", opacity: "0.85" }) }), u.jsx("path", { d: "M130 55 C155 50,180 65,180 90 C180 115,165 135,180 158 L180 0 L108 0 Z", fill: "url(#srf2)", opacity: "0.88" }), u.jsx("defs", { children: u.jsxs("radialGradient", { id: "srf2", cx: "40%", cy: "30%", r: "70%", children: [u.jsx("stop", { offset: "0%", stopColor: "#ff6b5b" }), u.jsx("stop", { offset: "40%", stopColor: "#e03020" }), u.jsx("stop", { offset: "100%", stopColor: "#9b1010" })] }) })] }), u.jsxs("div", { className: "sp-inner", children: [u.jsxs("div", { className: "sp-badge", children: [u.jsx("div", { className: "bdot" }), u.jsx("span", { children: "21 Comprehensive Services" })] }), u.jsxs("h1", { className: "sp-title", children: ["Our ", u.jsx("em", { children: "Environmental" }), u.jsx("br", {}), "Services"] }), u.jsx("p", { className: "sp-sub", children: "From regulatory approvals to advanced pollution control — complete EHS solutions for industries across Gujarat and India." })] })] }), u.jsx("div", { className: "qnav", children: u.jsx("div", { className: "qnav-inner", children: ["01 · Regulatory", "02 · ESG & Carbon", "03 · Wastewater", "04 · Air & Dust", "05 · Monitoring", "06 · Equipment", "07 · Food Safety"].map((h, N) => u.jsx("span", { className: "qpill", onClick: () => document.getElementById(`sc${N + 1}`)?.scrollIntoView({ behavior: "smooth" }), children: h }, N)) }) }), u.jsx("div", { className: "srv-wrap", children: u.jsxs("div", { className: "srv-inner", children: [u.jsxs("div", { className: "cat-block", id: "sc1", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "01" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "Regulatory Compliance & Permissions" }), u.jsx("div", { className: "cat-sub", children: "NOC · EIA · EPR · Returns · Licenses" })] }), u.jsx("span", { className: "cat-cnt", children: "7 Services" })] }), u.jsx("div", { className: "cards-grid", children: [{ name: "NOC / CCA Permission from GPCB / CPCB", tag: "Consent to Establish & Operate · Air & Water Acts", icon: u.jsx("path", { d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" }) }, { name: "Environment Clearance including EIA Report Preparation", tag: "MoEF&CC · Category A & B · Public Hearing", icon: u.jsx("path", { d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }) }, { name: "EPR for Plastic / E-waste / Tyre / Oil / Battery Waste", tag: "Extended Producer Responsibility · CPCB Portal", icon: u.jsx("path", { d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" }) }, { name: "Annual & Monthly Return Filing", tag: "Statutory Compliance · GPCB & CPCB Portals", icon: u.jsx("path", { d: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }) }, { name: "EPR Registration for Import", tag: "Import Compliance · CPCB Authorization", icon: u.jsx("path", { d: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" }) }, { name: "License for Import of Metal Scraps", tag: "DGFT · CPCB Authorization · Hazardous Waste Rules", icon: u.jsx("path", { d: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" }) }, { name: "Registration of Clinics / Hospitals for Bio-medical Waste Management", tag: "BMW Rules 2016 · SPCB Authorization", icon: u.jsx("path", { d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" }) }].map((h, N) => u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: h.icon }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: h.name }), u.jsx("div", { className: "s-tag", children: h.tag })] })] }, N)) })] }), u.jsx("div", { className: "cat-divider", children: u.jsx("div", { className: "cd-d" }) }), u.jsxs("div", { className: "cat-block", id: "sc2", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "02" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "ESG & Carbon Management" }), u.jsx("div", { className: "cat-sub", children: "Sustainability · GHG · Net Zero" })] }), u.jsx("span", { className: "cat-cnt", children: "2 Services" })] }), u.jsx("div", { className: "cards-grid", children: [{ name: "ESG Sustainability Reporting", tag: "GRI · BRSR · SEBI · Stakeholder Disclosure", icon: u.jsx("path", { d: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" }) }, { name: "Carbon Accounting & GHGs Estimation", tag: "Scope 1, 2 & 3 · Net Zero Roadmap · Carbon Credits", icon: u.jsx("path", { d: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }) }].map((h, N) => u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: h.icon }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: h.name }), u.jsx("div", { className: "s-tag", children: h.tag })] })] }, N)) })] }), u.jsx("div", { className: "cat-divider", children: u.jsx("div", { className: "cd-d" }) }), u.jsxs("div", { className: "cat-block", id: "sc3", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "03" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "Wastewater & Water Treatment" }), u.jsx("div", { className: "cat-sub", children: "ETP · STP · Membrane · Chemicals" })] }), u.jsx("span", { className: "cat-cnt", children: "4 Services" })] }), u.jsx("div", { className: "cards-grid", children: [{ name: "ETP / STP — Special Automated Patented STP for Residential Complexes", tag: "Design · Supply · Installation · O&M", icon: u.jsx("path", { d: "M12 2.69l5.66 5.66a8 8 0 11-11.31 0z" }) }, { name: "Membrane Filtration System (RO / Ultrafiltration / Nanofiltration)", tag: "Industrial & Commercial Scale · ZLD Solutions", icon: u.jsx("path", { d: "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" }) }, { name: "Treatability Studies for Industrial Wastewater", tag: "Jar Test · Pilot Plant Studies · Reports", icon: u.jsx("path", { d: "M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" }) }, { name: "Chemical Supply for RO / Boiler Anti-Scaling / Defoamer", tag: "Specialty Water Treatment Chemicals", icon: u.jsx("path", { d: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" }) }].map((h, N) => u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: h.icon }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: h.name }), u.jsx("div", { className: "s-tag", children: h.tag })] })] }, N)) })] }), u.jsx("div", { className: "cat-divider", children: u.jsx("div", { className: "cd-d" }) }), u.jsxs("div", { className: "cat-block", id: "sc4", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "04" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "Air & Dust Pollution Control" }), u.jsx("div", { className: "cat-sub", children: "Equipment · Ventilation · Pioneer Sugar Dust" })] }), u.jsx("span", { className: "cat-cnt", children: "4 Services" })] }), u.jsx("div", { className: "cards-grid", children: [{ name: "Air Pollution Control Equipment Design & Manufacturing", tag: "Scrubbers · Cyclones · Bag Filters · ESP", icon: u.jsx("path", { d: "M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" }) }, { name: "Complete Vacuum & Ventilation System for Dust Control", tag: "Industrial Ducting · LEV Systems", icon: u.jsx("path", { d: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" }) }, { name: "Pioneer Sugar Dust Control System", tag: "Patented Technology · Sugar Industry Specialist", icon: u.jsx("path", { d: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" }) }, { name: "Complete Consultation for Pollution Control", tag: "End-to-End Advisory Services", icon: u.jsx("path", { d: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" }) }].map((h, N) => u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: h.icon }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: h.name }), u.jsx("div", { className: "s-tag", children: h.tag })] })] }, N)) })] }), u.jsxs("div", { style: { margin: "48px 0 64px", background: "#ffffff 100%)", borderRadius: 16, padding: "48px 40px", position: "relative", overflow: "hidden" }, children: [u.jsx("div", { style: { position: "absolute", top: 0, left: 0, right: 0, height: 100, pointerEvents: "none", overflow: "hidden", zIndex: 0 }, children: u.jsx("svg", { viewBox: "0 0 1200 100", preserveAspectRatio: "none", style: { width: "100%", height: "100%" }, fill: "none", children: u.jsx("path", { d: "M0 0 L1200 0 L1200 60 Q900 100,600 70 Q300 40,0 80 Z", fill: "rgba(135,206,235,0.15)" }) }) }), u.jsxs("div", { style: { position: "relative", zIndex: 1, maxWidth: 800, margin: "0 auto" }, children: [u.jsxs("div", { style: { textAlign: "center", marginBottom: 32 }, children: [u.jsx("span", { className: "section-script", children: "Quick Inquiry" }), u.jsxs("h2", { className: "section-title", children: ["Need Air & Dust ", u.jsx("em", { children: "Pollution" }), " Consultation?"] })] }), u.jsxs("div", { className: "form-wrap", children: [u.jsx("div", { className: "form-title", children: "Send an Inquiry" }), u.jsx("div", { className: "form-sub", children: "Our team responds within 24 hours with a personalized proposal." }), u.jsxs("form", { onSubmit: h => { h.preventDefault(), alert("Thank you! We will contact you within 24 hours.") }, children: [u.jsxs("div", { className: "f-row", children: [u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Your Name" }), u.jsx("input", { type: "text", placeholder: "Full Name", required: !0 })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Company" }), u.jsx("input", { type: "text", placeholder: "Company Name" })] })] }), u.jsxs("div", { className: "f-row", children: [u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Phone" }), u.jsx("input", { type: "tel", placeholder: "+91 XXXXX XXXXX", required: !0 })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Email" }), u.jsx("input", { type: "email", placeholder: "you@company.com" })] })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Service Required" }), u.jsxs("select", { defaultValue: "General Section of Inquiry", children: [u.jsx("option", { children: "Regulatory Compliance & Permissions" }), u.jsx("option", { children: "ESG & Carbon Management" }), u.jsx("option", { children: "Wastewater & Water Treatment" }), u.jsx("option", { children: "General Section of Inquiry" }), u.jsx("option", { children: "Environmental Monitoring & Laboratory" }), u.jsx("option", { children: "Specialized Equipment & Supplies" }), u.jsx("option", { children: "Multiple / Not Sure" })] })] }), u.jsxs("div", { className: "fg", children: [u.jsx("label", { children: "Message" }), u.jsx("textarea", { placeholder: "Describe your requirement, industry and location..." })] }), u.jsx("button", { type: "submit", className: "btn-red", style: { width: "100%", padding: 14, fontSize: ".82rem", border: "none", marginTop: 6 }, children: "Submit Inquiry →" })] })] })] })] }), u.jsx("div", { className: "cat-divider", children: u.jsx("div", { className: "cd-d" }) }), u.jsxs("div", { className: "cat-block", id: "sc5", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "05" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "Environmental Monitoring & Laboratory" }), u.jsx("div", { className: "cat-sub", children: "Water · Air · Soil · Noise · Remediation" })] }), u.jsx("span", { className: "cat-cnt", children: "3 Services" })] }), u.jsx("div", { className: "cards-grid", children: [{ name: "Environmental Monitoring Service", tag: "Water · Soil · Ambient Air · Source Emission · Noise", icon: u.jsx("path", { d: "M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" }) }, { name: "Laboratory Services", tag: "Water · Wastewater · Soil · Hazardous Waste · Air", icon: u.jsx("path", { d: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" }) }, { name: "Remediation of Contaminated Sites", tag: "Phase I & II ESA · In-situ · Ex-situ · GPCB Closure", icon: u.jsx("path", { d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" }) }].map((h, N) => u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: h.icon }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: h.name }), u.jsx("div", { className: "s-tag", children: h.tag })] })] }, N)) })] }), u.jsx("div", { className: "cat-divider", children: u.jsx("div", { className: "cd-d" }) }), u.jsxs("div", { className: "cat-block", id: "sc6", children: [u.jsxs("div", { className: "cat-hdr", children: [u.jsx("span", { className: "cat-num", children: "06" }), u.jsxs("div", { className: "cat-info", children: [u.jsx("div", { className: "cat-title", children: "Specialized Equipment & Supplies" }), u.jsx("div", { className: "cat-sub", children: "Industrial Screening Systems" })] }), u.jsx("span", { className: "cat-cnt", children: "1 Service" })] }), u.jsx("div", { className: "cards-grid", children: u.jsxs("div", { className: "s-card", children: [u.jsx("div", { className: "s-ico", children: u.jsx("svg", { viewBox: "0 0 24 24", children: u.jsx("path", { d: "M4 6h16M4 10h16M4 14h16M4 18h16" }) }) }), u.jsxs("div", { children: [u.jsx("div", { className: "s-name", children: "Vibro Screen Suppliers" }), u.jsx("div", { className: "s-tag", children: "Industrial Vibratory Screening Equipment" })] })] }) })] })] }) }), u.jsx("div", { className: "srv-cta", children: u.jsxs("div", { className: "srv-cta-inner", children: [u.jsx("span", { className: "section-script", children: "Ready to Comply?" }), u.jsxs("h2", { className: "section-title", style: { marginBottom: 10 }, children: ["Get a ", u.jsx("em", { children: "Free" }), " Consultation Today"] }), u.jsx("p", { style: { color: "var(--ink-mid)", fontSize: ".85rem", marginBottom: 28 }, children: "Our team responds within 24 hours with a personalized compliance roadmap." }), u.jsxs("div", { className: "cta-actions", children: [u.jsx("button", { className: "btn-red", onClick: () => M("contact"), style: { border: "none", padding: "14px 38px", fontSize: ".8rem" }, children: "Contact Us →" }), u.jsx("a", { href: "https://wa.me/919067605129?text=Hi%2C%20I%20need%20help%20with%20EHS%20compliance%20for%20my%20industry%20in%20Gujarat.%20Could%20you%20please%20guide%20me%3F", className: "btn-outline-r", target: "_blank", rel: "noreferrer", children: "WhatsApp Us" })] }), u.jsx("div", { style: { display: "flex", justifyContent: "center", marginTop: 36 }, children: u.jsxs("div", { style: { display: "inline-flex", alignItems: "center", gap: 14, padding: "16px 28px", background: "#fff", border: "1px solid var(--border)", borderRadius: 12, boxShadow: "0 8px 28px var(--shadow)" }, children: [u.jsx(ts, { size: 40 }), u.jsx("div", { style: { fontFamily: "'Dancing Script',cursive", fontSize: "1.5rem", color: "var(--ink)", lineHeight: 1 }, children: "" })] }) })] }) }), u.jsxs("footer", { children: [u.jsxs("div", { className: "ft-inner", children: [u.jsx("div", { className: "ft-brand", children: u.jsxs("div", { className: "fn", children: ["Dharrah ", u.jsx("span", { children: "EHS" })] }) }), u.jsxs("ul", { className: "ft-links", children: [u.jsx("li", { children: u.jsx("a", { href: "#home", onClick: () => K("home"), children: "Home" }) }), u.jsx("li", { children: u.jsx("a", { href: "#services", onClick: () => K("services"), children: "Services" }) }), u.jsx("li", { children: u.jsx("a", { href: "#why", onClick: () => M("why"), children: "Why Us" }) }), u.jsx("li", { children: u.jsx("a", { href: "#industries", onClick: () => M("industries"), children: "Industries" }) }), u.jsx("li", { children: u.jsx("a", { href: "#cases", onClick: () => M("cases"), children: "Projects" }) }), u.jsx("li", { children: u.jsx("a", { href: "#contact", onClick: () => M("contact"), children: "Contact" }) })] }), u.jsx("div", { style: { color: "rgba(255,255,255,.38)", fontSize: ".62rem", letterSpacing: "1px" }, children: "GPCB · CPCB · MoEF&CC" })] }), u.jsx("div", { className: "ft-bot", children: u.jsx("p", { children: "© 2026 DHARRAH EHS · ALL RIGHTS RESERVED" }) })] })] })]
       })
     } function Z1() { return u.jsx(w1, {}) } X1.createRoot(document.getElementById("root")).render(u.jsx(Z1, {}));
 
@@ -11090,440 +11108,358 @@ Error generating stack: `+ e.message + `
     })();
   </script>
 
-  <style id="scroll-to-top-style">
-    #back-to-top {
-      position: fixed;
-      bottom: 95px;
-      right: 25px;
-      width: 45px;
-      height: 45px;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 9999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      color: #c8201a;
-    }
-
-    #back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    #back-to-top:hover {
-      background: #c8201a;
-      color: white;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(200, 32, 26, 0.25);
-    }
-
-    #back-to-top svg {
-      width: 20px;
-      height: 20px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-  </style>
-
-  </script>
-  <script id="dharrah-phone-picker-v6-elite">
-    /* 
-       Institutional Elite Phone Picker - Dharrah EHS
-       V6: Elite Architecture (90px Fixed + Flex-Grow + Container Focus)
-    */
+  <script id="dharrah-phase2-seo-tracking">
     (function () {
-      const CODES = [
-        { iso: 'IN', code: '+91' },
-        { iso: 'US', code: '+1' },
-        { iso: 'AE', code: '+971' },
-        { iso: 'GB', code: '+44' }
-      ];
-
-      function setupPhonePicker() {
-        const phoneInput = document.querySelector('input[placeholder="+91 XXXXX XXXXX"]');
-        if (!phoneInput || phoneInput.dataset.pickerSet === 'true') return;
-
-        phoneInput.dataset.pickerSet = 'true';
-        const parent = phoneInput.parentElement;
-
-        const container = document.createElement('div');
-        container.className = 'phone-picker-group';
-        container.id = 'phone-picker-container';
-        container.innerHTML = `
-          <style>
-            .phone-picker-group { 
-              display: flex !important; 
-              align-items: center !important; 
-              gap: 0 !important;
-              border: 1.5px solid rgba(61, 85, 128, 0.14) !important; 
-              border-radius: 8px !important; 
-              background: #F4F8FC !important; 
-              margin-top: 8px !important; 
-              height: 45px !important; 
-              overflow: hidden !important; 
-              width: 100% !important;
-              transition: all 0.3s ease;
-            }
-            /* Institutional Focus Glow */
-            .phone-picker-group:focus-within { 
-              border-color: #c8201a !important; 
-              box-shadow: 0 0 8px rgba(200, 32, 26, 0.15) !important;
-              background: #fff !important;
-            }
-            .phone-picker-group.has-error { 
-              border-color: #ff4d4f !important; 
-              background: #fff2f0 !important; 
-            }
-            
-            /* FIXED 90px Selector */
-            .cc-select { 
-              flex-shrink: 0 !important;
-              width: 90px !important;
-              white-space: nowrap !important;
-              background: rgba(61, 85, 128, 0.03) !important; 
-              border: none !important; 
-              border-right: 1.5px solid rgba(61, 85, 128, 0.14) !important; 
-              padding: 0 10px !important; 
-              cursor: pointer !important; 
-              font-size: 13px !important; 
-              color: #1A2D5A !important; 
-              outline: none !important; 
-              height: 100% !important; 
-              -webkit-appearance: none; appearance: none;
-              font-weight: 500;
-            }
-            
-            /* FLEX-GROW Number Input */
-            #real-phone-input { 
-              flex-grow: 1 !important; 
-              width: 100% !important;
-              min-width: 0 !important;
-              border: none !important; 
-              padding: 0 15px !important; 
-              font-size: 14px !important; 
-              color: #1A2D5A !important; 
-              outline: none !important; 
-              background: transparent !important; 
-              height: 100% !important;
-            }
-            #real-phone-input::placeholder { color: #8a9fc7; opacity: 0.6; }
-          </style>
-          <select class="cc-select" id="cc-picker">
-            ${CODES.map(c => `<option value="${c.code}">${c.iso} ${c.code}</option>`).join('')}
-          </select>
-          <input type="tel" id="real-phone-input" placeholder="Enter 10 digit number" maxlength="10" autocomplete="off">
-        `;
-
-        phoneInput.style.display = 'none';
-        parent.appendChild(container);
-
-        const realInput = container.querySelector('#real-phone-input');
-        const ccPicker = container.querySelector('#cc-picker');
-
-        realInput.addEventListener('input', function (e) {
-          let val = e.target.value.replace(/\D/g, '');
-          e.target.value = val.substring(0, 10);
-          phoneInput.value = ccPicker.value + ' ' + e.target.value;
-          container.classList.remove('has-error');
-          phoneInput.dispatchEvent(new Event('change', { bubbles: true }));
-        });
-
-        ccPicker.addEventListener('change', () => {
-          phoneInput.value = ccPicker.value + ' ' + realInput.value;
-        });
-
-        // Sync for Bridge Validation
-        const observer = new MutationObserver((mutations) => {
-          mutations.forEach((m) => {
-            if (m.attributeName === 'style' && phoneInput.style.border.includes('red')) {
-              container.classList.add('has-error');
-            }
-          });
-        });
-        observer.observe(phoneInput, { attributes: true });
-      }
-
-      setupPhonePicker();
-      [500, 1500, 3000].forEach(t => setTimeout(setupPhonePicker, t));
-    })();
-  </script>
-  <script>
-    (function () {
-      /* 1. Add click listener to logo for top scroll */
-      function setupLogoScroll() {
-        var logo = document.querySelector('.nav-logo');
-        if (logo) {
-          logo.style.cursor = 'pointer';
-          logo.addEventListener('click', function (e) {
-            /* If clicking directly on logo, scroll to top */
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          });
-        }
-      }
-
-      /* 2. Create and inject Back to Top button */
-      function setupBackToTop() {
-        if (document.getElementById('back-to-top')) return;
-
-        var btn = document.createElement('div');
-        btn.id = 'back-to-top';
-        btn.setAttribute('role', 'button');
-        btn.setAttribute('aria-label', 'Back to top');
-        btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>';
-        document.body.appendChild(btn);
-
-        btn.addEventListener('click', function () {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        window.addEventListener('scroll', function () {
-          if (window.scrollY > 400) {
-            btn.classList.add('visible');
-          } else {
-            btn.classList.remove('visible');
-          }
-        });
-      }
-
-      /* Run setup on load and periodically */
-      setupLogoScroll();
-      setupBackToTop();
-      [500, 1500, 3000].forEach(function (ms) {
-        setTimeout(function () {
-          setupLogoScroll();
-          setupBackToTop();
-        }, ms);
-      });
-    })();
-  </script>
-  <script id="dharrah-contact-automation">
-    /* 
-       Elite Contact Bridge - Dharrah EHS
-       V7: Custom Popups + 6-Char Msg Validation
-    */
-    (function () {
-      // --- CUSTOM POPUP UI ---
-      const injectPopupUI = () => {
-        if (document.getElementById('dh-popup-overlay')) return;
-        const style = document.createElement('style');
-        style.innerHTML = `
-          #dh-popup-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(26, 45, 90, 0.4); backdrop-filter: blur(5px);
-            display: flex; align-items: center; justify-content: center; z-index: 99999;
-            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-          }
-          #dh-popup-overlay.active { opacity: 1; pointer-events: auto; }
-          #dh-popup-box {
-            background: #fff; border-radius: 12px; padding: 35px; width: 90%; max-width: 400px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.15); transform: translateY(20px); transition: transform 0.3s ease;
-            text-align: center; font-family: 'DM Sans', sans-serif; border-top: 4px solid #c8201a;
-          }
-          #dh-popup-overlay.active #dh-popup-box { transform: translateY(0); }
-          .p-icon { font-size: 50px; margin-bottom: 15px; display: block; }
-          .p-title { color: #1A2D5A; font-weight: 700; font-size: 22px; margin-bottom: 12px; }
-          .p-msg { color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 25px; white-space: pre-line; }
-          .p-btn { 
-            background: #1A2D5A; color: #fff; border: none; padding: 12px 35px; 
-            border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px;
-            transition: all 0.2s; width: 100%;
-          }
-          .p-btn:hover { background: #c8201a; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(200, 32, 26, 0.2); }
-        `;
-        document.head.appendChild(style);
-
-        const overlay = document.createElement('div');
-        overlay.id = 'dh-popup-overlay';
-        overlay.innerHTML = `
-          <div id="dh-popup-box">
-            <span class="p-icon" id="p-icon">⚠️</span>
-            <div class="p-title" id="p-title">Notification</div>
-            <div class="p-msg" id="p-msg"></div>
-            <button class="p-btn" onclick="closeDhPopup()">OK</button>
-          </div>
-        `;
-        document.body.appendChild(overlay);
-      };
-
-      window.showDhPopup = (title, msg, type = 'error') => {
-        injectPopupUI();
-        const overlay = document.getElementById('dh-popup-overlay');
-        document.getElementById('p-title').innerText = title;
-        document.getElementById('p-msg').innerText = msg;
-        document.getElementById('p-icon').innerText = type === 'success' ? '✅' : '⚠️';
-        overlay.classList.add('active');
-      };
-
-      window.closeDhPopup = () => {
-        const overlay = document.getElementById('dh-popup-overlay');
-        if (overlay) overlay.classList.remove('active');
-      };
-
-      function setupBridge() {
-        const form = document.querySelector('form');
-        if (!form || form.dataset.bridgeSet === 'true') return;
-
-        form.dataset.bridgeSet = 'true';
-
-        form.addEventListener('submit', async function (e) {
-          e.stopImmediatePropagation();
-          e.preventDefault();
-
-          const formData = {
-            name: form.querySelector('input[placeholder="Full Name"]')?.value || '',
-            company: form.querySelector('input[placeholder="Company Name"]')?.value || '',
-            phone: form.querySelector('input[placeholder="+91 XXXXX XXXXX"]')?.value || '',
-            email: form.querySelector('input[placeholder="you@company.com"]')?.value || '',
-            subject: form.querySelector('select')?.value || 'General Inquiry',
-            message: form.querySelector('textarea')?.value || ''
-          };
-
-          // --- VALIDATION LAYER ---
-          const errors = [];
-          const fields = {
-            name: form.querySelector('input[placeholder="Full Name"]'),
-            email: form.querySelector('input[placeholder="you@company.com"]'),
-            phone: document.getElementById('phone-picker-container'),
-            message: form.querySelector('textarea')
-          };
-
-          // Reset styles
-          Object.values(fields).forEach(el => { if (el) el.style.borderColor = ''; });
-
-          if (formData.name.trim().length < 3) {
-            errors.push('• Full Name is too short (min 3 chars)');
-            if (fields.name) fields.name.style.borderColor = '#ff4d4f';
-          }
-
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-            errors.push('• Please enter a valid email address');
-            if (fields.email) fields.email.style.borderColor = '#ff4d4f';
-          }
-
-          if (formData.phone.replace(/\D/g, '').length < 10) {
-            errors.push('• Phone number must have 10 digits');
-            if (fields.phone) fields.phone.style.borderColor = '#ff4d4f';
-          }
-
-          // UPDATED: 6 character minimum for Message
-          if (formData.message.trim().length < 6) {
-            errors.push('• Message must be at least 6 characters');
-            if (fields.message) fields.message.style.borderColor = '#ff4d4f';
-          }
-
-          if (errors.length > 0) {
-            showDhPopup('Validation Required', errors.join('\n'));
-            return;
-          }
-
-          const btn = form.querySelector('button[type="submit"]') || form.querySelector('.btn-red');
-          const originalText = btn.innerText;
-          btn.innerText = 'SENDING...';
-          btn.disabled = true;
-
-          try {
-            const response = await fetch('https://quiet-poetry-e97c.amburax.workers.dev', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(formData)
-            });
-
-            if (response.ok) {
-              showDhPopup('Inquiry Sent', 'Your message has been received at care@dharrahehs.com successfully.', 'success');
-              form.reset();
-              const realInput = document.getElementById('real-phone-input');
-              if (realInput) realInput.value = '';
-            } else {
-              throw new Error('Worker error');
-            }
-          } catch (err) {
-            showDhPopup('System Error', 'We could not send your message right now. Please try again or email us directly.');
-          } finally {
-            btn.innerText = originalText;
-            btn.disabled = false;
-          }
-        });
-      }
-
-      setupBridge();
-      [500, 1500, 3000].forEach(t => setTimeout(setupBridge, t));
-    })();
-  </script>
-  <script id="amburax-branding">
-    (function() {
-      function adjustFooterLayout() {
-        var footer = document.querySelector('footer');
-        if (!footer) return;
-
-        // 1. Create Brand Element if it doesn't exist
-        var brand = document.getElementById('amburax-brand');
-        if (!brand) {
-          brand = document.createElement('div');
-          brand.id = 'amburax-brand';
-          brand.style.cssText = 'opacity: 0.5; display: flex; justify-content: center; align-items: center; gap: 8px; margin: 0; padding: 0; white-space: nowrap;';
-          brand.innerHTML = 'Engineered by <a href="https://www.linkedin.com/company/amburax/about/" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; opacity: 0.85; transition: all 0.3s;" onmouseover="this.style.color=\'#c8201a\'; this.style.opacity=\'1\';" onmouseout="this.style.color=\'#fff\'; this.style.opacity=\'0.85\';"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg> AMBURAX</a>';
-        }
-
-        // 2. Create Row 2 Container if it doesn't exist
-        var row2 = document.getElementById('dh-footer-row2');
-        if (!row2) {
-          row2 = document.createElement('div');
-          row2.id = 'dh-footer-row2';
-          row2.style.cssText = 'display: flex; justify-content: center; align-items: center; width: 100%; padding: 20px 20px 10px 20px; position: relative; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 20px; gap: 40px; flex-wrap: wrap; left: -10px; font-family: "Inter", sans-serif; font-size: 11px;';
-          footer.appendChild(row2);
-        }
-
-        // 3. Locate the copyright element
-        var copyright = null;
-        var elements = footer.querySelectorAll('p, div, span');
-        for (var i = 0; i < elements.length; i++) {
-          var el = elements[i];
-          if (el.id !== 'dh-footer-row2' && el.id !== 'amburax-brand') {
-            if (el.textContent.includes('©') || el.textContent.toLowerCase().includes('rights reserved')) {
-              if (el.children.length <= 1) {
-                copyright = el;
-                break;
+      var config = window.DHARRAH_CONFIG || {};
+      var siteUrl = config.siteUrl || 'https://www.dharrahehs.com/';
+      var ogImageUrl = config.ogImageUrl || (siteUrl.replace(/\/$/, '') + '/og-image.jpg');
+      var routeMeta = {
+        home: {
+          title: 'Dharrah EHS Consultancy | GPCB · CPCB · MoEF&CC Authorised Environmental Experts in Gujarat',
+          description: 'Gujarat\'s trusted EHS consultancy for GPCB NOC, EIA, EPR, ESG, pollution control, audits and industrial safety. 215+ projects, 93% approval rate, 13+ years experience.',
+          keywords: 'EHS consultancy Gujarat, GPCB NOC, EIA report, environmental clearance, EPR registration, ESG reporting, pollution control, CPCB compliance, Dharrah EHS, environmental consultant Ahmedabad',
+          ogTitle: 'Dharrah EHS Consultancy | Environmental Health & Safety Experts Gujarat',
+          ogDescription: 'Gujarat\'s trusted EHS consultancy for GPCB NOC, EIA, EPR, ESG and pollution control. 215+ projects, 93% approval rate and 13+ years experience.',
+          url: siteUrl,
+          schema: {
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'WebPage',
+                '@id': siteUrl + '#home-page',
+                url: siteUrl,
+                name: 'Dharrah EHS Consultancy',
+                description: 'Environmental compliance, approvals, audits and pollution control solutions across Gujarat and India.',
+                isPartOf: { '@id': siteUrl + '#website' },
+                about: { '@id': siteUrl + '#business' },
+                primaryImageOfPage: ogImageUrl,
+                mainEntity: { '@id': siteUrl + '#home-faq' }
+              },
+              {
+                '@type': 'FAQPage',
+                '@id': siteUrl + '#home-faq',
+                url: siteUrl + '#faq',
+                mainEntity: [
+                  {
+                    '@type': 'Question',
+                    name: 'What does Dharrah EHS do?',
+                    acceptedAnswer: {
+                      '@type': 'Answer',
+                      text: 'Dharrah EHS provides environmental compliance, industrial approvals, pollution control consultancy, monitoring support, and sustainability reporting for industries across Gujarat and India.'
+                    }
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'Which approvals and registrations does Dharrah support?',
+                    acceptedAnswer: {
+                      '@type': 'Answer',
+                      text: 'The site highlights support for GPCB NOC and CCA permissions, EIA and environmental clearance work, EPR registrations, bio-medical waste authorization, and recurring statutory filing support.'
+                    }
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'Which industries does Dharrah EHS serve?',
+                    acceptedAnswer: {
+                      '@type': 'Answer',
+                      text: 'The current service profile includes chemical and pharma, sugar, textile and dyes, hospitals and clinics, real estate and infrastructure, manufacturing, import-export, and power-oriented projects.'
+                    }
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'How can a client start with Dharrah EHS?',
+                    acceptedAnswer: {
+                      '@type': 'Answer',
+                      text: 'Clients can contact Dharrah through the inquiry form, phone, or WhatsApp. The site promise is a free first consultation and a response within 24 hours.'
+                    }
+                  }
+                ]
               }
-            }
+            ]
+          }
+        },
+        services: {
+          title: 'Environmental Services | Dharrah EHS Consultancy',
+          description: 'Explore 21 environmental and EHS services from Dharrah EHS including GPCB NOC, EIA, EPR, ESG, wastewater treatment, air pollution control and monitoring support.',
+          keywords: 'environmental services Gujarat, GPCB NOC services, EIA consultancy, EPR services, ESG consulting, wastewater treatment consultancy, air pollution control Gujarat, Dharrah services',
+          ogTitle: '21 Environmental Services | Dharrah EHS Consultancy',
+          ogDescription: 'Browse Dharrah EHS service categories across regulatory compliance, ESG, wastewater, air pollution control, monitoring, equipment and food safety.',
+          url: siteUrl + '#services',
+          schema: {
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'CollectionPage',
+                '@id': siteUrl + '#services-page',
+                url: siteUrl + '#services',
+                name: 'Environmental Services | Dharrah EHS Consultancy',
+                description: 'A complete environmental and EHS service catalogue for industries across Gujarat and India.',
+                isPartOf: { '@id': siteUrl + '#website' },
+                about: { '@id': siteUrl + '#business' },
+                primaryImageOfPage: ogImageUrl,
+                mainEntity: { '@id': siteUrl + '#services-list' }
+              },
+              {
+                '@type': 'ItemList',
+                '@id': siteUrl + '#services-list',
+                itemListElement: [
+                  {
+                    name: 'Regulatory Compliance & Permissions',
+                    description: 'GPCB and CPCB permissions, environmental clearance support, EPR registrations, import compliance, and recurring filing workflows.'
+                  },
+                  {
+                    name: 'ESG & Carbon Management',
+                    description: 'ESG sustainability reporting, BRSR support, carbon accounting, and greenhouse gas estimation.'
+                  },
+                  {
+                    name: 'Wastewater & Water Treatment',
+                    description: 'ETP and STP systems, membrane solutions, treatability studies, and water treatment chemicals.'
+                  },
+                  {
+                    name: 'Air & Dust Pollution Control',
+                    description: 'Air pollution control equipment, ventilation systems, and patented sugar dust control support.'
+                  },
+                  {
+                    name: 'Environmental Monitoring & Laboratory',
+                    description: 'Monitoring coordination, laboratory-oriented testing support, and contaminated site remediation.'
+                  },
+                  {
+                    name: 'Specialized Equipment & Supplies',
+                    description: 'Industrial screening and related specialized equipment support.'
+                  },
+                  {
+                    name: 'Food Safety & Quality Testing',
+                    description: 'Food-sector testing and quality-oriented support included in the wider service mix.'
+                  }
+                ].map(function (item, index) {
+                  return {
+                    '@type': 'ListItem',
+                    position: index + 1,
+                    name: item.name,
+                    item: {
+                      '@type': 'Service',
+                      name: item.name,
+                      description: item.description,
+                      provider: { '@id': siteUrl + '#business' },
+                      areaServed: 'India'
+                    }
+                  };
+                })
+              },
+              {
+                '@type': 'FAQPage',
+                '@id': siteUrl + '#services-faq',
+                url: siteUrl + '#services-faq',
+                mainEntity: [
+                  {
+                    '@type': 'Question',
+                    name: 'What are the main Dharrah EHS service categories?',
+                    acceptedAnswer: {
+                      '@type': 'Answer',
+                      text: 'The main service groups shown on the site are regulatory compliance and permissions, ESG and carbon management, wastewater and water treatment, air and dust pollution control, environmental monitoring, specialized equipment, and food safety support.'
+                    }
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'Does Dharrah handle both documentation and engineering systems?',
+                    acceptedAnswer: {
+                      '@type': 'Answer',
+                      text: 'Yes. The service set includes approvals and documentation support as well as wastewater systems, air pollution control, dust suppression, monitoring-related work, and other implementation-oriented consultancy.'
+                    }
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'Can Dharrah support ongoing compliance after initial approval?',
+                    acceptedAnswer: {
+                      '@type': 'Answer',
+                      text: 'The listed services include annual and monthly return filing, repeat compliance workflows, and monitoring-oriented support beyond one-time registrations.'
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      };
+      var lastRoute = '';
+
+      function setContent(id, value, attribute) {
+        var node = document.getElementById(id);
+        if (node && value) {
+          node.setAttribute(attribute || 'content', value);
+        }
+      }
+
+      function currentRoute() {
+        var hash = (window.location.hash || '').toLowerCase();
+        if (hash === '#services' || hash.indexOf('#services/') === 0) {
+          return 'services';
+        }
+
+        var servicesPage = document.getElementById('page-services');
+        if (servicesPage && !servicesPage.hidden && servicesPage.getAttribute('aria-hidden') !== 'true') {
+          var style = window.getComputedStyle ? window.getComputedStyle(servicesPage) : null;
+          if (!style || (style.display !== 'none' && style.visibility !== 'hidden')) {
+            return 'services';
           }
         }
 
-        // 4. Move elements into Row 2 container
-        if (copyright && copyright.parentElement !== row2) {
-          row2.appendChild(copyright);
-          copyright.style.width = 'auto';
-          copyright.style.textAlign = 'left';
-          copyright.style.margin = '0';
-          copyright.style.padding = '0';
-          copyright.style.opacity = '0.5';
+        if (document.querySelector('a[href="#services"].active-link')) {
+          return 'services';
         }
-        
-        if (brand.parentElement !== row2) {
-          row2.appendChild(brand);
-        }
+
+        return 'home';
       }
+
+      function applySeo() {
+        var route = currentRoute();
+        if (route === lastRoute) return;
+        lastRoute = route;
+
+        var meta = routeMeta[route];
+        if (!meta) return;
+
+        document.title = meta.title;
+        setContent('meta-description', meta.description);
+        setContent('meta-keywords', meta.keywords);
+        setContent('meta-canonical', siteUrl, 'href');
+        setContent('meta-og-url', meta.url);
+        setContent('meta-og-title', meta.ogTitle);
+        setContent('meta-og-description', meta.ogDescription);
+        setContent('meta-og-image', ogImageUrl);
+        setContent('meta-twitter-title', meta.ogTitle);
+        setContent('meta-twitter-description', meta.ogDescription);
+        setContent('meta-twitter-image', ogImageUrl);
+
+        var routeSchema = document.getElementById('route-schema');
+        if (!routeSchema) {
+          routeSchema = document.createElement('script');
+          routeSchema.id = 'route-schema';
+          routeSchema.type = 'application/ld+json';
+          document.head.appendChild(routeSchema);
+        }
+        routeSchema.textContent = JSON.stringify(meta.schema);
+      }
+
+      function enhancePhoneLinks() {
+        document.querySelectorAll('.ci-val').forEach(function (node) {
+          var text = (node.textContent || '').trim();
+          if (text === '+91 9067605129' && !node.querySelector('a')) {
+            var link = document.createElement('a');
+            link.href = 'tel:+919067605129';
+            link.textContent = text;
+            link.style.color = 'inherit';
+            link.style.textDecoration = 'none';
+            link.setAttribute('aria-label', 'Call Dharrah EHS Consultancy');
+            node.textContent = '';
+            node.appendChild(link);
+          }
+        });
+      }
+
+      function setupConversionTracking() {
+        if (window.__DHARRAH_CONVERSION_TRACKING__) return;
+        window.__DHARRAH_CONVERSION_TRACKING__ = true;
+
+        function normalizeLabel(value) {
+          return (value || '')
+            .replace(/\s+/g, ' ')
+            .trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9 ]+/g, '');
+        }
+
+        var ctaLabels = new Set([
+          'Free Consultation',
+          'Get Free Consultation',
+          'Explore Services',
+          'Contact Us →',
+          'Contact Us'
+        ]);
+
+        document.addEventListener('click', function (e) {
+          var target = e.target.closest('a,button');
+          if (!target) return;
+
+          var href = target.getAttribute('href') || '';
+          var text = (target.textContent || '').replace(/\s+/g, ' ').trim();
+          var normalizedText = normalizeLabel(text);
+          var label = target.getAttribute('aria-label') || text || target.id || 'interaction';
+          var route = currentRoute();
+
+          if (href.indexOf('wa.me') !== -1) {
+            window.trackDharrahEvent('whatsapp_click', {
+              label: label,
+              route: route
+            });
+          }
+
+          if (href.indexOf('tel:') === 0) {
+            window.trackDharrahEvent('phone_click', {
+              label: label,
+              phone: href.replace('tel:', ''),
+              route: route
+            });
+          }
+
+          if (href.indexOf('mailto:') === 0) {
+            window.trackDharrahEvent('email_click', {
+              label: label,
+              email: href.replace('mailto:', ''),
+              route: route
+            });
+          }
+
+          if (
+            ctaLabels.has(text) ||
+            normalizedText === 'free consultation' ||
+            normalizedText === 'get free consultation' ||
+            normalizedText === 'explore services' ||
+            normalizedText === 'contact us'
+          ) {
+            window.trackDharrahEvent('cta_click', {
+              label: text,
+              route: route,
+              href: href || ''
+            });
+          }
+        });
+      }
+
+      var seoRefreshQueued = false;
+
+      function refreshSeoEnhancements() {
+        seoRefreshQueued = false;
+        applySeo();
+        enhancePhoneLinks();
+      }
+
+      function scheduleSeoEnhancements() {
+        if (seoRefreshQueued) return;
+        seoRefreshQueued = true;
+        (window.requestAnimationFrame || window.setTimeout)(refreshSeoEnhancements, 16);
+      }
+
+      setupConversionTracking();
+      window.addEventListener('hashchange', scheduleSeoEnhancements);
+      window.addEventListener('popstate', scheduleSeoEnhancements);
 
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', adjustFooterLayout);
+        document.addEventListener('DOMContentLoaded', scheduleSeoEnhancements);
       } else {
-        adjustFooterLayout();
+        scheduleSeoEnhancements();
       }
-      [500, 1000, 2000, 3000, 5000].forEach(function(t) { setTimeout(adjustFooterLayout, t); });
+
+      var observerTarget = document.getElementById('root') || document.body || document.documentElement;
+      if (observerTarget && observerTarget.nodeType) {
+        var observer = new MutationObserver(function () {
+          scheduleSeoEnhancements();
+        });
+        observer.observe(observerTarget, { childList: true, subtree: true });
+      }
     })();
   </script>
+  <script src="scripts/dharrah-runtime.js"></script>
 </body>
 
 </html>
+
