@@ -1257,7 +1257,7 @@
           subject: formData.subject || 'General Inquiry'
         });
 
-        window.showDhPopup('Inquiry Sent', 'Your message has been received at care@dharrahehs.com successfully.', 'success');
+        window.showDhPopup('Inquiry Sent', 'Your inquiry has been received successfully. Our team will contact you within 24 hours.', 'success');
         form.reset();
         form.dataset.dhMountedAt = String(getTimestamp());
         clearFieldErrors(form);
