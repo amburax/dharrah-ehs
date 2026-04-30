@@ -807,79 +807,6 @@
     status.innerHTML = message;
   }
 
-  function ensureHomeGeoSection() {
-    var contactSection = document.getElementById('contact');
-    var casesSection = document.getElementById('cases');
-    if (!contactSection || !casesSection || document.getElementById('dh-home-geo-section')) return;
-
-    var section = document.createElement('section');
-    section.id = 'dh-home-geo-section';
-    section.className = 'dh-geo-section';
-    section.setAttribute('data-dh-geo', 'home');
-    section.innerHTML = [
-      '<span class="dh-geo-eyebrow">AI-Friendly Overview</span>',
-      '<h2 class="dh-geo-title">What Dharrah EHS helps industrial teams do</h2>',
-      '<p class="dh-geo-intro">Dharrah EHS is an environmental, health, and safety consultancy focused on regulatory approvals, pollution control systems, industrial monitoring, and sustainability reporting for industries across Gujarat and India.</p>',
-      '<div class="dh-geo-grid">',
-      '  <article class="dh-geo-card"><h3>Approvals and compliance</h3><p>Dharrah supports GPCB NOC and CCA permissions, EIA documentation, environmental clearance work, EPR registrations, and recurring compliance filings for industrial units.</p></article>',
-      '  <article class="dh-geo-card"><h3>Pollution control and treatment</h3><p>The team advises on ETP and STP systems, air pollution control equipment, dust control, wastewater treatment studies, and environmental monitoring requirements.</p></article>',
-      '  <article class="dh-geo-card"><h3>ESG and reporting support</h3><p>Dharrah also works on ESG sustainability reporting, carbon accounting, greenhouse gas estimation, and disclosure-aligned documentation for regulated businesses.</p></article>',
-      '</div>',
-      '<div class="dh-geo-list">',
-      '  <span>Industries: chemical, sugar, textile, healthcare, real estate, manufacturing</span>',
-      '  <span>Coverage: Gujarat and India</span>',
-      '  <span>Response: first consultation free, reply within 24 hours</span>',
-      '  <span>Proof: 215+ projects, 13+ years, 93% approval-focused delivery</span>',
-      '</div>',
-      '<div class="dh-faq-wrap">',
-      '  <details class="dh-faq-item" open><summary>What does Dharrah EHS do?</summary><p>Dharrah EHS provides environmental compliance, industrial approvals, pollution control consultancy, monitoring support, and sustainability reporting for businesses that need regulator-ready execution.</p></details>',
-      '  <details class="dh-faq-item"><summary>Which approvals does Dharrah help with?</summary><p>The site highlights support for GPCB NOC and CCA permissions, EIA and environmental clearance work, EPR registrations, bio-medical waste authorizations, and ongoing statutory return filing.</p></details>',
-      '  <details class="dh-faq-item"><summary>Which industries does Dharrah serve?</summary><p>The current service profile includes chemical and pharma, sugar, textile and dyes, hospitals and clinics, real estate and infrastructure, manufacturing, import-export, and power-oriented projects.</p></details>',
-      '  <details class="dh-faq-item"><summary>Does Dharrah only advise or also support implementation?</summary><p>The site presents both advisory and implementation-oriented work, including pollution control equipment, wastewater systems, dust control technology, monitoring, and project documentation.</p></details>',
-      '  <details class="dh-faq-item"><summary>How should a new client contact Dharrah?</summary><p>Use the inquiry form, phone, or WhatsApp. The current site promise is a free first consultation and a Dharrah response within 24 hours.</p></details>',
-      '</div>'
-    ].join('');
-
-    contactSection.parentNode.insertBefore(section, contactSection);
-  }
-
-  function ensureServicesGeoSection() {
-    var servicesWrap = document.querySelector('.srv-wrap');
-    var ctaSection = document.querySelector('.srv-cta');
-    if (!servicesWrap || !ctaSection || document.getElementById('dh-services-geo-section')) return;
-
-    var section = document.createElement('section');
-    section.id = 'dh-services-geo-section';
-    section.className = 'dh-geo-section';
-    section.setAttribute('data-dh-geo', 'services');
-    section.innerHTML = [
-      '<span class="dh-geo-eyebrow">Service Summary</span>',
-      '<h2 class="dh-geo-title">A simpler way for buyers and AI engines to read the service catalogue</h2>',
-      '<p class="dh-geo-intro">Dharrah EHS combines regulatory consulting, pollution control engineering, monitoring, and reporting support in one consultancy stack. This summary groups the main outcomes industrial buyers typically search for.</p>',
-      '<div class="dh-geo-grid">',
-      '  <article class="dh-geo-card"><h3>Regulatory permissions</h3><p>Includes GPCB and CPCB permission support, environmental clearance documentation, EPR work, import-related registrations, and recurring filing help.</p></article>',
-      '  <article class="dh-geo-card"><h3>Systems and environmental engineering</h3><p>Covers wastewater treatment, automated STP and ETP solutions, membrane systems, air pollution control, dust suppression, and related chemicals or equipment support.</p></article>',
-      '  <article class="dh-geo-card"><h3>Monitoring and sustainability</h3><p>Covers laboratory and monitoring coordination, site remediation, ESG and BRSR reporting, carbon accounting, and other environment-focused disclosure support.</p></article>',
-      '</div>',
-      '<div class="dh-service-snapshot">',
-      '  <h3 class="dh-service-snapshot-title">High-intent searches this page now answers better</h3>',
-      '  <div class="dh-service-snapshot-grid">',
-      '    <div class="dh-service-snapshot-card"><strong>Who is this for?</strong><span>Industrial units, real estate projects, healthcare facilities, importers, and listed or compliance-heavy businesses.</span></div>',
-      '    <div class="dh-service-snapshot-card"><strong>What outcomes?</strong><span>Approvals, registrations, pollution control design, monitoring readiness, regulator submissions, and sustainability disclosures.</span></div>',
-      '    <div class="dh-service-snapshot-card"><strong>Which regions?</strong><span>The site messaging emphasizes Gujarat-led execution with project support extending across India.</span></div>',
-      '    <div class="dh-service-snapshot-card"><strong>Why Dharrah?</strong><span>The core proof points on-site are 215+ projects, 13+ years of experience, and a 93% approval-focused track record.</span></div>',
-      '  </div>',
-      '</div>',
-      '<div class="dh-faq-wrap">',
-      '  <details class="dh-faq-item" open><summary>What are Dharrah EHS core services?</summary><p>The main service groups are regulatory compliance and permissions, ESG and carbon management, wastewater and water treatment, air and dust pollution control, environmental monitoring, specialized equipment, and food safety support.</p></details>',
-      '  <details class="dh-faq-item"><summary>Does Dharrah handle both documents and systems?</summary><p>Yes. The current service set covers documentation and approvals as well as operational systems such as STP, ETP, air pollution control, dust control, and treatment-related engineering support.</p></details>',
-      '  <details class="dh-faq-item"><summary>Can Dharrah support ongoing compliance after approvals?</summary><p>The services shown include annual and monthly return filing, monitoring-oriented support, and repeat compliance workflows beyond one-time registration work.</p></details>',
-      '</div>'
-    ].join('');
-
-    ctaSection.parentNode.insertBefore(section, ctaSection);
-  }
-
   function chooseContactForm() {
     var forms = Array.prototype.slice.call(document.querySelectorAll('form')).filter(isVisible);
     if (!forms.length) return null;
@@ -1341,8 +1268,6 @@
     runtime.scheduled = false;
     injectRuntimeStyles();
     ensureHeroProofBand();
-    ensureHomeGeoSection();
-    ensureServicesGeoSection();
     ensureServicesCtaProof();
     ensureContactHooks();
     setupPhonePicker();
