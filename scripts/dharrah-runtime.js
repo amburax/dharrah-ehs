@@ -275,22 +275,39 @@
       '}',
       '.dh-form-proof {',
       '  margin-bottom: 22px;',
-      '  padding: 18px 18px 16px;',
+      '  padding: 16px 18px;',
       '  border-radius: 12px;',
       '  border: 1px solid rgba(61, 85, 128, 0.12);',
       '  background: linear-gradient(180deg, rgba(244, 248, 252, 0.92), rgba(255, 255, 255, 1));',
+      '}',
+      '.dh-form-proof-summary {',
+      '  display: grid;',
+      '  gap: 4px;',
+      '  margin-bottom: 12px;',
+      '}',
+      '.dh-form-proof-summary strong {',
+      '  font-family: "Crimson Text", serif;',
+      '  font-size: 23px;',
+      '  line-height: 1.2;',
+      '  color: #1a2d5a;',
+      '}',
+      '.dh-form-proof-summary span {',
+      '  display: block;',
+      '  font-size: 13px;',
+      '  line-height: 1.55;',
+      '  color: #5c6f90;',
       '}',
       '.dh-form-proof-head {',
       '  display: flex;',
       '  justify-content: space-between;',
       '  align-items: center;',
       '  gap: 12px;',
-      '  margin-bottom: 14px;',
+      '  margin-bottom: 10px;',
       '  flex-wrap: wrap;',
       '}',
       '.dh-form-proof-title {',
       '  font-family: "Crimson Text", serif;',
-      '  font-size: 24px;',
+      '  font-size: 19px;',
       '  line-height: 1.2;',
       '  color: #1a2d5a;',
       '}',
@@ -311,10 +328,10 @@
       '.dh-form-proof-grid {',
       '  display: grid;',
       '  grid-template-columns: repeat(3, minmax(0, 1fr));',
-      '  gap: 12px;',
+      '  gap: 10px;',
       '}',
       '.dh-form-proof-stat {',
-      '  padding: 14px 14px 12px;',
+      '  padding: 12px 12px 10px;',
       '  border-radius: 10px;',
       '  background: #fff;',
       '  border: 1px solid rgba(61, 85, 128, 0.1);',
@@ -328,7 +345,7 @@
       '}',
       '.dh-form-proof-stat span {',
       '  display: block;',
-      '  font-size: 12px;',
+      '  font-size: 11px;',
       '  line-height: 1.5;',
       '  color: #5c6f90;',
       '}',
@@ -336,18 +353,18 @@
       '  display: flex;',
       '  gap: 10px;',
       '  flex-wrap: wrap;',
-      '  margin: 16px 0 0;',
+      '  margin: 12px 0 0;',
       '}',
       '.dh-reassurance-chip {',
       '  display: inline-flex;',
       '  align-items: center;',
       '  gap: 8px;',
-      '  padding: 9px 12px;',
+      '  padding: 8px 11px;',
       '  border-radius: 999px;',
       '  background: rgba(61, 79, 204, 0.06);',
       '  border: 1px solid rgba(61, 79, 204, 0.14);',
       '  color: #3d4fcc;',
-      '  font-size: 12px;',
+      '  font-size: 11px;',
       '  line-height: 1.4;',
       '  font-weight: 600;',
       '}',
@@ -628,6 +645,10 @@
       '  background: linear-gradient(180deg, rgba(250, 252, 255, 0.98), rgba(244, 248, 252, 0.96));',
       '  box-shadow: 0 12px 30px rgba(26, 45, 90, 0.06);',
       '}',
+      '.dh-tech-inline-card.is-rail {',
+      '  margin-top: 28px;',
+      '  padding: 22px;',
+      '}',
       '.dh-tech-inline-eyebrow {',
       '  display: inline-block;',
       '  margin-bottom: 10px;',
@@ -643,6 +664,9 @@
       '  line-height: 1.15;',
       '  color: #1a2d5a;',
       '  margin: 0 0 8px;',
+      '}',
+      '.dh-tech-inline-card.is-rail .dh-tech-inline-title {',
+      '  font-size: 24px;',
       '}',
       '.dh-tech-inline-copy {',
       '  margin: 0;',
@@ -1480,30 +1504,33 @@
   }
 
   function ensureTechnicalAssessmentEntryPoints() {
+    var contactSection = document.getElementById('contact');
     var contactWrap = document.querySelector('#contact .form-wrap');
-    if (contactWrap && !document.getElementById('dh-tech-inline-contact')) {
+    var contactGrid = contactSection ? contactSection.querySelector('.contact-grid') : null;
+    var contactRail = contactGrid ? contactGrid.firstElementChild : null;
+    if (contactRail && !document.getElementById('dh-tech-inline-contact')) {
       var contactCard = document.createElement('div');
       contactCard.id = 'dh-tech-inline-contact';
-      contactCard.className = 'dh-tech-inline-card';
+      contactCard.className = 'dh-tech-inline-card is-rail';
       contactCard.innerHTML = [
         '<span class="dh-tech-inline-eyebrow">Detailed Intake</span>',
         '<h3 class="dh-tech-inline-title">Need a boiler or scrubber review instead of a simple inquiry?</h3>',
-        '<p class="dh-tech-inline-copy">Open the structured technical assessment when your team already has plant, boiler, APC, scrubber, or dust-control details to share. It helps Dharrah start with engineering context instead of a basic lead note.</p>',
+        '<p class="dh-tech-inline-copy">Use the structured technical assessment when your team already has plant, boiler, APC, scrubber, or dust-control details ready. Dharrah can start with engineering context instead of a basic lead note.</p>',
         '<div class="dh-tech-inline-meta">',
-        '  <span>Full-screen guided form</span>',
         '  <span>Built for technical projects</span>',
-        '  <span>Sent directly to your engineering inbox</span>',
+        '  <span>Sent to your engineering inbox</span>',
         '</div>',
         '<div class="dh-tech-inline-actions">',
         '  <button type="button" class="dh-tech-trigger is-primary" data-dh-open-tech="contact">Open Technical Assessment</button>',
+        '  <button type="button" class="dh-tech-trigger" data-dh-scroll-to-form="true">Use Regular Inquiry Form</button>',
         '</div>'
       ].join('');
 
-      var formTitle = contactWrap.querySelector('.form-title');
-      if (formTitle) {
-        contactWrap.insertBefore(contactCard, formTitle);
+      var whatsappButton = contactRail.querySelector('.wa-btn');
+      if (whatsappButton && whatsappButton.parentNode) {
+        whatsappButton.insertAdjacentElement('afterend', contactCard);
       } else {
-        contactWrap.appendChild(contactCard);
+        contactRail.appendChild(contactCard);
       }
     }
 
@@ -1788,8 +1815,9 @@
       proof.setAttribute('data-dh-form-proof', 'true');
       proof.className = 'dh-form-proof';
       proof.innerHTML = [
+        '<div class="dh-form-proof-summary"><strong>Fast path for regulator-ready execution</strong><span>Use this form for approvals, monitoring, ESG, wastewater, and general compliance needs. For plant-heavy boiler or APC issues, use the technical assessment on the left.</span></div>',
         '<div class="dh-form-proof-head">',
-        '  <div class="dh-form-proof-title">Why teams reach out here first</div>',
+        '  <div class="dh-form-proof-title">Why this inquiry works well</div>',
         '  <div class="dh-form-proof-pill">Trusted for regulator-ready execution</div>',
         '</div>',
         '<div class="dh-form-proof-grid">',
@@ -2264,6 +2292,24 @@
     var form = getTechnicalAssessmentForm();
     if (!overlay || !form) return;
 
+    function bindLeadInquiryScrollButtons() {
+      Array.prototype.forEach.call(document.querySelectorAll('[data-dh-scroll-to-form]'), function (button) {
+        if (button.dataset.boundScrollToForm === 'true') return;
+        button.dataset.boundScrollToForm = 'true';
+        button.addEventListener('click', function () {
+          var leadForm = document.querySelector('#contact .form-wrap');
+          if (!leadForm) return;
+          leadForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          var firstField = leadForm.querySelector('input, select, textarea');
+          if (firstField) {
+            window.setTimeout(function () {
+              firstField.focus();
+            }, 300);
+          }
+        });
+      });
+    }
+
     if (form.dataset.bridgeSet === 'true') {
       Array.prototype.forEach.call(document.querySelectorAll('[data-dh-open-tech]'), function (button) {
         if (button.dataset.boundTechOpen === 'true') return;
@@ -2272,6 +2318,7 @@
           openTechnicalAssessment(button.getAttribute('data-dh-open-tech') || 'site');
         });
       });
+      bindLeadInquiryScrollButtons();
       return;
     }
 
@@ -2285,6 +2332,7 @@
         openTechnicalAssessment(button.getAttribute('data-dh-open-tech') || 'site');
       });
     });
+    bindLeadInquiryScrollButtons();
 
     Array.prototype.forEach.call(overlay.querySelectorAll('[data-dh-tech-close="true"]'), function (button) {
       button.addEventListener('click', function () {
