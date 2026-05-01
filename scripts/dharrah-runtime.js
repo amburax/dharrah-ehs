@@ -712,6 +712,44 @@
     ctaInner.appendChild(proof);
   }
 
+  function ensureHomeSupportSection() {
+    var whySection = document.getElementById('why');
+    var industriesSection = document.getElementById('industries');
+
+    if (!whySection || !industriesSection || document.getElementById('dh-home-support-section')) return;
+
+    var section = document.createElement('section');
+    section.id = 'dh-home-support-section';
+    section.className = 'dh-geo-section';
+    section.innerHTML = [
+      '<span class="dh-geo-eyebrow">How We Help</span>',
+      '<h2 class="dh-geo-title">Support built for industrial teams that need approvals, systems, and steady follow-through</h2>',
+      '<p class="dh-geo-intro">Dharrah EHS supports businesses that need more than documentation alone. The work spans regulatory approvals, pollution control planning, environmental monitoring, and reporting support, with practical guidance shaped around the site, sector, and compliance stage.</p>',
+      '<div class="dh-geo-grid">',
+      '  <div class="dh-geo-card">',
+      '    <h3>Approvals and compliance</h3>',
+      '    <p>Support for GPCB NOC and CCA permissions, EIA and environment clearance documentation, EPR registrations, return filing, and regulator-ready submissions.</p>',
+      '  </div>',
+      '  <div class="dh-geo-card">',
+      '    <h3>Pollution control and treatment</h3>',
+      '    <p>Advisory for air pollution control, dust control, ETP and STP planning, treatability studies, wastewater treatment strategy, and site-specific execution support.</p>',
+      '  </div>',
+      '  <div class="dh-geo-card">',
+      '    <h3>Monitoring and reporting</h3>',
+      '    <p>Ongoing support for environmental monitoring, ESG and BRSR reporting, carbon estimation, remediation inputs, and recurring compliance follow-up where continuity matters.</p>',
+      '  </div>',
+      '</div>',
+      '<div class="dh-geo-list">',
+      '  <span>215+ projects across Gujarat and India</span>',
+      '  <span>13+ years of EHS execution</span>',
+      '  <span>Response within 24 hours</span>',
+      '  <span>Chemical, sugar, textile, healthcare, and manufacturing sectors</span>',
+      '</div>'
+    ].join('');
+
+    industriesSection.parentNode.insertBefore(section, industriesSection);
+  }
+
   function ensureHoneypotField(form) {
     if (!form || form.querySelector('[data-dh-honeypot="true"]')) return;
 
@@ -1268,6 +1306,7 @@
     runtime.scheduled = false;
     injectRuntimeStyles();
     ensureHeroProofBand();
+    ensureHomeSupportSection();
     ensureServicesCtaProof();
     ensureContactHooks();
     setupPhonePicker();
