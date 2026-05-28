@@ -75,6 +75,10 @@
   var ATTACHMENT_TOTAL_MAX_BYTES = 15 * 1024 * 1024;
   var ATTACHMENT_ALLOWED_EXTENSIONS = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'jpg', 'jpeg', 'png'];
   var ATTACHMENT_ACCEPT = '.pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png';
+  var PUBLIC_CONTACT_EMAIL = 'info@dharrahehs.com';
+  var PUBLIC_CONTACT_PHONE_DISPLAY = '+91 9067605129';
+  var PUBLIC_CONTACT_PHONE_TEL = '+919067605129';
+  var PUBLIC_CONTACT_WHATSAPP = 'https://wa.me/919067605129?text=Hi%2C%20I%20need%20help%20with%20EHS%20compliance%20for%20my%20industry%20in%20Gujarat.%20Could%20you%20please%20guide%20me%3F';
 
   function normalizeText(value) {
     return (value || '')
@@ -2122,6 +2126,56 @@
 
   function getContactEndpoint() {
     return (window.DHARRAH_CONFIG && window.DHARRAH_CONFIG.contactEndpoint) || '/api/contact';
+  }
+
+  function normalizePublicContactDetails() {
+    var oldEmails = ['abbas.gemi@gmail.com', 'care@dharrahehs.com'];
+    var emailPattern = /(abbas\.gemi@gmail\.com|care@dharrahehs\.com)/gi;
+    var phonePattern = /(\+91\s*9067605129|\+919067605129)/g;
+
+    Array.prototype.forEach.call(document.querySelectorAll('a[href^="mailto:"]'), function (link) {
+      if (oldEmails.some(function (email) { return (link.href || '').toLowerCase().indexOf(email) !== -1; }) || (link.textContent || '').indexOf('@') !== -1) {
+        link.href = 'mailto:' + PUBLIC_CONTACT_EMAIL;
+        link.textContent = PUBLIC_CONTACT_EMAIL;
+      }
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll('a[href^="tel:"]'), function (link) {
+      link.href = 'tel:' + PUBLIC_CONTACT_PHONE_TEL;
+      if (phonePattern.test(link.textContent || '')) {
+        link.textContent = PUBLIC_CONTACT_PHONE_DISPLAY;
+      }
+      phonePattern.lastIndex = 0;
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll('a[href*="wa.me/"], a[href*="api.whatsapp.com"]'), function (link) {
+      link.href = PUBLIC_CONTACT_WHATSAPP;
+    });
+
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        var parent = node.parentElement;
+        if (!parent || ['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT', 'OPTION'].indexOf(parent.tagName) !== -1) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        var value = node.nodeValue || '';
+        emailPattern.lastIndex = 0;
+        phonePattern.lastIndex = 0;
+        return emailPattern.test(value) || phonePattern.test(value)
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var textNodes = [];
+    var node;
+    while ((node = walker.nextNode())) {
+      textNodes.push(node);
+    }
+    textNodes.forEach(function (textNode) {
+      textNode.nodeValue = (textNode.nodeValue || '')
+        .replace(emailPattern, PUBLIC_CONTACT_EMAIL)
+        .replace(phonePattern, PUBLIC_CONTACT_PHONE_DISPLAY);
+    });
   }
 
   function formatAttachmentSize(bytes) {
@@ -4902,6 +4956,7 @@
   function initializeRuntime() {
     runtime.scheduled = false;
     injectRuntimeStyles();
+    normalizePublicContactDetails();
     ensureHeroProofBand();
     ensureHomeSupportSection();
     ensureServicesCtaProof();
