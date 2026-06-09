@@ -2178,6 +2178,72 @@
     });
   }
 
+  function repairVisibleEncodingText(value) {
+    if (!value) return value;
+
+    return value
+      .replace(/\u00c2\u00b7/g, ' / ')
+      .replace(/\u00c2\u00a9/g, '(c)')
+      .replace(/\u00e2\u2020\u2019/g, '->')
+      .replace(/\u00e2\u20ac\u201d/g, '-')
+      .replace(/\u00e2\u20ac\u201c/g, '-')
+      .replace(/\u00e2\u20ac\u2122/g, "'")
+      .replace(/\u00e2\u20ac\u02dc/g, "'")
+      .replace(/\u00e2\u20ac\u0153/g, '"')
+      .replace(/\u00e2\u20ac\u009d/g, '"')
+      .replace(/\u00e2\u0153\u201c/g, 'Done:')
+      .replace(/\u00e2\u20ac\u00a6/g, '...')
+      .replace(/\u00c2/g, '');
+  }
+
+  function repairIndustryIconEncoding() {
+    var iconLabels = {
+      'Chemical & Pharma': 'CH',
+      'Sugar Industry': 'SG',
+      'Textile & Dyes': 'TX',
+      'Hospitals & Clinics': 'HC',
+      'Real Estate & Infra': 'RE',
+      'Manufacturing': 'MF',
+      'Import / Export': 'IM',
+      'Power & Energy': 'PW'
+    };
+
+    Array.prototype.forEach.call(document.querySelectorAll('.ind-card'), function (card) {
+      var name = card.querySelector('.ind-name');
+      var icon = card.querySelector('.ind-icon');
+      var label = name ? iconLabels[(name.textContent || '').trim()] : null;
+      if (icon && label) {
+        icon.textContent = label;
+        icon.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  function normalizeVisibleEncodingArtifacts() {
+    if (!document.body) return;
+
+    repairIndustryIconEncoding();
+
+    var needsRepair = /[\u00c2\u00e2\u00f0\ufffd]/;
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        var parent = node.parentElement;
+        if (!parent || ['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT', 'OPTION'].indexOf(parent.tagName) !== -1) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return needsRepair.test(node.nodeValue || '') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var textNodes = [];
+    var node;
+    while ((node = walker.nextNode())) {
+      textNodes.push(node);
+    }
+    textNodes.forEach(function (textNode) {
+      textNode.nodeValue = repairVisibleEncodingText(textNode.nodeValue || '');
+    });
+  }
+
   function formatAttachmentSize(bytes) {
     if (!bytes) return '0 MB';
     if (bytes < 1024 * 1024) {
@@ -4957,6 +5023,7 @@
     runtime.scheduled = false;
     injectRuntimeStyles();
     normalizePublicContactDetails();
+    normalizeVisibleEncodingArtifacts();
     ensureHeroProofBand();
     ensureHomeSupportSection();
     ensureServicesCtaProof();
