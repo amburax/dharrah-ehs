@@ -201,6 +201,29 @@
       '  color: #8a9fc7;',
       '  opacity: 0.6;',
       '}',
+      '.ind-card .ind-icon {',
+      '  width: 58px !important;',
+      '  height: 58px !important;',
+      '  margin: 0 auto 18px !important;',
+      '  border-radius: 18px !important;',
+      '  display: flex !important;',
+      '  align-items: center !important;',
+      '  justify-content: center !important;',
+      '  background: linear-gradient(145deg, rgba(200, 32, 26, 0.08), rgba(255, 255, 255, 0.95)) !important;',
+      '  border: 1px solid rgba(200, 32, 26, 0.16) !important;',
+      '  box-shadow: 0 14px 34px rgba(26, 45, 90, 0.08) !important;',
+      '  color: #c8201a !important;',
+      '  font-size: 0 !important;',
+      '}',
+      '.ind-card .ind-icon svg {',
+      '  width: 29px !important;',
+      '  height: 29px !important;',
+      '  stroke: currentColor !important;',
+      '  stroke-width: 1.8 !important;',
+      '  fill: none !important;',
+      '  stroke-linecap: round !important;',
+      '  stroke-linejoin: round !important;',
+      '}',
       '#dh-popup-overlay {',
       '  position: fixed;',
       '  top: 0;',
@@ -2197,23 +2220,23 @@
   }
 
   function repairIndustryIconEncoding() {
-    var iconLabels = {
-      'Chemical & Pharma': 'CH',
-      'Sugar Industry': 'SG',
-      'Textile & Dyes': 'TX',
-      'Hospitals & Clinics': 'HC',
-      'Real Estate & Infra': 'RE',
-      'Manufacturing': 'MF',
-      'Import / Export': 'IM',
-      'Power & Energy': 'PW'
+    var iconPaths = {
+      'Chemical & Pharma': '<path d="M9 3h6"/><path d="M10 3v5.5l-4.5 7.8A3 3 0 0 0 8.1 21h7.8a3 3 0 0 0 2.6-4.7L14 8.5V3"/><path d="M8 15h8"/>',
+      'Sugar Industry': '<path d="M12 3v18"/><path d="M12 8c-2.5 0-4-1.6-5-4"/><path d="M12 9c2.5 0 4-1.6 5-4"/><path d="M12 15c-2.5 0-4-1.6-5-4"/><path d="M12 16c2.5 0 4-1.6 5-4"/>',
+      'Textile & Dyes': '<path d="M6 3v18"/><path d="M18 3v18"/><path d="M6 7h12"/><path d="M6 12h12"/><path d="M6 17h12"/><path d="M9 3l6 18"/>',
+      'Hospitals & Clinics': '<path d="M5 21V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v15"/><path d="M9 21v-5h6v5"/><path d="M12 8v5"/><path d="M9.5 10.5h5"/>',
+      'Real Estate & Infra': '<path d="M4 21h16"/><path d="M6 21V8l6-4 6 4v13"/><path d="M9 21v-7h6v7"/><path d="M9 10h.01"/><path d="M15 10h.01"/>',
+      'Manufacturing': '<path d="M4 21V9l5 3V9l5 3V7h6v14"/><path d="M7 17h2"/><path d="M12 17h2"/><path d="M17 17h1"/>',
+      'Import / Export': '<path d="M3 16h18"/><path d="M5 16l2-6h10l2 6"/><path d="M8 10V6h8v4"/><path d="M9 20h6"/><path d="M12 3v3"/>',
+      'Power & Energy': '<path d="M13 2 5 13h6l-1 9 8-12h-6l1-8Z"/>'
     };
 
     Array.prototype.forEach.call(document.querySelectorAll('.ind-card'), function (card) {
       var name = card.querySelector('.ind-name');
       var icon = card.querySelector('.ind-icon');
-      var label = name ? iconLabels[(name.textContent || '').trim()] : null;
-      if (icon && label) {
-        icon.textContent = label;
+      var paths = name ? iconPaths[(name.textContent || '').trim()] : null;
+      if (icon && paths) {
+        icon.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + paths + '</svg>';
         icon.setAttribute('aria-hidden', 'true');
       }
     });
