@@ -2236,7 +2236,9 @@
       var icon = card.querySelector('.ind-icon');
       var paths = name ? iconPaths[(name.textContent || '').trim()] : null;
       if (icon && paths) {
+        if (icon.getAttribute('data-dh-industry-icon') === (name.textContent || '').trim()) return;
         icon.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + paths + '</svg>';
+        icon.setAttribute('data-dh-industry-icon', (name.textContent || '').trim());
         icon.setAttribute('aria-hidden', 'true');
       }
     });
