@@ -1910,6 +1910,150 @@
       '  opacity: 0.7;',
       '  cursor: not-allowed;',
       '}',
+      '.dh-biogas-section {',
+      '  border-color: rgba(26, 122, 76, 0.18);',
+      '  background: linear-gradient(180deg, rgba(244, 251, 247, 0.98), rgba(255, 255, 255, 1));',
+      '}',
+      '.dh-biogas-section .dh-geo-eyebrow {',
+      '  color: #1a7a4c;',
+      '}',
+      '.dh-biogas-subhead {',
+      '  margin: 30px 0 14px;',
+      '  font-family: "Crimson Text", serif;',
+      '  font-size: 22px;',
+      '  line-height: 1.2;',
+      '  color: #1a2d5a;',
+      '}',
+      '.dh-biogas-grid {',
+      '  display: grid;',
+      '  grid-template-columns: repeat(3, minmax(0, 1fr));',
+      '  gap: 14px;',
+      '}',
+      '.dh-biogas-grid.cols-2 {',
+      '  grid-template-columns: repeat(2, minmax(0, 1fr));',
+      '}',
+      '.dh-biogas-card {',
+      '  padding: 18px;',
+      '  border-radius: 14px;',
+      '  border: 1px solid rgba(26, 122, 76, 0.14);',
+      '  background: #fff;',
+      '}',
+      '.dh-biogas-card h4 {',
+      '  margin: 0 0 8px;',
+      '  font-family: "Crimson Text", serif;',
+      '  font-size: 20px;',
+      '  line-height: 1.2;',
+      '  color: #1a2d5a;',
+      '}',
+      '.dh-biogas-card p {',
+      '  margin: 0;',
+      '  color: #556887;',
+      '  font-size: 13px;',
+      '  line-height: 1.7;',
+      '}',
+      '.dh-biogas-table-wrap {',
+      '  margin-top: 14px;',
+      '  overflow-x: auto;',
+      '  border-radius: 14px;',
+      '  border: 1px solid rgba(26, 122, 76, 0.14);',
+      '  background: #fff;',
+      '}',
+      '.dh-biogas-table {',
+      '  width: 100%;',
+      '  min-width: 460px;',
+      '  border-collapse: collapse;',
+      '  font-size: 13px;',
+      '}',
+      '.dh-biogas-table th, .dh-biogas-table td {',
+      '  padding: 12px 16px;',
+      '  text-align: left;',
+      '  border-bottom: 1px solid rgba(61, 85, 128, 0.1);',
+      '  color: #556887;',
+      '  line-height: 1.6;',
+      '}',
+      '.dh-biogas-table th {',
+      '  color: #1a2d5a;',
+      '  font-weight: 700;',
+      '  background: rgba(244, 251, 247, 0.9);',
+      '}',
+      '.dh-biogas-table td:first-child {',
+      '  color: #1a2d5a;',
+      '  font-weight: 600;',
+      '  width: 42%;',
+      '}',
+      '.dh-biogas-table tr:last-child td {',
+      '  border-bottom: none;',
+      '}',
+      '.dh-biogas-proof {',
+      '  display: grid;',
+      '  grid-template-columns: repeat(3, minmax(0, 1fr));',
+      '  gap: 14px;',
+      '  margin-top: 22px;',
+      '}',
+      '.dh-biogas-proof div {',
+      '  padding: 16px 18px;',
+      '  border-radius: 14px;',
+      '  border: 1px solid rgba(26, 122, 76, 0.14);',
+      '  background: rgba(244, 251, 247, 0.85);',
+      '}',
+      '.dh-biogas-proof strong {',
+      '  display: block;',
+      '  font-size: 22px;',
+      '  color: #1a7a4c;',
+      '  margin-bottom: 4px;',
+      '}',
+      '.dh-biogas-proof span {',
+      '  display: block;',
+      '  color: #556887;',
+      '  font-size: 12px;',
+      '  line-height: 1.6;',
+      '}',
+      '.dh-biogas-actions {',
+      '  display: flex;',
+      '  flex-wrap: wrap;',
+      '  gap: 12px;',
+      '  margin-top: 24px;',
+      '}',
+      '.dh-biogas-actions a.dh-tech-trigger {',
+      '  text-decoration: none;',
+      '}',
+      '.dh-biogas-teaser {',
+      '  display: grid;',
+      '  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);',
+      '  gap: 22px;',
+      '  align-items: center;',
+      '}',
+      '.dh-biogas-teaser-stats {',
+      '  display: grid;',
+      '  gap: 10px;',
+      '}',
+      '.dh-biogas-teaser-stats div {',
+      '  padding: 14px 16px;',
+      '  border-radius: 12px;',
+      '  border: 1px solid rgba(26, 122, 76, 0.14);',
+      '  background: #fff;',
+      '}',
+      '.dh-biogas-teaser-stats strong {',
+      '  display: block;',
+      '  font-size: 18px;',
+      '  color: #1a7a4c;',
+      '}',
+      '.dh-biogas-teaser-stats span {',
+      '  display: block;',
+      '  color: #556887;',
+      '  font-size: 12px;',
+      '  line-height: 1.6;',
+      '}',
+      '@media (max-width: 900px) {',
+      '  .dh-biogas-grid, .dh-biogas-grid.cols-2, .dh-biogas-proof, .dh-biogas-teaser {',
+      '    grid-template-columns: 1fr;',
+      '  }',
+      '}',
+      '@media (max-width: 640px) {',
+      '  .dh-biogas-actions .dh-tech-trigger {',
+      '    width: 100%;',
+      '  }',
+      '}',
       '@media (max-width: 900px) {',
       '  .dh-proof-band, .dh-form-proof-grid, .dh-geo-grid, .dh-service-snapshot-grid, .dh-tech-grid.cols-2, .dh-tech-grid.cols-3, .dh-tech-summary-grid, .dh-route-grid, .dh-consent-grid.cols-2, .dh-consent-grid.cols-3, .dh-consent-option-grid, .dh-consent-summary-grid, .dh-consent-help-grid, .dh-knowledge-grid {',
       '    grid-template-columns: 1fr;',
@@ -2164,6 +2308,224 @@
     industriesSection.parentNode.insertBefore(section, industriesSection);
   }
 
+  var BIOGAS_WHATSAPP = 'https://wa.me/919067605129?text=Hi%2C%20I%20would%20like%20a%20site%20assessment%20and%20ROI%20projection%20for%20a%20Dharrah%20Smart%20Biogas%20Plant.';
+
+  function goToServicesBiogas() {
+    var target = document.getElementById('dh-biogas-section');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    var servicesLink = document.querySelector('#navbar a[href="#services"]');
+    if (!servicesLink) return;
+
+    runtime.pendingBiogasScroll = true;
+    servicesLink.click();
+  }
+
+  function resolvePendingBiogasScroll() {
+    if (!runtime.pendingBiogasScroll) return;
+
+    var target = document.getElementById('dh-biogas-section');
+    if (!target) return;
+
+    runtime.pendingBiogasScroll = false;
+    window.setTimeout(function () {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 120);
+  }
+
+  function ensureHomeBiogasTeaser() {
+    var supportSection = document.getElementById('dh-home-support-section');
+
+    if (!supportSection || document.getElementById('dh-home-biogas-teaser')) return;
+
+    var teaser = document.createElement('section');
+    teaser.id = 'dh-home-biogas-teaser';
+    teaser.className = 'dh-geo-section dh-biogas-section';
+    teaser.innerHTML = [
+      '<span class="dh-geo-eyebrow">Smart Biogas &amp; Waste-to-Energy</span>',
+      '<h2 class="dh-geo-title">Turn organic waste into clean energy and high-value resources</h2>',
+      '<div class="dh-biogas-teaser">',
+      '  <div>',
+      '    <p class="dh-geo-intro">Dharrah EHS helps businesses, industries, and institutions reach zero-waste goals by converting organic waste into renewable power and bio-fertilizer. Our fully automated, prefabricated Smart Biogas Plants are an eco-friendly, efficient, and cost-effective on-site waste management solution.</p>',
+      '    <div class="dh-geo-list">',
+      '      <span>Plug-and-play prefabricated design</span>',
+      '      <span>IoT-enabled 24x7 monitoring</span>',
+      '      <span>Integrated gas purification</span>',
+      '      <span>Odour-free sealed digestion</span>',
+      '    </div>',
+      '    <div class="dh-biogas-actions">',
+      '      <button type="button" class="dh-tech-trigger is-primary" data-dh-open-biogas="home-teaser">See the Full Biogas System</button>',
+      '      <a class="dh-tech-trigger" href="' + BIOGAS_WHATSAPP + '" target="_blank" rel="noopener noreferrer" data-dh-keep-href="true">Request a Site Assessment</a>',
+      '    </div>',
+      '  </div>',
+      '  <div class="dh-biogas-teaser-stats">',
+      '    <div><strong>500+ projects</strong><span>Running installations across 15+ cities.</span></div>',
+      '    <div><strong>25,000+ tons</strong><span>Organic waste processed and diverted from landfill.</span></div>',
+      '    <div><strong>150% higher yield</strong><span>Gas production efficiency vs conventional systems, with up to 70% less fresh water.</span></div>',
+      '  </div>',
+      '</div>'
+    ].join('');
+
+    supportSection.insertAdjacentElement('afterend', teaser);
+  }
+
+  function ensureServicesBiogasSection() {
+    var servicesInner = document.querySelector('#page-services .srv-inner');
+
+    if (!servicesInner || document.getElementById('dh-biogas-section')) return;
+
+    var section = document.createElement('section');
+    section.id = 'dh-biogas-section';
+    section.className = 'dh-geo-section dh-biogas-section';
+    section.innerHTML = [
+      '<span class="dh-geo-eyebrow">Smart Biogas Plants &amp; Waste-to-Energy Solutions</span>',
+      '<h2 class="dh-geo-title">Transform organic waste into clean energy and high-value resources</h2>',
+      '<p class="dh-geo-intro">At Dharrah EHS, we empower businesses, industries, and institutions to achieve zero-waste goals by converting organic waste into renewable power and valuable bio-fertilizers. Our fully automated, prefabricated Smart Biogas Plants offer an eco-friendly, highly efficient, and cost-effective on-site waste management solution.</p>',
+
+      '<h3 class="dh-biogas-subhead">Key features and technological advantages</h3>',
+      '<div class="dh-biogas-grid">',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Plug-and-play prefabricated design</h4>',
+      '    <p>Compact, portable, and durable systems engineered for rapid on-site installation with minimal space requirements.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>IoT-enabled smart monitoring</h4>',
+      '    <p>24x7 real-time tracking through a mobile app and web portal for gas production, pressure, system efficiency, and cumulative savings.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Integrated gas purification</h4>',
+      '    <p>In-built multi-stage scrubbing (moisture, H2S, and odour removal) delivering high-purity biogas for cooking, power generation, or heating.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>High-yield efficiency</h4>',
+      '    <p>Up to 150% higher gas production efficiency compared to conventional systems while using up to 70% less fresh water.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Odour-free and hygienic operation</h4>',
+      '    <p>Advanced sealed digestion ensures completely odour-free performance, a low carbon footprint, and better site hygiene.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Automated process controls</h4>',
+      '    <p>Fully automatic feed, agitation, and temperature control designed for hassle-free feed-and-forget operation with minimal maintenance.</p>',
+      '  </div>',
+      '</div>',
+
+      '<h3 class="dh-biogas-subhead">Waste feedstock versatility</h3>',
+      '<p class="dh-geo-intro">Our anaerobic digestion systems can process a wide range of organic waste streams:</p>',
+      '<div class="dh-geo-list">',
+      '  <span>Kitchen &amp; canteen waste (meal leftovers, food scraps)</span>',
+      '  <span>Vegetable &amp; fruit peels, bakery &amp; fast food waste</span>',
+      '  <span>Meat, poultry, fish, and eggshells</span>',
+      '  <span>Garden waste, agro-residues, and cow dung / livestock waste</span>',
+      '</div>',
+
+      '<h3 class="dh-biogas-subhead">Multi-resource output and triple revenue generation</h3>',
+      '<div class="dh-biogas-grid">',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Purified biogas (LPG replacement)</h4>',
+      '    <p>Direct offset of commercial fuel costs for cooking, heating, or industrial processes.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Clean electricity</h4>',
+      '    <p>On-site power generation for captive consumption.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Organic bio-fertilizer</h4>',
+      '    <p>Nutrient-rich solid and liquid organic fertilizer suitable for agriculture, horticulture, or commercial reuse.</p>',
+      '  </div>',
+      '</div>',
+
+      '<h3 class="dh-biogas-subhead">System specifications (standard 500 kg/day unit reference)</h3>',
+      '<div class="dh-biogas-table-wrap">',
+      '  <table class="dh-biogas-table">',
+      '    <thead><tr><th>Parameter</th><th>Specification</th></tr></thead>',
+      '    <tbody>',
+      '      <tr><td>Daily processing capacity</td><td>500 kg / day organic waste</td></tr>',
+      '      <tr><td>Purified gas output</td><td>20-25 kg LPG equivalent per day</td></tr>',
+      '      <tr><td>Bio-fertilizer yield</td><td>120-150 kg high-quality organic slurry per day</td></tr>',
+      '      <tr><td>Installation footprint</td><td>20 ft x 30 ft (compact layout)</td></tr>',
+      '      <tr><td>MOC / build material</td><td>MS with epoxy and internal FRP anti-corrosion coating</td></tr>',
+      '      <tr><td>Smart control panel</td><td>Automated parameter tracking, IoT logging, and safety valves</td></tr>',
+      '    </tbody>',
+      '  </table>',
+      '</div>',
+
+      '<h3 class="dh-biogas-subhead">Key business and ESG benefits</h3>',
+      '<div class="dh-biogas-grid cols-2">',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Energy independence and rapid ROI</h4>',
+      '    <p>Significantly reduce monthly LPG and utility expenses through direct resource recovery.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Regulatory compliance</h4>',
+      '    <p>Satisfy Solid Waste Management (SWM) Rules and local environmental standards.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Carbon reduction and sustainability</h4>',
+      '    <p>Lower the institutional carbon footprint, recycle nutrients back into the ecosystem, and achieve true zero-landfill status.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Proven execution and large-scale impact</h4>',
+      '    <p>Backed by 500+ successful running projects across 15+ cities, processing over 25,000 tons of organic waste and diverting it from landfills.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Trusted across high-demand sectors</h4>',
+      '    <p>Engineered and deployed for municipal corporations, defence facilities (Indian Army, Navy, Air Force), leading educational institutions, and major industrial conglomerates including Reliance, Adani, L&amp;T, and ONGC.</p>',
+      '  </div>',
+      '  <div class="dh-biogas-card">',
+      '    <h4>Patented technology and national recognition</h4>',
+      '    <p>Powered by proprietary multi-feed BioCNG and slurry-fertilizer technology, backed by national awards for innovation and excellence in zero-waste sustainability.</p>',
+      '  </div>',
+      '</div>',
+
+      '<div class="dh-biogas-proof">',
+      '  <div><strong>500+</strong><span>Running biogas projects delivered.</span></div>',
+      '  <div><strong>15+ cities</strong><span>Installation and service footprint across India.</span></div>',
+      '  <div><strong>25,000+ tons</strong><span>Organic waste processed and diverted from landfill.</span></div>',
+      '</div>',
+
+      '<h3 class="dh-biogas-subhead">Ready to turn your organic waste into value?</h3>',
+      '<p class="dh-geo-intro">Contact Dharrah EHS today for a custom site assessment, capacity sizing, and ROI projection tailored to your facility.</p>',
+      '<div class="dh-biogas-actions">',
+      '  <button type="button" class="dh-tech-trigger is-primary" data-dh-biogas-contact="services-section">Request a Site Assessment</button>',
+      '  <a class="dh-tech-trigger" href="' + BIOGAS_WHATSAPP + '" target="_blank" rel="noopener noreferrer" data-dh-keep-href="true">WhatsApp Us</a>',
+      '  <a class="dh-tech-trigger" href="tel:' + PUBLIC_CONTACT_PHONE_TEL + '">Call Dharrah EHS</a>',
+      '</div>'
+    ].join('');
+
+    servicesInner.appendChild(section);
+  }
+
+  function setupBiogasBridge() {
+    ensureHomeBiogasTeaser();
+    ensureServicesBiogasSection();
+    resolvePendingBiogasScroll();
+
+    if (runtime.biogasBound) return;
+    runtime.biogasBound = true;
+
+    document.addEventListener('click', function (event) {
+      var teaserTrigger = event.target.closest ? event.target.closest('[data-dh-open-biogas]') : null;
+      if (teaserTrigger) {
+        event.preventDefault();
+        trackEvent('cta_click', { cta_name: 'biogas_view_details', source: teaserTrigger.getAttribute('data-dh-open-biogas') });
+        goToServicesBiogas();
+        return;
+      }
+
+      var contactTrigger = event.target.closest ? event.target.closest('[data-dh-biogas-contact]') : null;
+      if (contactTrigger) {
+        event.preventDefault();
+        trackEvent('cta_click', { cta_name: 'biogas_site_assessment', source: contactTrigger.getAttribute('data-dh-biogas-contact') });
+        var contactLink = document.querySelector('#navbar a[href="#contact"]');
+        if (contactLink) contactLink.click();
+      }
+    });
+  }
+
   function getContactEndpoint() {
     return (window.DHARRAH_CONFIG && window.DHARRAH_CONFIG.contactEndpoint) || '/api/contact';
   }
@@ -2189,6 +2551,7 @@
     });
 
     Array.prototype.forEach.call(document.querySelectorAll('a[href*="wa.me/"], a[href*="api.whatsapp.com"]'), function (link) {
+      if (link.getAttribute('data-dh-keep-href') === 'true') return;
       link.href = PUBLIC_CONTACT_WHATSAPP;
     });
 
@@ -5069,6 +5432,7 @@
     ensureHeroProofBand();
     ensureHomeSupportSection();
     ensureServicesCtaProof();
+    setupBiogasBridge();
     ensureContactHooks();
     setupPhonePicker();
     setupContactBridge();

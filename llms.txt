@@ -25,6 +25,7 @@ Main service groups
 - Environmental monitoring and laboratory support
 - Specialized equipment and supplies
 - Food safety support
+- Smart biogas plants and waste-to-energy solutions
 
 Important services mentioned on the site
 
@@ -37,6 +38,22 @@ Important services mentioned on the site
 - Air pollution control equipment and ventilation systems
 - Sugar dust control technology
 - Environmental monitoring and contaminated site remediation
+- Smart biogas plants and waste-to-energy systems
+
+Smart biogas plants and waste-to-energy
+
+Dharrah EHS supplies fully automated, prefabricated Smart Biogas Plants that convert organic waste into purified biogas (LPG replacement), clean electricity, and organic bio-fertilizer through anaerobic digestion.
+
+- Plug-and-play prefabricated design with rapid on-site installation
+- IoT-enabled 24x7 monitoring of gas production, pressure, efficiency, and savings
+- Integrated multi-stage gas purification (moisture, H2S, and odour removal)
+- Up to 150% higher gas production efficiency and up to 70% less fresh water than conventional systems
+- Odour-free sealed digestion and automatic feed, agitation, and temperature control
+- Accepted feedstock: kitchen and canteen waste, vegetable and fruit peels, bakery and fast food waste, meat, poultry, fish, eggshells, garden waste, agro-residues, and cow dung
+- Standard 500 kg/day unit: 20-25 kg LPG equivalent per day, 120-150 kg organic slurry per day, 20 ft x 30 ft footprint, MS build with epoxy and internal FRP coating
+- Track record: 500+ running projects across 15+ cities and over 25,000 tons of organic waste processed
+- Deployed for municipal corporations, defence facilities (Indian Army, Navy, Air Force), educational institutions, and industrial groups including Reliance, Adani, L&T, and ONGC
+- Patented multi-feed BioCNG and slurry-fertilizer technology with national awards for zero-waste innovation
 
 Industries served
 

@@ -46,3 +46,10 @@ The Cloudflare Pages Function in [functions/api/contact.js](D:/DHARRAH/functions
 - GEO support now includes on-page AI-readable summary sections and FAQ content injected by [scripts/dharrah-runtime.js](D:/DHARRAH/scripts/dharrah-runtime.js) for both the home and services views.
 - Route-aware structured data in [index.html](D:/DHARRAH/index.html) now includes FAQPage and richer service-list schema so answer engines can connect user questions to Dharrah's visible service claims.
 - A root [llms.txt](D:/DHARRAH/llms.txt) now provides a compact machine-readable summary of the business, service groups, industries served, and primary contact path.
+
+## Phase 6 notes
+
+- [scripts/dharrah-runtime.js](D:/DHARRAH/scripts/dharrah-runtime.js) now injects the Smart Biogas / Waste-to-Energy offering in two places: a compact teaser on the home view (`#dh-home-biogas-teaser`, placed after the "How We Help" section) and the full detail section on the services view (`#dh-biogas-section`, appended to `.srv-inner`).
+- The home teaser CTA switches to the services route through the navbar link and then scrolls to `#dh-biogas-section`; the services CTA routes to the contact section. Both emit `cta_click` through `window.trackDharrahEvent(...)` with `biogas_view_details` and `biogas_site_assessment` names.
+- Biogas WhatsApp links carry a biogas-specific prefilled message and are marked `data-dh-keep-href="true"` so `normalizePublicContactDetails` leaves their query text alone.
+- [llms.txt](D:/DHARRAH/llms.txt) now lists the biogas service group, specifications, and track record for answer engines.
