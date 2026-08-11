@@ -10162,7 +10162,8 @@
           "Carbon accounting and GHG estimation",
           "ETP and STP systems",
           "Air pollution control and dust suppression",
-          "Environmental monitoring and remediation"
+          "Environmental monitoring and remediation",
+          "Smart biogas plants and waste-to-energy systems"
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
@@ -10174,7 +10175,8 @@
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "ESG Sustainability Reporting (BRSR)"}},
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Carbon Accounting and GHG Estimation"}},
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "ETP / STP Design and Installation"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Air and Dust Pollution Control Equipment"}}
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Air and Dust Pollution Control Equipment"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Smart Biogas Plants and Waste-to-Energy Solutions"}}
           ]
         },
         "aggregateRating": {
@@ -11167,6 +11169,14 @@ Error generating stack: `+ e.message + `
                   },
                   {
                     '@type': 'Question',
+                    name: 'Does Dharrah EHS supply biogas or waste-to-energy plants?',
+                    acceptedAnswer: {
+                      '@type': 'Answer',
+                      text: 'Yes. Dharrah EHS supplies fully automated, prefabricated Smart Biogas Plants that convert organic waste into purified biogas as an LPG replacement, clean electricity, and organic bio-fertilizer. A standard 500 kg per day unit yields 20 to 25 kg LPG equivalent and 120 to 150 kg organic slurry per day within a 20 ft by 30 ft footprint.'
+                    }
+                  },
+                  {
+                    '@type': 'Question',
                     name: 'How can a client start with Dharrah EHS?',
                     acceptedAnswer: {
                       '@type': 'Answer',
@@ -11180,10 +11190,10 @@ Error generating stack: `+ e.message + `
         },
         services: {
           title: 'Environmental Services | Dharrah EHS Consultancy',
-          description: 'Explore 21 environmental and EHS services from Dharrah EHS including GPCB NOC, EIA, EPR, ESG, wastewater treatment, air pollution control and monitoring support.',
+          description: 'Explore 22 environmental and EHS services from Dharrah EHS including GPCB NOC, EIA, EPR, ESG, wastewater treatment, air pollution control, monitoring support and smart biogas plants.',
           keywords: 'environmental services Gujarat, GPCB NOC services, EIA consultancy, EPR services, ESG consulting, wastewater treatment consultancy, air pollution control Gujarat, Dharrah services',
-          ogTitle: '21 Environmental Services | Dharrah EHS Consultancy',
-          ogDescription: 'Browse Dharrah EHS service categories across regulatory compliance, ESG, wastewater, air pollution control, monitoring, equipment and food safety.',
+          ogTitle: '22 Environmental Services | Dharrah EHS Consultancy',
+          ogDescription: 'Browse Dharrah EHS service categories across regulatory compliance, ESG, wastewater, air pollution control, monitoring, equipment, food safety and smart biogas.',
           url: siteUrl + '#services',
           schema: {
             '@context': 'https://schema.org',
@@ -11230,6 +11240,10 @@ Error generating stack: `+ e.message + `
                   {
                     name: 'Food Safety & Quality Testing',
                     description: 'Food-sector testing and quality-oriented support included in the wider service mix.'
+                  },
+                  {
+                    name: 'Smart Biogas & Waste-to-Energy',
+                    description: 'Prefabricated IoT-enabled biogas plants that convert organic waste into purified biogas, clean electricity, and organic bio-fertilizer, with capacity sizing and ROI projection.'
                   }
                 ].map(function (item, index) {
                   return {
@@ -11256,7 +11270,7 @@ Error generating stack: `+ e.message + `
                     name: 'What are the main Dharrah EHS service categories?',
                     acceptedAnswer: {
                       '@type': 'Answer',
-                      text: 'The main service groups shown on the site are regulatory compliance and permissions, ESG and carbon management, wastewater and water treatment, air and dust pollution control, environmental monitoring, specialized equipment, and food safety support.'
+                      text: 'The main service groups shown on the site are regulatory compliance and permissions, ESG and carbon management, wastewater and water treatment, air and dust pollution control, environmental monitoring, specialized equipment, food safety support, and smart biogas and waste-to-energy systems.'
                     }
                   },
                   {
@@ -11265,6 +11279,14 @@ Error generating stack: `+ e.message + `
                     acceptedAnswer: {
                       '@type': 'Answer',
                       text: 'Yes. The service set includes approvals and documentation support as well as wastewater systems, air pollution control, dust suppression, monitoring-related work, and other implementation-oriented consultancy.'
+                    }
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'What organic waste can a Dharrah Smart Biogas Plant process?',
+                    acceptedAnswer: {
+                      '@type': 'Answer',
+                      text: 'The anaerobic digestion systems accept kitchen and canteen waste, vegetable and fruit peels, bakery and fast food waste, meat, poultry, fish and eggshells, garden waste, agro-residues, and cow dung or livestock waste. Dharrah sizes the unit from the daily waste quantity, current fuel spend, and available site footprint.'
                     }
                   },
                   {
@@ -11515,7 +11537,7 @@ Error generating stack: `+ e.message + `
       }
     }
   </style>
-  <script src="scripts/dharrah-runtime.js?v=biogas-waste-to-energy-20260811"></script>
+  <script src="scripts/dharrah-runtime.js?v=biogas-nav-intake-20260811b"></script>
 </body>
 
 </html>

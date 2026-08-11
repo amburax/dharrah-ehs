@@ -53,3 +53,12 @@ The Cloudflare Pages Function in [functions/api/contact.js](D:/DHARRAH/functions
 - The home teaser CTA switches to the services route through the navbar link and then scrolls to `#dh-biogas-section`; the services CTA routes to the contact section. Both emit `cta_click` through `window.trackDharrahEvent(...)` with `biogas_view_details` and `biogas_site_assessment` names.
 - Biogas WhatsApp links carry a biogas-specific prefilled message and are marked `data-dh-keep-href="true"` so `normalizePublicContactDetails` leaves their query text alone.
 - [llms.txt](D:/DHARRAH/llms.txt) now lists the biogas service group, specifications, and track record for answer engines.
+
+## Phase 7 notes
+
+- The biogas offering is now discoverable from the services page itself: [scripts/dharrah-runtime.js](D:/DHARRAH/scripts/dharrah-runtime.js) appends an `08 / Biogas & Energy` pill to `.qnav-inner` and updates the services header badge from 21 to 22 services.
+- The "Service Required" dropdowns now include a `Smart Biogas & Waste-to-Energy` option, inserted before `Multiple / Not Sure`, so biogas leads keep their intent instead of falling into the generic bucket.
+- A dedicated biogas intake overlay (`#dh-biogas-overlay`, `#dh-biogas-form`) collects the three sizing inputs that make a real quote possible (daily organic waste, current fuel spend, available footprint) plus site and contact details. It reuses the existing honeypot, minimum-completion-time, and cooldown guards, and posts to the shared contact endpoint. Events: `biogas_intake_open`, `biogas_intake_submit_attempt`, `biogas_intake_submit`, `biogas_intake_success`, `biogas_intake_validation_error`, `biogas_intake_blocked`, `biogas_intake_error`.
+- The services section now opens with an inline SVG process diagram (feedstock, sealed digestion, three outputs) that scrolls horizontally on narrow screens.
+- Structured data in [index.html](D:/DHARRAH/index.html) now carries the biogas offering across `knowsAbout`, `hasOfferCatalog`, the services `ItemList`, and both the home and services `FAQPage` blocks. Services route metadata now reads 22 services.
+- Known pre-existing issue, unrelated to these changes: deep-linking to `https://www.dharrahehs.com/#services` renders the home view, because the React route state ignores the URL hash on initial load. Navigation via the navbar works correctly.

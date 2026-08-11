@@ -20,6 +20,7 @@
   var REGULATORY_FORM_COOLDOWN_KEY = 'dh_last_regulatory_submit_at';
   var EC_FORM_COOLDOWN_KEY = 'dh_last_ec_submit_at';
   var EPR_FORM_COOLDOWN_KEY = 'dh_last_epr_submit_at';
+  var BIOGAS_FORM_COOLDOWN_KEY = 'dh_last_biogas_submit_at';
   var TECHNICAL_STEP_TITLES = [
     'Plant Details',
     'Key Contacts',
@@ -1017,7 +1018,7 @@
       '  font-size: 13px;',
       '  line-height: 1.65;',
       '}',
-      '#dh-consent-overlay, #dh-ec-overlay, #dh-epr-overlay {',
+      '#dh-consent-overlay, #dh-ec-overlay, #dh-epr-overlay, #dh-biogas-overlay {',
       '  position: fixed;',
       '  inset: 0;',
       '  z-index: 100001;',
@@ -1031,7 +1032,7 @@
       '  pointer-events: none;',
       '  transition: opacity 0.28s ease;',
       '}',
-      '#dh-consent-overlay.active, #dh-ec-overlay.active, #dh-epr-overlay.active {',
+      '#dh-consent-overlay.active, #dh-ec-overlay.active, #dh-epr-overlay.active, #dh-biogas-overlay.active {',
       '  opacity: 1;',
       '  pointer-events: auto;',
       '}',
@@ -1050,7 +1051,7 @@
       '  transform: translateY(12px);',
       '  transition: transform 0.28s ease;',
       '}',
-      '#dh-consent-overlay.active .dh-consent-shell {',
+      '#dh-consent-overlay.active .dh-consent-shell, #dh-biogas-overlay.active .dh-consent-shell {',
       '  transform: translateY(0);',
       '}',
       '.dh-consent-shell form {',
@@ -1951,6 +1952,51 @@
       '  font-size: 13px;',
       '  line-height: 1.7;',
       '}',
+      '.dh-biogas-diagram {',
+      '  margin: 24px 0 8px;',
+      '  padding: 18px;',
+      '  border-radius: 16px;',
+      '  border: 1px solid rgba(26, 122, 76, 0.14);',
+      '  background: #fff;',
+      '  overflow-x: auto;',
+      '}',
+      '.dh-biogas-diagram svg {',
+      '  display: block;',
+      '  width: 100%;',
+      '  min-width: 620px;',
+      '  height: auto;',
+      '}',
+      '.dh-biogas-diagram .dh-dg-step {',
+      '  fill: #1a7a4c;',
+      '  font-size: 11px;',
+      '  font-weight: 700;',
+      '  letter-spacing: 2px;',
+      '  text-anchor: middle;',
+      '}',
+      '.dh-biogas-diagram .dh-dg-title {',
+      '  fill: #1a2d5a;',
+      '  font-family: "Crimson Text", serif;',
+      '  font-size: 20px;',
+      '  text-anchor: middle;',
+      '}',
+      '.dh-biogas-diagram .dh-dg-copy {',
+      '  fill: #556887;',
+      '  font-size: 12px;',
+      '  text-anchor: middle;',
+      '}',
+      '.dh-biogas-diagram .dh-dg-out {',
+      '  fill: #1a2d5a;',
+      '  font-size: 13px;',
+      '  font-weight: 600;',
+      '  text-anchor: middle;',
+      '}',
+      '.dh-biogas-diagram .dh-dg-arrow {',
+      '  stroke: rgba(26, 122, 76, 0.45);',
+      '  stroke-width: 2;',
+      '}',
+      '.dh-biogas-diagram .dh-dg-arrow-head {',
+      '  fill: rgba(26, 122, 76, 0.55);',
+      '}',
       '.dh-biogas-table-wrap {',
       '  margin-top: 14px;',
       '  overflow-x: auto;',
@@ -2068,7 +2114,7 @@
       '    padding-left: 18px;',
       '    padding-right: 18px;',
       '  }',
-      '  #dh-consent-overlay, #dh-ec-overlay, #dh-epr-overlay {',
+      '  #dh-consent-overlay, #dh-ec-overlay, #dh-epr-overlay, #dh-biogas-overlay {',
       '    padding: 12px;',
       '  }',
       '  .dh-consent-shell {',
@@ -2147,7 +2193,7 @@
       '    width: 100%;',
       '    border-radius: 0;',
       '  }',
-      '  #dh-consent-overlay, #dh-ec-overlay, #dh-epr-overlay {',
+      '  #dh-consent-overlay, #dh-ec-overlay, #dh-epr-overlay, #dh-biogas-overlay {',
       '    padding: 0;',
       '  }',
       '  .dh-tech-shell {',
@@ -2336,6 +2382,80 @@
     }, 120);
   }
 
+  function buildBiogasProcessDiagram() {
+    return [
+      '<div class="dh-biogas-diagram">',
+      '  <svg viewBox="0 0 960 230" role="img" aria-labelledby="dh-biogas-diagram-title" preserveAspectRatio="xMidYMid meet">',
+      '    <title id="dh-biogas-diagram-title">Organic waste is fed into a sealed anaerobic digester with integrated purification, producing purified biogas, clean electricity, and organic bio-fertilizer.</title>',
+      '    <rect x="4" y="62" width="228" height="106" rx="16" fill="#ffffff" stroke="rgba(26,122,76,0.22)"></rect>',
+      '    <text x="118" y="98" class="dh-dg-step">01</text>',
+      '    <text x="118" y="124" class="dh-dg-title">Organic waste in</text>',
+      '    <text x="118" y="146" class="dh-dg-copy">Kitchen, canteen, agro, and</text>',
+      '    <text x="118" y="162" class="dh-dg-copy">livestock feedstock</text>',
+      '    <path d="M240 115 L286 115" class="dh-dg-arrow"></path>',
+      '    <path d="M286 115 L276 109 L276 121 Z" class="dh-dg-arrow-head"></path>',
+      '    <rect x="296" y="40" width="288" height="150" rx="16" fill="rgba(244,251,247,0.9)" stroke="rgba(26,122,76,0.28)"></rect>',
+      '    <text x="440" y="76" class="dh-dg-step">02</text>',
+      '    <text x="440" y="102" class="dh-dg-title">Sealed anaerobic digestion</text>',
+      '    <text x="440" y="126" class="dh-dg-copy">Automated feed, agitation, and</text>',
+      '    <text x="440" y="142" class="dh-dg-copy">temperature control, multi-stage</text>',
+      '    <text x="440" y="158" class="dh-dg-copy">scrubbing, and IoT monitoring</text>',
+      '    <path d="M592 115 L638 115" class="dh-dg-arrow"></path>',
+      '    <path d="M638 115 L628 109 L628 121 Z" class="dh-dg-arrow-head"></path>',
+      '    <text x="648" y="30" class="dh-dg-step" style="text-anchor: start;">03 / OUTPUTS</text>',
+      '    <rect x="648" y="42" width="308" height="48" rx="12" fill="#ffffff" stroke="rgba(26,122,76,0.22)"></rect>',
+      '    <text x="802" y="72" class="dh-dg-out">Purified biogas (LPG replacement)</text>',
+      '    <rect x="648" y="100" width="308" height="48" rx="12" fill="#ffffff" stroke="rgba(26,122,76,0.22)"></rect>',
+      '    <text x="802" y="130" class="dh-dg-out">Clean electricity</text>',
+      '    <rect x="648" y="158" width="308" height="48" rx="12" fill="#ffffff" stroke="rgba(26,122,76,0.22)"></rect>',
+      '    <text x="802" y="188" class="dh-dg-out">Organic bio-fertilizer</text>',
+      '  </svg>',
+      '</div>'
+    ].join('');
+  }
+
+  function ensureBiogasServicesNav() {
+    var quickNav = document.querySelector('#page-services .qnav-inner');
+
+    if (quickNav && !quickNav.querySelector('[data-dh-biogas-pill="true"]')) {
+      var pill = document.createElement('span');
+      pill.className = 'qpill';
+      pill.setAttribute('data-dh-biogas-pill', 'true');
+      pill.textContent = '08 / Biogas & Energy';
+      quickNav.appendChild(pill);
+    }
+
+    var badge = document.querySelector('#page-services .sp-badge span');
+    if (badge && normalizeText(badge.textContent).indexOf('21 comprehensive services') !== -1) {
+      badge.textContent = '22 Comprehensive Services';
+    }
+  }
+
+  function ensureBiogasServiceOption() {
+    Array.prototype.forEach.call(document.querySelectorAll('select'), function (select) {
+      var options = Array.prototype.map.call(select.options, function (option) {
+        return normalizeText(option.textContent);
+      });
+
+      if (options.indexOf('general section of inquiry') === -1) return;
+      if (options.indexOf('smart biogas & waste-to-energy') !== -1) return;
+
+      var option = document.createElement('option');
+      option.textContent = 'Smart Biogas & Waste-to-Energy';
+
+      var multiple = null;
+      Array.prototype.forEach.call(select.options, function (existing) {
+        if (normalizeText(existing.textContent).indexOf('multiple') === 0) multiple = existing;
+      });
+
+      if (multiple) {
+        select.insertBefore(option, multiple);
+      } else {
+        select.appendChild(option);
+      }
+    });
+  }
+
   function ensureHomeBiogasTeaser() {
     var supportSection = document.getElementById('dh-home-support-section');
 
@@ -2362,7 +2482,7 @@
       '    </div>',
       '  </div>',
       '  <div class="dh-biogas-teaser-stats">',
-      '    <div><strong>500+ projects</strong><span>Running installations across 15+ cities.</span></div>',
+      '    <div><strong>500+ biogas installations</strong><span>Running plants across 15+ cities.</span></div>',
       '    <div><strong>25,000+ tons</strong><span>Organic waste processed and diverted from landfill.</span></div>',
       '    <div><strong>150% higher yield</strong><span>Gas production efficiency vs conventional systems, with up to 70% less fresh water.</span></div>',
       '  </div>',
@@ -2384,6 +2504,8 @@
       '<span class="dh-geo-eyebrow">Smart Biogas Plants &amp; Waste-to-Energy Solutions</span>',
       '<h2 class="dh-geo-title">Transform organic waste into clean energy and high-value resources</h2>',
       '<p class="dh-geo-intro">At Dharrah EHS, we empower businesses, industries, and institutions to achieve zero-waste goals by converting organic waste into renewable power and valuable bio-fertilizers. Our fully automated, prefabricated Smart Biogas Plants offer an eco-friendly, highly efficient, and cost-effective on-site waste management solution.</p>',
+
+      buildBiogasProcessDiagram(),
 
       '<h3 class="dh-biogas-subhead">Key features and technological advantages</h3>',
       '<div class="dh-biogas-grid">',
@@ -2499,9 +2621,236 @@
     servicesInner.appendChild(section);
   }
 
+  function injectBiogasIntakeOverlay() {
+    if (document.getElementById('dh-biogas-overlay')) return;
+
+    injectRuntimeStyles();
+
+    var overlay = document.createElement('div');
+    overlay.id = 'dh-biogas-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.innerHTML = [
+      '<div class="dh-consent-shell" role="dialog" aria-modal="true" aria-labelledby="dh-biogas-intake-title">',
+      '  <div class="dh-consent-head">',
+      '    <div class="dh-consent-head-top">',
+      '      <div>',
+      '        <span class="dh-tech-inline-eyebrow">Biogas Site Assessment</span>',
+      '        <h2 id="dh-biogas-intake-title">Capacity sizing and ROI projection for your facility</h2>',
+      '        <p>Three numbers decide the plant size and the payback estimate: how much organic waste you generate, what you currently spend on fuel, and how much space is available. Share what you know and Dharrah will come back with real figures instead of a callback request.</p>',
+      '      </div>',
+      '      <button type="button" class="dh-tech-close" data-dh-biogas-close="true" aria-label="Close biogas site assessment">&times;</button>',
+      '    </div>',
+      '  </div>',
+      '  <form id="dh-biogas-form" novalidate>',
+      '    <div class="dh-consent-body">',
+      '      <div class="dh-consent-step-card">',
+      '        <h3 class="dh-consent-step-title">Sizing inputs</h3>',
+      '        <div class="dh-consent-grid cols-2">',
+      '          <div class="dh-consent-field"><label>Organic waste generated <span style="color:#c8201a">*</span></label><input type="text" data-dh-biogas-field="wasteQuantity" placeholder="Example: 500 kg per day"></div>',
+      '          <div class="dh-consent-field"><label>Main waste type</label><input type="text" data-dh-biogas-field="wasteType" placeholder="Kitchen / canteen, agro-residue, cow dung, mixed"></div>',
+      '          <div class="dh-consent-field"><label>Current monthly fuel spend</label><input type="text" data-dh-biogas-field="fuelSpend" placeholder="Example: LPG cylinders per month or monthly cost"></div>',
+      '          <div class="dh-consent-field"><label>Space available for the plant</label><input type="text" data-dh-biogas-field="footprint" placeholder="Example: 20 ft x 30 ft, or open area size"></div>',
+      '        </div>',
+      '        <div class="dh-consent-note">A standard 500 kg/day unit needs roughly 20 ft x 30 ft and returns 20-25 kg LPG equivalent plus 120-150 kg organic slurry per day. Your numbers scale from there.</div>',
+      '      </div>',
+      '      <div class="dh-consent-step-card">',
+      '        <h3 class="dh-consent-step-title">Site and contact</h3>',
+      '        <div class="dh-consent-grid cols-2">',
+      '          <div class="dh-consent-field"><label>Facility type</label><input type="text" data-dh-biogas-field="facilityType" placeholder="Hotel, hostel, canteen, municipal, industrial, campus"></div>',
+      '          <div class="dh-consent-field"><label>Site location <span style="color:#c8201a">*</span></label><input type="text" data-dh-biogas-field="location" placeholder="City and state"></div>',
+      '          <div class="dh-consent-field"><label>Name <span style="color:#c8201a">*</span></label><input type="text" data-dh-biogas-field="name" placeholder="Your name"></div>',
+      '          <div class="dh-consent-field"><label>Organization</label><input type="text" data-dh-biogas-field="company" placeholder="Company / institution name"></div>',
+      '          <div class="dh-consent-field"><label>Phone <span style="color:#c8201a">*</span></label><input type="tel" data-dh-biogas-field="phone" placeholder="+91 XXXXX XXXXX"></div>',
+      '          <div class="dh-consent-field"><label>Email</label><input type="email" data-dh-biogas-field="email" placeholder="you@company.com"></div>',
+      '        </div>',
+      '        <div class="dh-consent-field" style="margin-top: 14px;"><label>Anything else Dharrah should know</label><textarea rows="3" data-dh-biogas-field="notes" placeholder="Timeline, existing waste disposal arrangement, power needs, or site constraints"></textarea></div>',
+      '      </div>',
+      '      <div class="dh-consent-status" data-dh-biogas-status="true"></div>',
+      '    </div>',
+      '    <div class="dh-consent-foot">',
+      '      <div class="dh-consent-actions">',
+      '        <div class="dh-consent-actions-left">',
+      '          <button type="button" class="dh-consent-btn" data-dh-biogas-close="true">Cancel</button>',
+      '        </div>',
+      '        <div class="dh-consent-actions-right">',
+      '          <button type="submit" class="dh-consent-btn primary" data-dh-biogas-submit="true">Send Assessment Request</button>',
+      '        </div>',
+      '      </div>',
+      '    </div>',
+      '  </form>',
+      '</div>'
+    ].join('');
+
+    document.body.appendChild(overlay);
+  }
+
+  function getBiogasField(form, key) {
+    return form ? form.querySelector('[data-dh-biogas-field="' + key + '"]') : null;
+  }
+
+  function readBiogasIntakeData(form) {
+    function value(key) {
+      var field = getBiogasField(form, key);
+      return field ? field.value.trim() : '';
+    }
+
+    return {
+      formName: 'biogas_site_assessment',
+      source: form.dataset.dhSource || 'site',
+      wasteQuantity: value('wasteQuantity'),
+      wasteType: value('wasteType'),
+      fuelSpend: value('fuelSpend'),
+      footprint: value('footprint'),
+      facilityType: value('facilityType'),
+      location: value('location'),
+      name: value('name'),
+      company: value('company'),
+      phone: value('phone'),
+      email: value('email'),
+      notes: value('notes'),
+      subject: 'Biogas site assessment request - ' + (value('company') || value('name') || 'New enquiry')
+    };
+  }
+
+  function updateBiogasStatus(form, tone, message) {
+    var status = form.querySelector('[data-dh-biogas-status="true"]');
+    if (!status) return;
+    status.className = 'dh-consent-status' + (tone ? ' is-' + tone : '');
+    status.innerHTML = message;
+  }
+
+  function markBiogasFieldError(form, key, hasError) {
+    var field = getBiogasField(form, key);
+    if (!field) return;
+    field.style.borderColor = hasError ? '#c8201a' : '';
+  }
+
+  function validateBiogasIntake(form, data) {
+    var errors = [];
+    var required = [
+      ['wasteQuantity', 'Please add how much organic waste the site generates.'],
+      ['location', 'Please add the site location.'],
+      ['name', 'Please add a contact name.'],
+      ['phone', 'Please add a contact phone number.']
+    ];
+
+    required.forEach(function (item) {
+      var hasError = !data[item[0]];
+      markBiogasFieldError(form, item[0], hasError);
+      if (hasError) errors.push(item[1]);
+    });
+
+    if (data.email && !isValidEmail(data.email)) {
+      markBiogasFieldError(form, 'email', true);
+      errors.push('Please check the email address.');
+    } else {
+      markBiogasFieldError(form, 'email', false);
+    }
+
+    return errors;
+  }
+
+  function openBiogasIntake(source) {
+    injectBiogasIntakeOverlay();
+
+    var overlay = document.getElementById('dh-biogas-overlay');
+    var form = document.getElementById('dh-biogas-form');
+    if (!overlay || !form) return;
+
+    ensureHoneypotField(form);
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    form.dataset.dhMountedAt = String(getTimestamp());
+    form.dataset.dhSource = source || 'site';
+    updateBiogasStatus(form, '', '<strong>Sizing mode:</strong> Only the waste quantity, location, name, and phone are required. Everything else sharpens the estimate.');
+    trackEvent('biogas_intake_open', { form_name: 'biogas_site_assessment', source: source || 'site' });
+  }
+
+  function closeBiogasIntake() {
+    var overlay = document.getElementById('dh-biogas-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function setupBiogasIntakeForm() {
+    var form = document.getElementById('dh-biogas-form');
+    if (!form || form.dataset.eventsBound === 'true') return;
+
+    form.dataset.eventsBound = 'true';
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      if (form.dataset.submitting === 'true') return;
+
+      var data = readBiogasIntakeData(form);
+      var blockReason = isLikelySpamSubmission(form, BIOGAS_FORM_COOLDOWN_KEY);
+
+      if (blockReason) {
+        if (blockReason === 'cooldown') {
+          var remaining = getCooldownRemainingMs(BIOGAS_FORM_COOLDOWN_KEY);
+          updateBiogasStatus(form, 'warning', formatCooldownMessage(remaining));
+          trackEvent('biogas_intake_blocked', { form_name: 'biogas_site_assessment', block_reason: blockReason });
+          return;
+        }
+        updateBiogasStatus(form, 'warning', '<strong>Submission paused.</strong> Please try again normally, or contact Dharrah directly by phone or WhatsApp.');
+        trackEvent('biogas_intake_blocked', { form_name: 'biogas_site_assessment', block_reason: blockReason });
+        return;
+      }
+
+      var errors = validateBiogasIntake(form, data);
+      if (errors.length) {
+        updateBiogasStatus(form, 'error', '<strong>A few details are still needed.</strong> Please complete the highlighted fields and send again.');
+        trackEvent('biogas_intake_validation_error', { form_name: 'biogas_site_assessment', error_count: errors.length });
+        window.showDhPopup('Validation Required', errors.join('\n'));
+        return;
+      }
+
+      var submitButton = form.querySelector('[data-dh-biogas-submit="true"]');
+      var originalLabel = submitButton ? submitButton.innerText : '';
+
+      form.dataset.submitting = 'true';
+      if (submitButton) {
+        submitButton.innerText = 'SENDING...';
+        submitButton.disabled = true;
+      }
+
+      trackEvent('biogas_intake_submit_attempt', { form_name: 'biogas_site_assessment', source: data.source });
+      updateBiogasStatus(form, 'warning', '<strong>Sending your site assessment request...</strong>');
+
+      try {
+        var response = await fetch(getContactEndpoint(), { method: 'POST', body: buildMultipartRequest(data, []) });
+        if (!response.ok) throw new Error('Biogas intake send failed');
+
+        writeStorageNumber(BIOGAS_FORM_COOLDOWN_KEY, getTimestamp());
+        updateBiogasStatus(form, 'success', '<strong>Assessment request received.</strong> Dharrah will size the unit and return a capacity and ROI projection for your site.');
+        trackEvent('biogas_intake_submit', { form_name: 'biogas_site_assessment', source: data.source });
+        trackEvent('biogas_intake_success', { form_name: 'biogas_site_assessment', source: data.source });
+        window.showDhPopup('Assessment Request Sent', 'Thank you. Dharrah will review your waste quantity, fuel spend, and available space, then respond with capacity sizing and an ROI projection.', 'success');
+        form.reset();
+        form.dataset.dhMountedAt = String(getTimestamp());
+        closeBiogasIntake();
+      } catch (error) {
+        updateBiogasStatus(form, 'error', '<strong>We could not send the request right now.</strong> Please try again in a moment, or reach Dharrah directly by phone or WhatsApp.');
+        trackEvent('biogas_intake_error', { form_name: 'biogas_site_assessment', error_type: 'network_or_worker' });
+        window.showDhPopup('System Error', 'We could not send the request right now. Please try again or contact us directly.');
+      } finally {
+        form.dataset.submitting = 'false';
+        if (submitButton) {
+          submitButton.innerText = originalLabel;
+          submitButton.disabled = false;
+        }
+      }
+    });
+  }
+
   function setupBiogasBridge() {
     ensureHomeBiogasTeaser();
     ensureServicesBiogasSection();
+    ensureBiogasServicesNav();
+    ensureBiogasServiceOption();
     resolvePendingBiogasScroll();
 
     if (runtime.biogasBound) return;
@@ -2516,13 +2865,38 @@
         return;
       }
 
+      var pill = event.target.closest ? event.target.closest('[data-dh-biogas-pill]') : null;
+      if (pill) {
+        event.preventDefault();
+        trackEvent('cta_click', { cta_name: 'biogas_quicknav', source: 'services-qnav' });
+        goToServicesBiogas();
+        return;
+      }
+
       var contactTrigger = event.target.closest ? event.target.closest('[data-dh-biogas-contact]') : null;
       if (contactTrigger) {
         event.preventDefault();
-        trackEvent('cta_click', { cta_name: 'biogas_site_assessment', source: contactTrigger.getAttribute('data-dh-biogas-contact') });
-        var contactLink = document.querySelector('#navbar a[href="#contact"]');
-        if (contactLink) contactLink.click();
+        openBiogasIntake(contactTrigger.getAttribute('data-dh-biogas-contact'));
+        setupBiogasIntakeForm();
+        return;
       }
+
+      var closeTrigger = event.target.closest ? event.target.closest('[data-dh-biogas-close]') : null;
+      if (closeTrigger) {
+        event.preventDefault();
+        closeBiogasIntake();
+        return;
+      }
+
+      if (event.target.id === 'dh-biogas-overlay') {
+        closeBiogasIntake();
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+      var overlay = document.getElementById('dh-biogas-overlay');
+      if (overlay && overlay.classList.contains('active')) closeBiogasIntake();
     });
   }
 
