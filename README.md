@@ -62,3 +62,9 @@ The Cloudflare Pages Function in [functions/api/contact.js](D:/DHARRAH/functions
 - The services section now opens with an inline SVG process diagram (feedstock, sealed digestion, three outputs) that scrolls horizontally on narrow screens.
 - Structured data in [index.html](D:/DHARRAH/index.html) now carries the biogas offering across `knowsAbout`, `hasOfferCatalog`, the services `ItemList`, and both the home and services `FAQPage` blocks. Services route metadata now reads 22 services.
 - Known pre-existing issue, unrelated to these changes: deep-linking to `https://www.dharrahehs.com/#services` renders the home view, because the React route state ignores the URL hash on initial load. Navigation via the navbar works correctly.
+
+## Phase 8 notes
+
+- The biogas blocks now use green headings (`#1a7a4c`) for section titles, subheads, card headings, table headers, and diagram stage labels, while body copy stays slate (`#556887`) for contrast. The green is scoped to the biogas blocks only, so the site-wide navy and red identity is unchanged.
+- An ROI calculator (`[data-dh-biogas-calc]`) sits above the specification table. Daily waste (slider plus number input, kept in sync) and the client's own LPG rate drive four live outputs: purified gas, bio-fertilizer, monthly fuel cost offset, and tons diverted per year. Ratios are scaled from the published 500 kg/day reference unit and the block is explicitly labelled indicative, not a quotation.
+- "Send These Numbers for a Site Assessment" opens the intake overlay with the waste quantity and a full estimate summary prefilled into the notes field, and emits `biogas_calculator_send`.

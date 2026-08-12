@@ -1918,12 +1918,15 @@
       '.dh-biogas-section .dh-geo-eyebrow {',
       '  color: #1a7a4c;',
       '}',
+      '.dh-biogas-section .dh-geo-title {',
+      '  color: #1a7a4c;',
+      '}',
       '.dh-biogas-subhead {',
       '  margin: 30px 0 14px;',
       '  font-family: "Crimson Text", serif;',
       '  font-size: 22px;',
       '  line-height: 1.2;',
-      '  color: #1a2d5a;',
+      '  color: #1a7a4c;',
       '}',
       '.dh-biogas-grid {',
       '  display: grid;',
@@ -1944,7 +1947,7 @@
       '  font-family: "Crimson Text", serif;',
       '  font-size: 20px;',
       '  line-height: 1.2;',
-      '  color: #1a2d5a;',
+      '  color: #1a7a4c;',
       '}',
       '.dh-biogas-card p {',
       '  margin: 0;',
@@ -1974,7 +1977,7 @@
       '  text-anchor: middle;',
       '}',
       '.dh-biogas-diagram .dh-dg-title {',
-      '  fill: #1a2d5a;',
+      '  fill: #1a7a4c;',
       '  font-family: "Crimson Text", serif;',
       '  font-size: 20px;',
       '  text-anchor: middle;',
@@ -1997,6 +2000,93 @@
       '.dh-biogas-diagram .dh-dg-arrow-head {',
       '  fill: rgba(26, 122, 76, 0.55);',
       '}',
+      '.dh-biogas-calc {',
+      '  margin-top: 16px;',
+      '  padding: 22px;',
+      '  border-radius: 16px;',
+      '  border: 1px solid rgba(26, 122, 76, 0.2);',
+      '  background: linear-gradient(180deg, rgba(240, 250, 245, 0.95), #ffffff);',
+      '}',
+      '.dh-biogas-calc-inputs {',
+      '  display: grid;',
+      '  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);',
+      '  gap: 18px;',
+      '  align-items: end;',
+      '}',
+      '.dh-biogas-calc-field label {',
+      '  display: block;',
+      '  margin-bottom: 8px;',
+      '  color: #1a7a4c;',
+      '  font-size: 11px;',
+      '  font-weight: 800;',
+      '  letter-spacing: 1px;',
+      '  text-transform: uppercase;',
+      '}',
+      '.dh-biogas-calc-row {',
+      '  display: flex;',
+      '  align-items: center;',
+      '  gap: 12px;',
+      '}',
+      '.dh-biogas-calc-row input[type="range"] {',
+      '  flex: 1;',
+      '  min-width: 0;',
+      '  accent-color: #1a7a4c;',
+      '}',
+      '.dh-biogas-calc-num {',
+      '  width: 116px;',
+      '  min-height: 44px;',
+      '  padding: 0 12px;',
+      '  border-radius: 10px;',
+      '  border: 1px solid rgba(26, 122, 76, 0.25);',
+      '  background: #fff;',
+      '  color: #1a2d5a;',
+      '  font-size: 14px;',
+      '  font-weight: 700;',
+      '}',
+      '.dh-biogas-calc-num:focus {',
+      '  outline: none;',
+      '  border-color: #1a7a4c;',
+      '}',
+      '.dh-biogas-calc-out {',
+      '  display: grid;',
+      '  grid-template-columns: repeat(4, minmax(0, 1fr));',
+      '  gap: 12px;',
+      '  margin-top: 20px;',
+      '}',
+      '.dh-biogas-calc-out div {',
+      '  padding: 16px;',
+      '  border-radius: 12px;',
+      '  border: 1px solid rgba(26, 122, 76, 0.16);',
+      '  background: #fff;',
+      '}',
+      '.dh-biogas-calc-out span.dh-calc-label {',
+      '  display: block;',
+      '  margin-bottom: 6px;',
+      '  color: #556887;',
+      '  font-size: 11px;',
+      '  font-weight: 700;',
+      '  letter-spacing: 0.6px;',
+      '  text-transform: uppercase;',
+      '}',
+      '.dh-biogas-calc-out strong {',
+      '  display: block;',
+      '  color: #1a7a4c;',
+      '  font-size: 20px;',
+      '  line-height: 1.2;',
+      '}',
+      '.dh-biogas-calc-out span.dh-calc-unit {',
+      '  display: block;',
+      '  margin-top: 4px;',
+      '  color: #556887;',
+      '  font-size: 12px;',
+      '  line-height: 1.5;',
+      '}',
+      '.dh-biogas-calc-note {',
+      '  margin-top: 16px;',
+      '  color: #556887;',
+      '  font-size: 12px;',
+      '  line-height: 1.7;',
+      '}',
       '.dh-biogas-table-wrap {',
       '  margin-top: 14px;',
       '  overflow-x: auto;',
@@ -2018,7 +2108,7 @@
       '  line-height: 1.6;',
       '}',
       '.dh-biogas-table th {',
-      '  color: #1a2d5a;',
+      '  color: #1a7a4c;',
       '  font-weight: 700;',
       '  background: rgba(244, 251, 247, 0.9);',
       '}',
@@ -2091,13 +2181,28 @@
       '  line-height: 1.6;',
       '}',
       '@media (max-width: 900px) {',
-      '  .dh-biogas-grid, .dh-biogas-grid.cols-2, .dh-biogas-proof, .dh-biogas-teaser {',
+      '  .dh-biogas-grid, .dh-biogas-grid.cols-2, .dh-biogas-proof, .dh-biogas-teaser, .dh-biogas-calc-inputs {',
       '    grid-template-columns: 1fr;',
+      '  }',
+      '  .dh-biogas-calc-out {',
+      '    grid-template-columns: repeat(2, minmax(0, 1fr));',
       '  }',
       '}',
       '@media (max-width: 640px) {',
       '  .dh-biogas-actions .dh-tech-trigger {',
       '    width: 100%;',
+      '  }',
+      '  .dh-biogas-calc {',
+      '    padding: 16px;',
+      '  }',
+      '  .dh-biogas-calc-row {',
+      '    flex-wrap: wrap;',
+      '  }',
+      '  .dh-biogas-calc-row input[type="range"] {',
+      '    flex: 1 0 100%;',
+      '  }',
+      '  .dh-biogas-calc-num {',
+      '    width: 92px;',
       '  }',
       '}',
       '@media (max-width: 900px) {',
@@ -2414,6 +2519,154 @@
     ].join('');
   }
 
+  var BIOGAS_DEFAULT_WASTE_KG = 500;
+  var BIOGAS_DEFAULT_LPG_RATE = 95;
+  // Ratios published for the standard 500 kg/day reference unit.
+  var BIOGAS_LPG_PER_KG_LOW = 20 / 500;
+  var BIOGAS_LPG_PER_KG_HIGH = 25 / 500;
+  var BIOGAS_SLURRY_PER_KG_LOW = 120 / 500;
+  var BIOGAS_SLURRY_PER_KG_HIGH = 150 / 500;
+
+  function formatBiogasNumber(value) {
+    var rounded = Math.round(value);
+    try {
+      return rounded.toLocaleString('en-IN');
+    } catch (error) {
+      return String(rounded);
+    }
+  }
+
+  function buildBiogasCalculator() {
+    return [
+      '<div class="dh-biogas-calc" data-dh-biogas-calc="true">',
+      '  <div class="dh-biogas-calc-inputs">',
+      '    <div class="dh-biogas-calc-field">',
+      '      <label for="dh-calc-waste">Organic waste generated per day</label>',
+      '      <div class="dh-biogas-calc-row">',
+      '        <input type="range" id="dh-calc-waste-range" min="50" max="5000" step="50" value="' + BIOGAS_DEFAULT_WASTE_KG + '" data-dh-calc-input="waste-range" aria-label="Organic waste per day in kilograms">',
+      '        <input type="number" id="dh-calc-waste" class="dh-biogas-calc-num" min="10" max="20000" step="10" value="' + BIOGAS_DEFAULT_WASTE_KG + '" data-dh-calc-input="waste" aria-label="Organic waste per day in kilograms">',
+      '        <span class="dh-calc-unit">kg / day</span>',
+      '      </div>',
+      '    </div>',
+      '    <div class="dh-biogas-calc-field">',
+      '      <label for="dh-calc-rate">Your LPG cost</label>',
+      '      <div class="dh-biogas-calc-row">',
+      '        <input type="number" id="dh-calc-rate" class="dh-biogas-calc-num" min="1" max="500" step="1" value="' + BIOGAS_DEFAULT_LPG_RATE + '" data-dh-calc-input="rate" aria-label="LPG cost per kilogram in rupees">',
+      '        <span class="dh-calc-unit">Rs / kg</span>',
+      '      </div>',
+      '    </div>',
+      '  </div>',
+      '  <div class="dh-biogas-calc-out">',
+      '    <div>',
+      '      <span class="dh-calc-label">Purified gas</span>',
+      '      <strong data-dh-calc-out="gas">20 - 25</strong>',
+      '      <span class="dh-calc-unit">kg LPG equivalent per day</span>',
+      '    </div>',
+      '    <div>',
+      '      <span class="dh-calc-label">Bio-fertilizer</span>',
+      '      <strong data-dh-calc-out="slurry">120 - 150</strong>',
+      '      <span class="dh-calc-unit">kg organic slurry per day</span>',
+      '    </div>',
+      '    <div>',
+      '      <span class="dh-calc-label">Fuel cost offset</span>',
+      '      <strong data-dh-calc-out="savings">Rs 57,000 - 71,250</strong>',
+      '      <span class="dh-calc-unit">per month at your LPG rate</span>',
+      '    </div>',
+      '    <div>',
+      '      <span class="dh-calc-label">Waste diverted</span>',
+      '      <strong data-dh-calc-out="diverted">183</strong>',
+      '      <span class="dh-calc-unit">tons per year kept from landfill</span>',
+      '    </div>',
+      '  </div>',
+      '  <p class="dh-biogas-calc-note">These are indicative figures scaled from the standard 500 kg/day reference unit, not a quotation. Actual yield varies with feedstock mix, moisture, and site conditions. Dharrah confirms real numbers after a site assessment.</p>',
+      '  <div class="dh-biogas-actions" style="margin-top: 8px;">',
+      '    <button type="button" class="dh-tech-trigger is-primary" data-dh-calc-send="true">Send These Numbers for a Site Assessment</button>',
+      '  </div>',
+      '</div>'
+    ].join('');
+  }
+
+  function readBiogasCalculatorValues(root) {
+    var wasteInput = root.querySelector('[data-dh-calc-input="waste"]');
+    var rateInput = root.querySelector('[data-dh-calc-input="rate"]');
+
+    var waste = parseFloat(wasteInput ? wasteInput.value : '') || 0;
+    var rate = parseFloat(rateInput ? rateInput.value : '') || 0;
+
+    if (waste < 0) waste = 0;
+    if (rate < 0) rate = 0;
+
+    return {
+      waste: waste,
+      rate: rate,
+      gasLow: waste * BIOGAS_LPG_PER_KG_LOW,
+      gasHigh: waste * BIOGAS_LPG_PER_KG_HIGH,
+      slurryLow: waste * BIOGAS_SLURRY_PER_KG_LOW,
+      slurryHigh: waste * BIOGAS_SLURRY_PER_KG_HIGH,
+      savingsLow: waste * BIOGAS_LPG_PER_KG_LOW * rate * 30,
+      savingsHigh: waste * BIOGAS_LPG_PER_KG_HIGH * rate * 30,
+      divertedTons: (waste * 365) / 1000
+    };
+  }
+
+  function updateBiogasCalculator(root) {
+    if (!root) return null;
+
+    var values = readBiogasCalculatorValues(root);
+
+    function setOut(key, text) {
+      var node = root.querySelector('[data-dh-calc-out="' + key + '"]');
+      if (node) node.textContent = text;
+    }
+
+    setOut('gas', formatBiogasNumber(values.gasLow) + ' - ' + formatBiogasNumber(values.gasHigh));
+    setOut('slurry', formatBiogasNumber(values.slurryLow) + ' - ' + formatBiogasNumber(values.slurryHigh));
+    setOut('savings', 'Rs ' + formatBiogasNumber(values.savingsLow) + ' - ' + formatBiogasNumber(values.savingsHigh));
+    setOut('diverted', formatBiogasNumber(values.divertedTons));
+
+    return values;
+  }
+
+  function buildBiogasCalculatorSummary(values) {
+    return [
+      'Estimate from the website calculator:',
+      '- Organic waste: ' + formatBiogasNumber(values.waste) + ' kg/day',
+      '- Purified gas: ' + formatBiogasNumber(values.gasLow) + ' - ' + formatBiogasNumber(values.gasHigh) + ' kg LPG equivalent/day',
+      '- Bio-fertilizer: ' + formatBiogasNumber(values.slurryLow) + ' - ' + formatBiogasNumber(values.slurryHigh) + ' kg slurry/day',
+      '- Fuel cost offset: Rs ' + formatBiogasNumber(values.savingsLow) + ' - ' + formatBiogasNumber(values.savingsHigh) + ' per month at Rs ' + formatBiogasNumber(values.rate) + '/kg LPG',
+      '- Waste diverted: ' + formatBiogasNumber(values.divertedTons) + ' tons/year'
+    ].join('\n');
+  }
+
+  function setupBiogasCalculator() {
+    var root = document.querySelector('[data-dh-biogas-calc="true"]');
+    if (!root) return;
+
+    updateBiogasCalculator(root);
+
+    if (root.dataset.eventsBound === 'true') return;
+    root.dataset.eventsBound = 'true';
+
+    var range = root.querySelector('[data-dh-calc-input="waste-range"]');
+    var number = root.querySelector('[data-dh-calc-input="waste"]');
+
+    root.addEventListener('input', function (event) {
+      var role = event.target.getAttribute('data-dh-calc-input');
+      if (!role) return;
+
+      if (role === 'waste-range' && number) {
+        number.value = range.value;
+      } else if (role === 'waste' && range) {
+        var typed = parseFloat(number.value);
+        if (!isNaN(typed)) {
+          range.value = Math.min(Math.max(typed, parseFloat(range.min)), parseFloat(range.max));
+        }
+      }
+
+      updateBiogasCalculator(root);
+    });
+  }
+
   function ensureBiogasServicesNav() {
     var quickNav = document.querySelector('#page-services .qnav-inner');
 
@@ -2559,6 +2812,10 @@
       '    <p>Nutrient-rich solid and liquid organic fertilizer suitable for agriculture, horticulture, or commercial reuse.</p>',
       '  </div>',
       '</div>',
+
+      '<h3 class="dh-biogas-subhead">Estimate your output and savings</h3>',
+      '<p class="dh-geo-intro">Move the slider to your facility\'s daily organic waste and see the indicative gas, fertilizer, and fuel-cost offset before you talk to anyone.</p>',
+      buildBiogasCalculator(),
 
       '<h3 class="dh-biogas-subhead">System specifications (standard 500 kg/day unit reference)</h3>',
       '<div class="dh-biogas-table-wrap">',
@@ -2851,6 +3108,7 @@
     ensureServicesBiogasSection();
     ensureBiogasServicesNav();
     ensureBiogasServiceOption();
+    setupBiogasCalculator();
     resolvePendingBiogasScroll();
 
     if (runtime.biogasBound) return;
@@ -2870,6 +3128,35 @@
         event.preventDefault();
         trackEvent('cta_click', { cta_name: 'biogas_quicknav', source: 'services-qnav' });
         goToServicesBiogas();
+        return;
+      }
+
+      var calcSend = event.target.closest ? event.target.closest('[data-dh-calc-send]') : null;
+      if (calcSend) {
+        event.preventDefault();
+
+        var calcRoot = document.querySelector('[data-dh-biogas-calc="true"]');
+        var values = updateBiogasCalculator(calcRoot);
+
+        openBiogasIntake('roi-calculator');
+        setupBiogasIntakeForm();
+
+        var intakeForm = document.getElementById('dh-biogas-form');
+        if (intakeForm && values) {
+          var wasteField = getBiogasField(intakeForm, 'wasteQuantity');
+          var notesField = getBiogasField(intakeForm, 'notes');
+          if (wasteField && !wasteField.value) {
+            wasteField.value = formatBiogasNumber(values.waste) + ' kg per day';
+          }
+          if (notesField && !notesField.value) {
+            notesField.value = buildBiogasCalculatorSummary(values);
+          }
+        }
+
+        trackEvent('biogas_calculator_send', {
+          form_name: 'biogas_site_assessment',
+          waste_kg_per_day: values ? Math.round(values.waste) : 0
+        });
         return;
       }
 
