@@ -2000,6 +2000,107 @@
       '.dh-biogas-diagram .dh-dg-arrow-head {',
       '  fill: rgba(26, 122, 76, 0.55);',
       '}',
+      '.dh-biogas-gallery {',
+      '  display: grid;',
+      '  grid-template-columns: repeat(4, minmax(0, 1fr));',
+      '  gap: 14px;',
+      '}',
+      '.dh-biogas-shot {',
+      '  margin: 0;',
+      '}',
+      '.dh-biogas-shot-btn {',
+      '  display: block;',
+      '  width: 100%;',
+      '  padding: 0;',
+      '  border: 1px solid rgba(26, 122, 76, 0.16);',
+      '  border-radius: 14px;',
+      '  overflow: hidden;',
+      '  background: #fff;',
+      '  cursor: zoom-in;',
+      '  transition: transform 0.25s ease, box-shadow 0.25s ease;',
+      '}',
+      '.dh-biogas-shot-btn:hover {',
+      '  transform: translateY(-2px);',
+      '  box-shadow: 0 16px 30px rgba(26, 122, 76, 0.16);',
+      '}',
+      '.dh-biogas-shot-btn img {',
+      '  display: block;',
+      '  width: 100%;',
+      '  aspect-ratio: 4 / 3;',
+      '  object-fit: cover;',
+      '}',
+      '.dh-biogas-shot figcaption {',
+      '  margin-top: 8px;',
+      '  color: #556887;',
+      '  font-size: 12px;',
+      '  line-height: 1.6;',
+      '}',
+      '#dh-biogas-lightbox {',
+      '  position: fixed;',
+      '  inset: 0;',
+      '  z-index: 100002;',
+      '  display: flex;',
+      '  align-items: center;',
+      '  justify-content: center;',
+      '  padding: 24px;',
+      '  background: rgba(15, 23, 42, 0.82);',
+      '  opacity: 0;',
+      '  pointer-events: none;',
+      '  transition: opacity 0.25s ease;',
+      '}',
+      '#dh-biogas-lightbox.active {',
+      '  opacity: 1;',
+      '  pointer-events: auto;',
+      '}',
+      '.dh-lightbox-shell {',
+      '  position: relative;',
+      '  display: flex;',
+      '  align-items: center;',
+      '  gap: 12px;',
+      '  max-width: min(1100px, 100%);',
+      '}',
+      '.dh-lightbox-shell figure {',
+      '  margin: 0;',
+      '  text-align: center;',
+      '}',
+      '.dh-lightbox-shell img {',
+      '  display: block;',
+      '  max-width: 100%;',
+      '  max-height: calc(100vh - 140px);',
+      '  border-radius: 14px;',
+      '  background: #fff;',
+      '}',
+      '.dh-lightbox-shell figcaption {',
+      '  margin-top: 12px;',
+      '  color: rgba(255, 255, 255, 0.86);',
+      '  font-size: 13px;',
+      '}',
+      '.dh-lightbox-close {',
+      '  position: absolute;',
+      '  top: -14px;',
+      '  right: -14px;',
+      '  width: 40px;',
+      '  height: 40px;',
+      '  border-radius: 999px;',
+      '  border: none;',
+      '  background: #fff;',
+      '  color: #1a2d5a;',
+      '  font-size: 22px;',
+      '  line-height: 1;',
+      '  cursor: pointer;',
+      '}',
+      '.dh-lightbox-nav {',
+      '  width: 46px;',
+      '  height: 46px;',
+      '  flex: 0 0 auto;',
+      '  border-radius: 999px;',
+      '  border: none;',
+      '  background: rgba(255, 255, 255, 0.92);',
+      '  color: #1a2d5a;',
+      '  font-size: 24px;',
+      '  line-height: 1;',
+      '  cursor: pointer;',
+      '}',
       '.dh-biogas-calc {',
       '  margin-top: 16px;',
       '  padding: 22px;',
@@ -2184,8 +2285,12 @@
       '  .dh-biogas-grid, .dh-biogas-grid.cols-2, .dh-biogas-proof, .dh-biogas-teaser, .dh-biogas-calc-inputs {',
       '    grid-template-columns: 1fr;',
       '  }',
-      '  .dh-biogas-calc-out {',
+      '  .dh-biogas-calc-out, .dh-biogas-gallery {',
       '    grid-template-columns: repeat(2, minmax(0, 1fr));',
+      '  }',
+      '  .dh-lightbox-close {',
+      '    top: -10px;',
+      '    right: -6px;',
       '  }',
       '}',
       '@media (max-width: 640px) {',
@@ -2519,6 +2624,16 @@
     ].join('');
   }
 
+  // Drop matching files into /images to make the gallery appear. Any entry whose
+  // file is missing is removed on load, and the whole block hides when none exist,
+  // so the live page never shows an empty or broken gallery.
+  var BIOGAS_GALLERY = [
+    { file: 'images/biogas-plant-installed.webp', caption: 'Installed Smart Biogas Plant on site' },
+    { file: 'images/biogas-iot-dashboard.webp', caption: 'IoT monitoring on the mobile app and web portal' },
+    { file: 'images/biogas-bio-fertilizer.webp', caption: 'Organic bio-fertilizer recovered from the digester' },
+    { file: 'images/biogas-installation.webp', caption: 'Prefabricated unit during on-site installation' }
+  ];
+
   var BIOGAS_DEFAULT_WASTE_KG = 500;
   var BIOGAS_DEFAULT_LPG_RATE = 95;
   // Ratios published for the standard 500 kg/day reference unit.
@@ -2526,6 +2641,162 @@
   var BIOGAS_LPG_PER_KG_HIGH = 25 / 500;
   var BIOGAS_SLURRY_PER_KG_LOW = 120 / 500;
   var BIOGAS_SLURRY_PER_KG_HIGH = 150 / 500;
+
+  function escapeBiogasHtml(value) {
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function buildBiogasGallery() {
+    if (!BIOGAS_GALLERY.length) return '';
+
+    var tiles = BIOGAS_GALLERY.map(function (item, index) {
+      var caption = escapeBiogasHtml(item.caption);
+      return [
+        '  <figure class="dh-biogas-shot" data-dh-shot="' + index + '">',
+        '    <button type="button" class="dh-biogas-shot-btn" data-dh-shot-open="' + index + '" aria-label="Enlarge photo: ' + caption + '">',
+        '      <img src="' + escapeBiogasHtml(item.file) + '" alt="' + caption + '" loading="lazy" decoding="async">',
+        '    </button>',
+        '    <figcaption>' + caption + '</figcaption>',
+        '  </figure>'
+      ].join('');
+    }).join('');
+
+    return [
+      '<div class="dh-biogas-gallery-wrap" data-dh-biogas-gallery="true" hidden>',
+      '  <h3 class="dh-biogas-subhead">Plants in operation</h3>',
+      '  <div class="dh-biogas-gallery">',
+      tiles,
+      '  </div>',
+      '</div>'
+    ].join('');
+  }
+
+  function setupBiogasGallery() {
+    var wrap = document.querySelector('[data-dh-biogas-gallery="true"]');
+    if (!wrap || wrap.dataset.dhResolved === 'true') return;
+
+    var figures = Array.prototype.slice.call(wrap.querySelectorAll('.dh-biogas-shot'));
+    if (!figures.length) {
+      wrap.dataset.dhResolved = 'true';
+      wrap.remove();
+      return;
+    }
+
+    var pending = figures.length;
+
+    function settle() {
+      pending -= 1;
+      if (pending > 0) return;
+
+      wrap.dataset.dhResolved = 'true';
+      if (!wrap.querySelector('.dh-biogas-shot')) {
+        wrap.remove();
+        return;
+      }
+      wrap.hidden = false;
+    }
+
+    figures.forEach(function (figure) {
+      var image = figure.querySelector('img');
+      if (!image) {
+        figure.remove();
+        settle();
+        return;
+      }
+
+      // Images are lazy, so force this probe to resolve now rather than on scroll.
+      var probe = new Image();
+      probe.onload = function () {
+        settle();
+      };
+      probe.onerror = function () {
+        figure.remove();
+        settle();
+      };
+      probe.src = image.getAttribute('src');
+    });
+  }
+
+  function getBiogasShotIndexes() {
+    return Array.prototype.map.call(document.querySelectorAll('[data-dh-biogas-gallery="true"] .dh-biogas-shot'), function (figure) {
+      return parseInt(figure.getAttribute('data-dh-shot'), 10);
+    });
+  }
+
+  function injectBiogasLightbox() {
+    if (document.getElementById('dh-biogas-lightbox')) return;
+
+    var lightbox = document.createElement('div');
+    lightbox.id = 'dh-biogas-lightbox';
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightbox.innerHTML = [
+      '<div class="dh-lightbox-shell" role="dialog" aria-modal="true" aria-label="Biogas plant photo">',
+      '  <button type="button" class="dh-lightbox-close" data-dh-lightbox-close="true" aria-label="Close photo">&times;</button>',
+      '  <button type="button" class="dh-lightbox-nav is-prev" data-dh-lightbox-step="-1" aria-label="Previous photo">&#8249;</button>',
+      '  <figure>',
+      '    <img alt="" data-dh-lightbox-image="true">',
+      '    <figcaption data-dh-lightbox-caption="true"></figcaption>',
+      '  </figure>',
+      '  <button type="button" class="dh-lightbox-nav is-next" data-dh-lightbox-step="1" aria-label="Next photo">&#8250;</button>',
+      '</div>'
+    ].join('');
+
+    document.body.appendChild(lightbox);
+  }
+
+  function showBiogasShot(index) {
+    injectBiogasLightbox();
+
+    var available = getBiogasShotIndexes();
+    if (!available.length) return;
+
+    var item = BIOGAS_GALLERY[index];
+    if (!item) return;
+
+    var lightbox = document.getElementById('dh-biogas-lightbox');
+    var image = lightbox.querySelector('[data-dh-lightbox-image="true"]');
+    var caption = lightbox.querySelector('[data-dh-lightbox-caption="true"]');
+
+    image.src = item.file;
+    image.alt = item.caption;
+    caption.textContent = item.caption;
+    lightbox.dataset.currentIndex = String(index);
+    lightbox.classList.add('active');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    var multiple = available.length > 1;
+    Array.prototype.forEach.call(lightbox.querySelectorAll('.dh-lightbox-nav'), function (button) {
+      button.style.display = multiple ? '' : 'none';
+    });
+  }
+
+  function stepBiogasShot(direction) {
+    var lightbox = document.getElementById('dh-biogas-lightbox');
+    if (!lightbox) return;
+
+    var available = getBiogasShotIndexes();
+    if (!available.length) return;
+
+    var current = parseInt(lightbox.dataset.currentIndex || '0', 10);
+    var position = available.indexOf(current);
+    if (position === -1) position = 0;
+
+    var next = (position + direction + available.length) % available.length;
+    showBiogasShot(available[next]);
+  }
+
+  function closeBiogasLightbox() {
+    var lightbox = document.getElementById('dh-biogas-lightbox');
+    if (!lightbox) return;
+    lightbox.classList.remove('active');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
 
   function formatBiogasNumber(value) {
     var rounded = Math.round(value);
@@ -2812,6 +3083,8 @@
       '    <p>Nutrient-rich solid and liquid organic fertilizer suitable for agriculture, horticulture, or commercial reuse.</p>',
       '  </div>',
       '</div>',
+
+      buildBiogasGallery(),
 
       '<h3 class="dh-biogas-subhead">Estimate your output and savings</h3>',
       '<p class="dh-geo-intro">Move the slider to your facility\'s daily organic waste and see the indicative gas, fertilizer, and fuel-cost offset before you talk to anyone.</p>',
@@ -3109,6 +3382,7 @@
     ensureBiogasServicesNav();
     ensureBiogasServiceOption();
     setupBiogasCalculator();
+    setupBiogasGallery();
     resolvePendingBiogasScroll();
 
     if (runtime.biogasBound) return;
@@ -3128,6 +3402,27 @@
         event.preventDefault();
         trackEvent('cta_click', { cta_name: 'biogas_quicknav', source: 'services-qnav' });
         goToServicesBiogas();
+        return;
+      }
+
+      var shotOpen = event.target.closest ? event.target.closest('[data-dh-shot-open]') : null;
+      if (shotOpen) {
+        event.preventDefault();
+        showBiogasShot(parseInt(shotOpen.getAttribute('data-dh-shot-open'), 10));
+        trackEvent('biogas_gallery_open', { photo_index: shotOpen.getAttribute('data-dh-shot-open') });
+        return;
+      }
+
+      var shotStep = event.target.closest ? event.target.closest('[data-dh-lightbox-step]') : null;
+      if (shotStep) {
+        event.preventDefault();
+        stepBiogasShot(parseInt(shotStep.getAttribute('data-dh-lightbox-step'), 10));
+        return;
+      }
+
+      if ((event.target.closest && event.target.closest('[data-dh-lightbox-close]')) || event.target.id === 'dh-biogas-lightbox') {
+        event.preventDefault();
+        closeBiogasLightbox();
         return;
       }
 
@@ -3181,6 +3476,16 @@
     });
 
     document.addEventListener('keydown', function (event) {
+      var lightbox = document.getElementById('dh-biogas-lightbox');
+      var lightboxOpen = lightbox && lightbox.classList.contains('active');
+
+      if (lightboxOpen) {
+        if (event.key === 'Escape') closeBiogasLightbox();
+        if (event.key === 'ArrowRight') stepBiogasShot(1);
+        if (event.key === 'ArrowLeft') stepBiogasShot(-1);
+        return;
+      }
+
       if (event.key !== 'Escape') return;
       var overlay = document.getElementById('dh-biogas-overlay');
       if (overlay && overlay.classList.contains('active')) closeBiogasIntake();

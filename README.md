@@ -68,3 +68,9 @@ The Cloudflare Pages Function in [functions/api/contact.js](D:/DHARRAH/functions
 - The biogas blocks now use green headings (`#1a7a4c`) for section titles, subheads, card headings, table headers, and diagram stage labels, while body copy stays slate (`#556887`) for contrast. The green is scoped to the biogas blocks only, so the site-wide navy and red identity is unchanged.
 - An ROI calculator (`[data-dh-biogas-calc]`) sits above the specification table. Daily waste (slider plus number input, kept in sync) and the client's own LPG rate drive four live outputs: purified gas, bio-fertilizer, monthly fuel cost offset, and tons diverted per year. Ratios are scaled from the published 500 kg/day reference unit and the block is explicitly labelled indicative, not a quotation.
 - "Send These Numbers for a Site Assessment" opens the intake overlay with the waste quantity and a full estimate summary prefilled into the notes field, and emits `biogas_calculator_send`.
+
+## Phase 9 notes
+
+- The biogas section has a self-activating photo gallery. `BIOGAS_GALLERY` in [scripts/dharrah-runtime.js](D:/DHARRAH/scripts/dharrah-runtime.js) lists the expected files; each entry is probed on load, missing files drop out, and when none resolve the whole block removes itself. The live page therefore shows nothing until real photos exist, and no code change is needed to switch it on.
+- To activate it, drop any of these into [images/](D:/DHARRAH/images/): `biogas-plant-installed.webp`, `biogas-iot-dashboard.webp`, `biogas-bio-fertilizer.webp`, `biogas-installation.webp`. Captions live alongside the filenames in `BIOGAS_GALLERY`. Recommended: WebP, roughly 1200x900, under 200 KB each.
+- Photos open in a lightbox (`#dh-biogas-lightbox`) with previous/next controls, arrow-key navigation, Escape and backdrop close, and body scroll lock. Navigation arrows hide when only one photo resolves. Opening a photo emits `biogas_gallery_open`.
